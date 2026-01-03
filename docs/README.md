@@ -1,6 +1,6 @@
 # Uizy Documentation
 
-This is the documentation site for [Uizy](https://github.com/dufeut/uizy), built using [Docusaurus](https://docusaurus.io/).
+This is the documentation site for [Uizy](https://github.com/dufeutech/uizy), built using [Docusaurus](https://docusaurus.io/).
 
 ## Installation
 
@@ -26,7 +26,7 @@ This command generates static content into the `build` directory and can be serv
 
 ## Deployment
 
-The documentation is deployed to GitHub Pages at `https://dufeut.github.io/uizy/`.
+The documentation is deployed to GitHub Pages at `https://dufeutech.github.io/uizy/`.
 
 ```bash
 pnpm deploy

@@ -11,10 +11,10 @@ const config: Config = {
     v4: true,
   },
 
-  url: "https://dufeut.github.io",
+  url: "https://dufeutech.github.io",
   baseUrl: "/uizy/",
 
-  organizationName: "dufeut",
+  organizationName: "dufeutech",
   projectName: "uizy",
   trailingSlash: false,
 
@@ -32,7 +32,7 @@ const config: Config = {
         docs: {
           routeBasePath: "/",
           sidebarPath: "./sidebars.ts",
-          editUrl: "https://github.com/dufeut/uizy/tree/main/docs/",
+          editUrl: "https://github.com/dufeutech/uizy/tree/main/docs/",
         },
         blog: false,
         theme: {
@@ -71,7 +71,7 @@ const config: Config = {
       },
       items: [
         {
-          href: "https://github.com/dufeut/uizy",
+          href: "https://github.com/dufeutech/uizy",
           label: "GitHub",
           position: "right",
         },
@@ -115,11 +115,11 @@ const config: Config = {
           items: [
             {
               label: "GitHub",
-              href: "https://github.com/dufeut/uizy",
+              href: "https://github.com/dufeutech/uizy",
             },
             {
               label: "NPM",
-              href: "https://www.npmjs.com/package/@dufeut/uizy",
+              href: "https://www.npmjs.com/package/@dufeutech/uizy",
             },
           ],
         },

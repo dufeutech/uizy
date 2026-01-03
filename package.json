@@ -1,9 +1,9 @@
 {
-  "name": "@dufeut/uizy",
+  "name": "@dufeutech/uizy",
   "version": "0.1.6",
   "description": "Micro utility-first CSS framework with reactive web components and state management.",
   "license": "BSD-3-Clause",
-  "author": "dufeut",
+  "author": "dufeutech",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "style": "dist/index.css",
@@ -45,7 +45,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dufeut/uizy.git"
+    "url": "git+https://github.com/dufeutech/uizy.git"
   },
   "keywords": [
     "css",
@@ -59,9 +59,9 @@
     "reactive"
   ],
   "bugs": {
-    "url": "https://github.com/dufeut/uizy/issues"
+    "url": "https://github.com/dufeutech/uizy/issues"
   },
-  "homepage": "https://github.com/dufeut/uizy#readme",
+  "homepage": "https://github.com/dufeutech/uizy#readme",
   "files": [
     "dist"
   ]

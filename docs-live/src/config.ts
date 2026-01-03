@@ -11,9 +11,9 @@ export const config = {
   emoji: "🌐",
 
   // URLs
-  npm: "@dufeut/uizy",
-  cdn: "https://unpkg.com/@dufeut/uizy/dist/index.css",
-  github: "https://github.com/dufeut/uizy",
+  npm: "@dufeutech/uizy",
+  cdn: "https://unpkg.com/@dufeutech/uizy/dist/index.css",
+  github: "https://github.com/dufeutech/uizy",
 
   // Base path
   base: BASE,

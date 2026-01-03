@@ -2,35 +2,35 @@
 
 <div align="center">
 
-  <img height="140px" src="https://raw.githubusercontent.com/dufeut/uizy/main/docs/static/img/logo.png" alt="logo"/>
+  <img height="140px" src="https://raw.githubusercontent.com/dufeutech/uizy/main/docs/static/img/logo.png" alt="logo"/>
 
    <p><strong>Small footprint, big impact – the micro CSS framework for UIs.</strong></p>
    <p><code>~6kb</code> gzipped JS + <code>~6.5kb</code> gzipped CSS</p>
 
 [![License: BSD 3-Clause](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
-[![npm version](https://img.shields.io/npm/v/@dufeut/uizy.svg)](https://www.npmjs.com/package/@dufeut/uizy)
+[![npm version](https://img.shields.io/npm/v/@dufeutech/uizy.svg)](https://www.npmjs.com/package/@dufeutech/uizy)
 
-[Documentation](https://dufeut.github.io/uizy/) |
-[GitHub](https://github.com/dufeut/uizy)
+[Documentation](https://dufeutech.github.io/uizy/) |
+[GitHub](https://github.com/dufeutech/uizy)
 
 </div>
 
 ## Installation
 
 ```bash
-npm install @dufeut/uizy
+npm install @dufeutech/uizy
 ```
 
 ```js
-import uizy from "@dufeut/uizy";
-import "@dufeut/uizy/index.css";
+import uizy from "@dufeutech/uizy";
+import "@dufeutech/uizy/index.css";
 ```
 
 Or via CDN:
 
 ```html
-<script src="https://unpkg.com/@dufeut/uizy/dist/uizy.iife.js"></script>
-<link href="https://unpkg.com/@dufeut/uizy/dist/index.css" rel="stylesheet" />
+<script src="https://unpkg.com/@dufeutech/uizy/dist/uizy.iife.js"></script>
+<link href="https://unpkg.com/@dufeutech/uizy/dist/index.css" rel="stylesheet" />
 ```
 
 ## Quick Start
