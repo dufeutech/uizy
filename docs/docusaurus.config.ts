@@ -119,7 +119,7 @@ const config: Config = {
             },
             {
               label: "NPM",
-              href: "https://www.npmjs.com/package/@dufeutech/uizy",
+              href: "https://www.npmjs.com/package/@dufeut/uizy",
             },
           ],
         },
