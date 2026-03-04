@@ -40,6 +40,14 @@ import uizy from "@dufeut/uizy";
 import "@dufeut/uizy/index.css";
 ```
 
+:::caution CSS-only users
+The `<uizy-app>` element is hidden by default and revealed automatically by `uizy.start()`. If you're using only the CSS without the JS engine, add the `uizy-ready` class manually:
+
+```html
+<uizy-app class="uizy-ready">...</uizy-app>
+```
+:::
+
 ## How Classes Work
 
 Uizy uses short class names that tell you exactly what they do. Here's the pattern:

@@ -25,6 +25,7 @@ export interface BreakpointConfig {
   right: boolean;
   main: boolean;
   header: boolean;
+  drawer: boolean;
 }
 
 export interface LayoutConfig {
@@ -56,12 +57,13 @@ export interface LayoutInput {
 const DEFAULT_BREAKPOINT: BreakpointConfig = {
   name: "",
   width: 0,
-  top: false,
-  bottom: false,
-  left: false,
-  right: false,
+  top: true,
+  bottom: true,
+  left: true,
+  right: true,
   header: true,
   main: true,
+  drawer: true,
 };
 
 const DEFAULT_LAYOUT: LayoutConfig = {
@@ -81,6 +83,17 @@ const DEFAULT_OVERLAY: OverlayConfig = {
 };
 
 /* ------------------------------------------------------------------ */
+/* Resolved breakpoint state (set by layout(), read by init())        */
+/* ------------------------------------------------------------------ */
+
+let resolvedBp: BreakpointConfig = { ...DEFAULT_BREAKPOINT };
+
+/** Returns the resolved breakpoint config from the last layout() call. */
+export function getBreakpoint(): BreakpointConfig {
+  return resolvedBp;
+}
+
+/* ------------------------------------------------------------------ */
 /* Main Layout Function                                               */
 /* ------------------------------------------------------------------ */
 
@@ -92,6 +105,13 @@ export function layout({
   const bp: BreakpointConfig = { ...DEFAULT_BREAKPOINT, ...breakpoint };
   const ly: LayoutConfig = { ...DEFAULT_LAYOUT, ...layoutCfg };
   const ov: OverlayConfig = { ...DEFAULT_OVERLAY, ...overlay };
+
+  // Resolve named breakpoint to width
+  if (bp.name && BREAKPOINT[bp.name]) {
+    bp.width = BREAKPOINT[bp.name];
+  }
+
+  resolvedBp = bp;
 
   const css = [setBreakPoint(bp), setLayout({ ...ly, ...ov })].join("");
 
@@ -112,8 +132,7 @@ function setBreakPoint(bp: BreakpointConfig): string {
   if (bp.top) drawerRules.push("top: 0 !important;");
   if (bp.bottom) drawerRules.push("bottom: 0 !important;");
 
-  let width = bp.width;
-  if (bp.name) width = BREAKPOINT[bp.name] as number;
+  const width = bp.width;
 
   const margin = marginRules.join(" ");
   if (bp.main) allRules.push(`.uizy-main { ${margin} }`);
@@ -141,7 +160,10 @@ const CSS_VAR_MAP: Record<string, { name: string; unit: string }> = {
 
 function setLayout(vars: LayoutConfig & OverlayConfig): string {
   const cssVars = Object.entries(CSS_VAR_MAP)
-    .map(([key, { name, unit }]) => `${name}: ${vars[key as keyof typeof vars]}${unit};`)
+    .map(
+      ([key, { name, unit }]) =>
+        `${name}: ${vars[key as keyof typeof vars]}${unit};`,
+    )
     .join(" ");
 
   return `:root { ${cssVars} } uizy-overlay.full { z-index: 100 !important; top: 0 !important; bottom: 0 !important; }`;

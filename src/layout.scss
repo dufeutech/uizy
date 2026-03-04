@@ -21,12 +21,12 @@ $layout: (
   left: (
     width: var(--uizy-left-width, 185px),
     width-mini: var(--uizy-left-mini-width, 60px),
-    layer: var(--uizy-left-layer, 20),
+    layer: var(--uizy-left-layer, 50),
   ),
   right: (
     width: var(--uizy-right-width, 185px),
     width-mini: var(--uizy-right-mini-width, 60px),
-    layer: var(--uizy-right-layer, 20),
+    layer: var(--uizy-right-layer, 50),
   ),
   overlay: (
     color: var(--uizy-overlay-color, black),
@@ -41,6 +41,23 @@ $layout: (
 
 @function layout-get($section, $property) {
   @return map.get(map.get($layout, $section), $property);
+}
+
+// ==========================
+// App Ready Gate
+// ==========================
+// Hidden until JS init completes (prevents layout flash)
+// Also disables transitions so drawers don't animate on reveal
+uizy-app {
+  visibility: hidden;
+
+  &:not(.uizy-ready) * {
+    transition: none !important;
+  }
+
+  &.uizy-ready {
+    visibility: visible;
+  }
 }
 
 // ==========================
@@ -230,10 +247,8 @@ $layout: (
   height: calc(
     100dvh -
       (
-        #{layout-get(system-bar, height)} + #{layout-get(header, height)} + #{layout-get(
-            footer,
-            height
-          )}
+        #{layout-get(system-bar, height)} + #{layout-get(header, height)} +
+          #{layout-get(footer, height)}
       )
   );
 }

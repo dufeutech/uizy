@@ -152,6 +152,40 @@ Sidebar becomes top section on mobile:
 Always design for mobile first! Start with the smallest screen, then add classes for larger screens. This ensures your site works everywhere.
 :::
 
+## Layout Breakpoint
+
+Beyond responsive CSS classes, Uizy's JavaScript engine provides a **layout breakpoint** that controls structural behavior at a specific screen size:
+
+```javascript
+uizy.start({
+  layout: {
+    breakpoint: {
+      name: "lg",      // Trigger at 992px
+      main: true,      // Reset main content margins
+      header: true,    // Reset header margins
+      top: true,       // Reset top clipping
+      bottom: true,    // Reset bottom clipping
+      left: true,      // Reset left margins
+      right: true,     // Reset right margins
+      drawer: true,    // Close open drawers on mobile, re-open on desktop
+    },
+  },
+});
+```
+
+### Responsive Drawers
+
+When `drawer: true` (default), any `<uizy-drawer open>` will:
+- **Auto-close** when the viewport drops below the breakpoint
+- **Auto-re-open** when the viewport goes back above the breakpoint
+- **Still respond** to manual `action()` toggle calls at any size
+
+This means you can declare drawers as `open` for desktop and they'll automatically hide on mobile without extra code.
+
+### Ready Gate
+
+The `<uizy-app>` element is hidden until initialization completes, preventing any flash of layout rearrangement. See [`<uizy-app>`](/docs/layout/web-components/app#ready-gate) for details.
+
 ## Quick Reference
 
 | Class | Description |

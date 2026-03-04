@@ -61,8 +61,8 @@ Add the app shell using web components:
     </ui-box>
   </uizy-header>
 
-  <!-- Sidebar -->
-  <uizy-drawer clip-top clip-bottom shadow="2">
+  <!-- Sidebar (open on desktop, auto-closed on mobile via breakpoint.drawer) -->
+  <uizy-drawer open clip-top clip-bottom shadow="2">
     <ui-box class="pa-4">
       <ui-box class="ts-5 td-b mb-4">Categories</ui-box>
       <ui-box class="d-flex dy-ce gx-2 pa-2 br-2 mb-2 e-p">
@@ -128,6 +128,9 @@ uizy.start({
     breakpoint: {
       name: "md",
       left: true,
+      main: true,
+      header: true,
+      drawer: true, // Auto-close sidebar on mobile
     },
   },
 

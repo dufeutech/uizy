@@ -55,6 +55,7 @@ uizy.layout({
     bottom: false, // Adjust bottom clipping
     left: true, // Reset left margins on mobile
     right: true, // Reset right margins on mobile
+    drawer: true, // Close open drawers on mobile, re-open on desktop
   },
 });
 ```
@@ -93,6 +94,7 @@ uizy.layout({
 | `bottom` | `boolean` | `false` | Adjust bottom clipping                 |
 | `left`   | `boolean` | `false` | Reset left margins below breakpoint    |
 | `right`  | `boolean` | `false` | Reset right margins below breakpoint   |
+| `drawer` | `boolean` | `true`  | Close open drawers below breakpoint, re-open above |
 
 ### Named Breakpoints
 
@@ -214,6 +216,45 @@ uizy.start({
     console.log("Layout configured!");
   },
 });
+```
+
+## Ready Gate
+
+The `<uizy-app>` element is hidden (`visibility: hidden`) until initialization completes. This prevents a layout flash where drawers briefly appear before being closed by the breakpoint logic.
+
+- All transitions are disabled until ready (no slide-in animations on load)
+- After `uizy.start()` runs, the `uizy-ready` class is added and the layout becomes visible
+- If you're using only the CSS without the JS engine, add `uizy-ready` manually:
+
+```html
+<uizy-app class="uizy-ready">...</uizy-app>
+```
+
+## Drawer Responsive Behavior
+
+When `breakpoint.drawer` is `true` (default), drawers declared with the `open` attribute automatically respond to viewport changes:
+
+- **Below breakpoint**: Open drawers are closed (the `open` class is removed)
+- **Above breakpoint**: Previously open drawers are restored
+- **Manual toggle**: The `action()` method still works normally at any size
+
+```javascript
+uizy.start({
+  layout: {
+    breakpoint: {
+      name: "lg",
+      drawer: true, // Drawers auto-close on mobile
+      left: true,
+      main: true,
+      header: true,
+    },
+  },
+});
+```
+
+```html
+<!-- This drawer will be open on desktop (>=992px) and closed on mobile -->
+<uizy-drawer open clip-top clip-bottom>Navigation</uizy-drawer>
 ```
 
 ## Generated CSS Variables

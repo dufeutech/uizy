@@ -33,12 +33,30 @@ Or via CDN:
 <link href="https://unpkg.com/@dufeut/uizy/dist/index.css" rel="stylesheet" />
 ```
 
+> **CSS-only users:** The `<uizy-app>` element is hidden by default and revealed automatically by `uizy.start()`. If you're using only the CSS without the JS engine, add the `uizy-ready` class manually:
+
+```html
+<uizy-app class="uizy-ready">...</uizy-app>
+```
+
 ## Quick Start
 
 ```js
 uizy.start({
   globals: true,
-  layout: { layout: { header: 56, footer: 48, left: 240 } },
+  layout: {
+    layout: { header: 56, footer: 48, left: 240 },
+    breakpoint: {
+      name: "lg",
+      main: true,
+      header: true,
+      top: true,
+      bottom: true,
+      left: true,
+      right: true,
+      drawer: true,
+    },
+  },
   theme: { colors: { primary: "#6b08a5", accent: "#1eadff" } },
   components: {
     button: () => "px-4 py-2 bd-a br-1 e-p e-ns",
@@ -82,6 +100,31 @@ uizy.start({
 - **Plugins** – Namespace and bundle related functionality
 - **Responsive** – Mobile-first breakpoints (`sm`, `md`, `lg`, `xl`, `xxl`)
 - **Screen Store** – Reactive `uizy.screen` tracks current viewport `{ width, size }`
+
+## Responsive Breakpoint
+
+Configure responsive behavior for layout and drawers:
+
+```js
+uizy.start({
+  layout: {
+    breakpoint: {
+      name: "lg", // Breakpoint name (sm, md, lg, xl, xxl)
+      main: true, // Reset main content margins on mobile
+      header: true, // Reset header margins on mobile
+      top: true, // Reset top clipping on mobile
+      bottom: true, // Reset bottom clipping on mobile
+      left: true, // Reset left margins on mobile
+      right: true, // Reset right margins on mobile
+      drawer: true, // Close open drawers on mobile (default: true)
+    },
+  },
+});
+```
+
+When `drawer` is `true` (default), any `<uizy-drawer open>` will automatically close when the viewport drops below the breakpoint, and re-open when it goes back above. This prevents drawers from covering content on small screens while keeping them open on desktop.
+
+The `<uizy-app>` element is hidden (`visibility: hidden`) until initialization completes, preventing any layout flash.
 
 ## Screen Store
 

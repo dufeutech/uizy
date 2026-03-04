@@ -148,3 +148,38 @@ app.action("left.mini", ({ set }) => set());
 :::tip
 You can have multiple drawers on each side - typically a full drawer and a mini drawer for different screen sizes or states.
 :::
+
+## Responsive Behavior
+
+When the `breakpoint.drawer` option is enabled (default: `true`), drawers declared with `open` automatically respond to viewport changes:
+
+- **Below breakpoint**: The `open` state is removed — drawers start closed on mobile
+- **Above breakpoint**: The `open` state is restored — drawers re-open on desktop
+- **Manual toggle**: `action()` calls still work normally at any viewport size
+
+```html
+<!-- This drawer will be open on desktop and auto-closed on mobile -->
+<uizy-drawer open shadow="6" clip-top clip-bottom>
+    Navigation
+</uizy-drawer>
+```
+
+```javascript
+uizy.start({
+  layout: {
+    breakpoint: {
+      name: "lg",
+      drawer: true, // Enable responsive drawer behavior
+      left: true,
+      main: true,
+      header: true,
+    },
+  },
+});
+```
+
+Set `drawer: false` to disable this behavior and keep drawers in their declared state regardless of screen size.
+
+:::info
+The `<uizy-app>` element is hidden until initialization completes, preventing any flash of drawers opening then closing on mobile. See [`<uizy-app>`](./app) for details.
+:::

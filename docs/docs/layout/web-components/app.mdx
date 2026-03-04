@@ -12,6 +12,7 @@ The root container that manages all layout components. Required for the JavaScri
 | Attribute | Description |
 |-----------|-------------|
 | `id` | Required for accessing via `uizy.get()` |
+| `class="uizy-ready"` | Reveals the app (added automatically by `uizy.start()`) |
 
 ## Usage
 
@@ -111,3 +112,27 @@ app.action("overlay", ({ set }) => set(null));
     });
 </script>
 ```
+
+## Ready Gate
+
+The `<uizy-app>` element is hidden by default (`visibility: hidden`) and revealed after `uizy.start()` completes initialization. This prevents a layout flash where elements (especially drawers) briefly appear in their initial state before JavaScript adjusts them.
+
+### How it works
+
+1. CSS hides `uizy-app` and disables all transitions inside it
+2. `uizy.start()` runs: registers components, resets drawers based on breakpoint, runs your `onReady` callback
+3. The `uizy-ready` class is added after the next animation frame — the layout appears instantly in its final state
+
+### CSS-only usage
+
+If you're using only the CSS without the JS engine, add the `uizy-ready` class manually:
+
+```html
+<uizy-app class="uizy-ready">
+    <!-- Your layout -->
+</uizy-app>
+```
+
+:::warning
+Without `uizy-ready`, the `<uizy-app>` element will remain invisible. If you're not calling `uizy.start()` or `uizy.init()`, you must add this class yourself.
+:::

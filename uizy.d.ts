@@ -24,6 +24,7 @@ export interface BreakpointConfig {
   right: boolean;
   main: boolean;
   header: boolean;
+  drawer: boolean;
 }
 
 /** Layout dimensions configuration */

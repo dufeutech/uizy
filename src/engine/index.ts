@@ -23,7 +23,7 @@
  */
 
 import { initialize } from "./app.ts";
-import { layout, type LayoutInput } from "./layout.ts";
+import { layout, getBreakpoint, type LayoutInput } from "./layout.ts";
 import {
   Components,
   Actions,
@@ -211,6 +211,47 @@ function registerPlugin(namespace: string, exports: PluginExports): void {
  * });
  * ```
  */
+/** Drawers that had the `open` attribute at init time */
+const defaultOpenDrawers = new Set<Element>();
+
+function initDrawerReset(): void {
+  const bp = getBreakpoint();
+  if (!bp.drawer || bp.width <= 0) return;
+
+  // Snapshot drawers that were declared with `open`
+  document
+    .querySelectorAll(".uizy-drawer--open")
+    .forEach((el) => defaultOpenDrawers.add(el));
+
+  // Close if already below breakpoint on load
+  if (window.innerWidth <= bp.width) {
+    defaultOpenDrawers.forEach((el) =>
+      el.classList.remove("uizy-drawer--open")
+    );
+  }
+
+  // React to resize: close below, restore above
+  let wasBelowBp = window.innerWidth <= bp.width;
+
+  $screen.subscribe(() => {
+    const isBelowBp = window.innerWidth <= bp.width;
+
+    if (isBelowBp && !wasBelowBp) {
+      // Crossed down — close all default-open drawers
+      defaultOpenDrawers.forEach((el) =>
+        el.classList.remove("uizy-drawer--open")
+      );
+    } else if (!isBelowBp && wasBelowBp) {
+      // Crossed up — restore default-open drawers
+      defaultOpenDrawers.forEach((el) =>
+        el.classList.add("uizy-drawer--open")
+      );
+    }
+
+    wasBelowBp = isBelowBp;
+  });
+}
+
 function init(callback?: () => void): void {
   // Initialize web components
   initialize();
@@ -218,14 +259,26 @@ function init(callback?: () => void): void {
   // Start reactive screen tracking
   startScreenListener();
 
-  // Run callback on DOM ready
-  if (callback && typeof callback === "function") {
-    if (document.readyState === "loading") {
-      document.addEventListener("DOMContentLoaded", callback);
-    } else {
-      // DOM already loaded
+  const onReady = () => {
+    // Drawer reset on breakpoint crossing
+    initDrawerReset();
+
+    // User callback
+    if (callback && typeof callback === "function") {
       callback();
     }
+
+    // Reveal layout after next frame so the browser paints
+    // the final state (transitions disabled) before making it visible
+    requestAnimationFrame(() => {
+      document.querySelector("uizy-app")?.classList.add("uizy-ready");
+    });
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", onReady);
+  } else {
+    onReady();
   }
 }
 
