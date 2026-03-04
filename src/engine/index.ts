@@ -39,6 +39,7 @@ import {
   type BrandOptions,
 } from "./theme.ts";
 import { injectCSS } from "./utils.ts";
+import { $screen, startScreenListener } from "./screen.ts";
 
 /* ------------------------------------------------------------------ */
 /* Nano-Stores                                                        */
@@ -213,6 +214,9 @@ function registerPlugin(namespace: string, exports: PluginExports): void {
 function init(callback?: () => void): void {
   // Initialize web components
   initialize();
+
+  // Start reactive screen tracking
+  startScreenListener();
 
   // Run callback on DOM ready
   if (callback && typeof callback === "function") {
@@ -665,6 +669,9 @@ const UIZY = {
 
   /** Register a namespaced plugin */
   plugin: registerPlugin,
+
+  /** Reactive screen store: { width, size } */
+  screen: $screen,
 } as const;
 
 /* ------------------------------------------------------------------ */
@@ -680,6 +687,8 @@ export type {
   LayoutConfig,
   OverlayConfig,
 } from "./layout.ts";
+
+export type { ScreenState } from "./screen.ts";
 
 export type { SystemColors, ScrollbarOptions, BrandOptions } from "./theme.ts";
 

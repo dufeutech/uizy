@@ -4,7 +4,7 @@ import { injectCSS } from "./utils.ts";
 /* Constants                                                          */
 /* ------------------------------------------------------------------ */
 
-const BREAKPOINT: Record<string, number> = {
+export const BREAKPOINT: Record<string, number> = {
   sm: 576,
   md: 768,
   lg: 992,
@@ -119,7 +119,7 @@ function setBreakPoint(bp: BreakpointConfig): string {
   if (bp.main) allRules.push(`.uizy-main { ${margin} }`);
   if (bp.header) allRules.push(`.uizy-header { ${margin} }`);
   const rules = allRules.join(" ");
-  return `@media (max-width: ${width}px) {${rules}.uizy-drawer { ${drawerRules.join()} }}`;
+  return `@media (max-width: ${width}px) {${rules}.uizy-drawer { ${drawerRules.join(" ")} }}`;
 }
 
 /* ------------------------------------------------------------------ */

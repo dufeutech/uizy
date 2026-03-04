@@ -1,303 +1,232 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title>Uizy Example</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-  </head>
 
-  <body>
-    <uizy-app id="app">
-      <!-- System Bar -->
-      <uizy-system-bar
-        class="d-flex dy-ce bd-b px-3 d-flex dx-sb"
-        style="background: var(--color-1)"
-      >
-        <span>Uizy Demo</span>
-        <ui-box use="badge.status">
-          Status: <ui-box :text="app.status"></ui-box>
+<head>
+  <meta charset="utf-8" />
+  <title>Uizy Example</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      /* Left Sidebar */
+      --uizy-left-layer: 50;
+
+      /* Right Sidebar */
+      --uizy-right-layer: 50;
+    }
+  </style>
+</head>
+
+<body>
+  <uizy-app id="app">
+    <!-- System Bar -->
+    <uizy-system-bar class="d-flex dy-ce bd-b px-3 d-flex dx-sb" style="background: var(--color-1)">
+      <span>Uizy Demo</span>
+      <ui-box use="badge.status">
+        Status: <ui-box :text="app.status"></ui-box>
+      </ui-box>
+    </uizy-system-bar>
+
+    <!-- Header -->
+    <uizy-header shadow="6" class="d-flex dy-ce px-4">
+      <ui-box use="button.icon" onclick="$emit('drawer.toggleLeft')">
+        <span class="ts-3">&#9776;</span>
+      </ui-box>
+      <span class="e-ns">Uizy Framework</span>
+      <ui-box use="button.icon" onclick="$emit('drawer.toggleRight')">
+        <span class="ts-2">&#9881;</span>
+      </ui-box>
+    </uizy-header>
+
+    <!-- Left Drawer -->
+    <uizy-drawer open shadow="6" clip-top clip-bottom class="d-flex dy-ce p-4" style="background: aquamarine;">
+      <h3 class="mb-4">Navigation</h3>
+      <ui-box use="nav.item" onclick="$emit('nav.goto', 'home')">Home</ui-box>
+      <ui-box use="nav.item" onclick="$emit('nav.goto', 'about')">About</ui-box>
+      <ui-box use="nav.item" onclick="$emit('nav.goto', 'contact')">Contact</ui-box>
+      <hr class="my-4 bd-t" />
+      <p class="">Current: <ui-box :text="nav.current"></ui-box></p>
+    </uizy-drawer>
+
+    <!-- Right Drawer (Settings) -->
+    <uizy-drawer right shadow="6" clip-top clip-bottom class="d-flex dy-ce p-4">
+      <h3 class="mb-4">Settings</h3>
+      <div class="mb-4">
+        <label class="d-block mb-2">Theme</label>
+        <ui-box use="button.small" onclick="$emit('theme.toggle')" style="background: var(--color-primary)">
+          Toggle Theme
         </ui-box>
-      </uizy-system-bar>
+        <p class="mt-2">Current: <ui-box :text="settings.themes"></ui-box></p>
+      </div>
+    </uizy-drawer>
 
-      <!-- Header -->
-      <uizy-header shadow="6" class="d-flex dy-ce px-4">
-        <ui-box use="button.icon" onclick="$emit('drawer.toggleLeft')">
-          <span class="ts-3">&#9776;</span>
-        </ui-box>
-        <span class="e-ns">Uizy Framework</span>
-        <ui-box use="button.icon" onclick="$emit('drawer.toggleRight')">
-          <span class="ts-2">&#9881;</span>
-        </ui-box>
-      </uizy-header>
+    <!-- Mini Drawers -->
+    <uizy-drawer mini shadow="3" clip-system clip-bottom class="d-flex dy-ce">
+      <ui-box class="p-2 ta-c e-p" onclick="$emit('drawer.toggleLeft')">
+        &#9776;
+      </ui-box>
+    </uizy-drawer>
+    <uizy-drawer right mini shadow="3" clip-system clip-bottom class="">
+      <ui-box class="p-2 ta-c e-p" onclick="$emit('drawer.toggleRight')">
+        &#9881;
+      </ui-box>
+    </uizy-drawer>
 
-      <!-- Left Drawer -->
-      <uizy-drawer
-        open
-        shadow="6"
-        clip-top
-        clip-bottom
-        class="d-flex dy-ce p-4"
-      >
-        <h3 class="mb-4">Navigation</h3>
-        <ui-box use="nav.item" onclick="$emit('nav.goto', 'home')">Home</ui-box>
-        <ui-box use="nav.item" onclick="$emit('nav.goto', 'about')"
-          >About</ui-box
-        >
-        <ui-box use="nav.item" onclick="$emit('nav.goto', 'contact')"
-          >Contact</ui-box
-        >
-        <hr class="my-4 bd-t" />
-        <p class="">Current: <ui-box :text="nav.current"></ui-box></p>
-      </uizy-drawer>
+    <!-- Overlay -->
+    <uizy-overlay clip-top clip-bottom></uizy-overlay>
 
-      <!-- Right Drawer (Settings) -->
-      <uizy-drawer
-        right
-        shadow="6"
-        clip-top
-        clip-bottom
-        class="d-flex dy-ce p-4"
-      >
-        <h3 class="mb-4">Settings</h3>
-        <div class="mb-4">
-          <label class="d-block mb-2">Theme</label>
-          <ui-box
-            use="button.small"
-            onclick="$emit('theme.toggle')"
-            style="background: var(--color-primary)"
-          >
-            Toggle Theme
-          </ui-box>
-          <p class="mt-2">Current: <ui-box :text="settings.themes"></ui-box></p>
+    <!-- Main Content -->
+    <uizy-main clip-top clip-bottom clip-left class="py-4 pl-4">
+      <main class="d-flex df-col oy-a eh-100p pr-4">
+        <!-- Counter Demo -->
+        <div class="mb-6 p-4 br-2">
+          <h3 class="mb-3 tt-u" style="color: var(--color-primary)">
+            Reactive Counter
+          </h3>
+          <div class="d-flex">
+            <ui-box use="button.primary" onclick="$emit('counter.decrement')">-</ui-box>
+            <ui-box use="button.primary" class="ff-m ta-c" :text="counter.value" style="width: 40px"></ui-box>
+            <ui-box use="button.primary" onclick="$emit('counter.increment')">+</ui-box>
+            <ui-box class="ml-8" use="button.secondary" onclick="$emit('counter.reset')">Reset</ui-box>
+          </div>
         </div>
-      </uizy-drawer>
 
-      <!-- Mini Drawers -->
-      <uizy-drawer mini shadow="3" clip-system clip-bottom class="d-flex dy-ce">
-        <ui-box class="p-2 ta-c e-p" onclick="$emit('drawer.toggleLeft')">
-          &#9776;
+        <!-- Two-Way Binding Demo -->
+        <div class="d-flex df-col mb-6 p-4 br-2">
+          <h3 class="mb-3 tt-u">Model (directive)</h3>
+          <div class="d-flex">
+            <ui-box :model="user.first_name">
+              <input type="text" class="px-3 py-2 bd-a br-1" placeholder="Enter your name..." />
+            </ui-box>
+          </div>
+          <p class="mt-3">
+            Hello,
+            <ui-box :text="user.full_name"></ui-box>!
+          </p>
+        </div>
+
+        <!-- Event Handlers Demo -->
+        <div class="mb-6 p-4 br-2">
+          <h3 class="mb-3 tt-u">Event Handlers</h3>
+          <div class="d-flex gx-4">
+            <ui-box u-fx-shake class="bd-a" use="button.interactive" onclick="console.log('Click!', event.target)"
+              :mouseenter="el.style.transform = 'scale(1.05)'" :mouseleave="el.style.transform = 'scale(1)'">
+              Hover & Click Me
+            </ui-box>
+            <ui-box use="button.secondary" ondblclick="$emit('notification.show', 'Double clicked!')">
+              Double Click Me
+            </ui-box>
+          </div>
+        </div>
+
+        <!-- Notifications (using fx plugin) -->
+        <ui-box :fx-show="notification.visible" class="p-fixed b-5 r-5 px-5 py-3 br-2 s-3 z-10" :fx-fade>
+          <ui-box :text="notification.message"></ui-box>
         </ui-box>
-      </uizy-drawer>
-      <uizy-drawer right mini shadow="3" clip-system clip-bottom class="">
-        <ui-box class="p-2 ta-c e-p" onclick="$emit('drawer.toggleRight')">
-          &#9881;
-        </ui-box>
-      </uizy-drawer>
 
-      <!-- Overlay -->
-      <uizy-overlay clip-top clip-bottom></uizy-overlay>
-
-      <!-- Main Content -->
-      <uizy-main clip-top clip-bottom clip-left class="py-4 pl-4">
-        <main class="d-flex df-col oy-a eh-100p pr-4">
-          <!-- Counter Demo -->
-          <div class="mb-6 p-4 br-2">
-            <h3 class="mb-3 tt-u" style="color: var(--color-primary)">
-              Reactive Counter
-            </h3>
-            <div class="d-flex">
-              <ui-box use="button.primary" onclick="$emit('counter.decrement')"
-                >-</ui-box
-              >
-              <ui-box
-                use="button.primary"
-                class="ff-m ta-c"
-                :text="counter.value"
-                style="width: 40px"
-              ></ui-box>
-              <ui-box use="button.primary" onclick="$emit('counter.increment')"
-                >+</ui-box
-              >
-              <ui-box
-                class="ml-8"
-                use="button.secondary"
-                onclick="$emit('counter.reset')"
-                >Reset</ui-box
-              >
-            </div>
+        <!-- Actions Demo -->
+        <div class="mb-6 p-4 br-2">
+          <h3 class="mb-3 tt-u">Actions & Global Shortcuts</h3>
+          <div class="d-flex gx-4">
+            <ui-box use="button.primary" onclick="$emit('user.login', { name: $('user.first_name') })">
+              Login (using $emit & $)
+            </ui-box>
+            <ui-box use="button.secondary" onclick="uizy.emit('notification.show', 'Hello from uizy!')">
+              Show Notification
+            </ui-box>
           </div>
+        </div>
 
-          <!-- Two-Way Binding Demo -->
-          <div class="d-flex df-col mb-6 p-4 br-2">
-            <h3 class="mb-3 tt-u">Model (directive)</h3>
-            <div class="d-flex">
-              <ui-box :model="user.first_name">
-                <input
-                  type="text"
-                  class="px-3 py-2 bd-a br-1"
-                  placeholder="Enter your name..."
-                />
-              </ui-box>
-            </div>
-            <p class="mt-3">
-              Hello,
-              <ui-box :text="user.full_name"></ui-box>!
-            </p>
+        <!-- Component Props Demo -->
+        <div class="mb-6 p-4 br-2">
+          <h3 class="mb-3 tt-u">Component Props (use:props)</h3>
+          <div class="d-block">
+            <ui-box use="button.base button.sized" use:props='{"size":"sm"}'>Small</ui-box>
+            <ui-box use="button.sized" use:props='{"size":"md"}'>Medium</ui-box>
+            <ui-box use="button.sized" use:props='{"size":"lg"}'>Large</ui-box>
           </div>
+        </div>
 
-          <!-- Event Handlers Demo -->
-          <div class="mb-6 p-4 br-2">
-            <h3 class="mb-3 tt-u">Event Handlers</h3>
-            <div class="d-flex gx-4">
-              <ui-box
-                u-fx-shake
-                class="bd-a"
-                use="button.interactive"
-                onclick="console.log('Click!', event.target)"
-                :mouseenter="el.style.transform = 'scale(1.05)'"
-                :mouseleave="el.style.transform = 'scale(1)'"
-              >
-                Hover & Click Me
-              </ui-box>
-              <ui-box
-                use="button.secondary"
-                ondblclick="$emit('notification.show', 'Double clicked!')"
-              >
-                Double Click Me
-              </ui-box>
-            </div>
+        <!-- Custom Directive Demo (using fx plugin) -->
+        <div class="mb-6 p-4 br-2">
+          <h3 class="mb-3 tt-u">Plugin Directives (fx-*)</h3>
+          <div class="d-flex">
+            <ui-box u-fx-highlight="yellow" class="p-2">:fx-highlight="yellow"</ui-box>
+            <ui-box u-fx-highlight="lightblue" class="p-2">:fx-highlight="lightblue"</ui-box>
+            <ui-box u-fx-tooltip:top="This is a tooltip!" use="button.secondary">
+              Hover for Tooltip
+            </ui-box>
           </div>
+        </div>
+        <div class="mt-12 mb-24">
+          <ui-box use="ui.button.primary" use:props="{size:'sm'}">Sm</ui-box>
+          <ui-box use="ui.button.primary" use:props="{size:'md'}">Md</ui-box>
+          <ui-box use="ui.button.primary" use:props="{size:'lg'}">Lg</ui-box>
+        </div>
+      </main>
+    </uizy-main>
 
-          <!-- Notifications (using fx plugin) -->
-          <ui-box
-            :fx-show="notification.visible"
-            class="p-fixed b-5 r-5 px-5 py-3 br-2 s-3 z-10"
-            :fx-fade
-          >
-            <ui-box :text="notification.message"></ui-box>
-          </ui-box>
+    <!-- Footer -->
+    <uizy-footer shadow="6" class="px-4 d-flex dy-ce dx-sb">
+      <span>Built with Uizy</span>
+      <span>v<ui-box :text="app.version" class="td-b" u-toy:one="hello-world" u-toy:two u-toy:tre></ui-box></span>
+    </uizy-footer>
+  </uizy-app>
 
-          <!-- Actions Demo -->
-          <div class="mb-6 p-4 br-2">
-            <h3 class="mb-3 tt-u">Actions & Global Shortcuts</h3>
-            <div class="d-flex gx-4">
-              <ui-box
-                use="button.primary"
-                onclick="$emit('user.login', { name: $('user.first_name') })"
-              >
-                Login (using $emit & $)
-              </ui-box>
-              <ui-box
-                use="button.secondary"
-                onclick="uizy.emit('notification.show', 'Hello from uizy!')"
-              >
-                Show Notification
-              </ui-box>
-            </div>
-          </div>
+  <script type="module">
+    import App from "/src/__init__.js";
 
-          <!-- Component Props Demo -->
-          <div class="mb-6 p-4 br-2">
-            <h3 class="mb-3 tt-u">Component Props (use:props)</h3>
-            <div class="d-block">
-              <ui-box use="button.base button.sized" use:props='{"size":"sm"}'
-                >Small</ui-box
-              >
-              <ui-box use="button.sized" use:props='{"size":"md"}'
-                >Medium</ui-box
-              >
-              <ui-box use="button.sized" use:props='{"size":"lg"}'
-                >Large</ui-box
-              >
-            </div>
-          </div>
+    // =====================================================
+    // Custom Directives (registered before start)
+    // =====================================================
+    App.directive("toy", (el, ctx) => {
+      console.log(ctx.modifiers);
+      console.log(ctx.bindings);
+    });
 
-          <!-- Custom Directive Demo (using fx plugin) -->
-          <div class="mb-6 p-4 br-2">
-            <h3 class="mb-3 tt-u">Plugin Directives (fx-*)</h3>
-            <div class="d-flex">
-              <ui-box u-fx-highlight="yellow" class="p-2"
-                >:fx-highlight="yellow"</ui-box
-              >
-              <ui-box u-fx-highlight="lightblue" class="p-2"
-                >:fx-highlight="lightblue"</ui-box
-              >
-              <ui-box
-                u-fx-tooltip:top="This is a tooltip!"
-                use="button.secondary"
-              >
-                Hover for Tooltip
-              </ui-box>
-            </div>
-          </div>
-          <div class="mt-12 mb-24">
-            <ui-box use="ui.button.primary" use:props="{size:'sm'}">Sm</ui-box>
-            <ui-box use="ui.button.primary" use:props="{size:'md'}">Md</ui-box>
-            <ui-box use="ui.button.primary" use:props="{size:'lg'}">Lg</ui-box>
-          </div>
-        </main>
-      </uizy-main>
+    // :model - Two-way binding for inputs
+    App.directive("model", (el, { value, effect }) => {
+      const input = el.querySelector("input, textarea, select") || el;
 
-      <!-- Footer -->
-      <uizy-footer shadow="6" class="px-4 d-flex dy-ce dx-sb">
-        <span>Built with Uizy</span>
-        <span
-          >v<ui-box
-            :text="app.version"
-            class="td-b"
-            u-toy:one="hello-world"
-            u-toy:two
-            u-toy:tre
-          ></ui-box
-        ></span>
-      </uizy-footer>
-    </uizy-app>
+      effect(() => {
+        const store = App.$(value, { raw: true });
+        if (!store) return;
 
-    <script type="module">
-      import App from "/src/__init__.js";
-
-      // =====================================================
-      // Custom Directives (registered before start)
-      // =====================================================
-      App.directive("toy", (el, ctx) => {
-        console.log(ctx.modifiers);
-        console.log(ctx.bindings);
-      });
-
-      // :model - Two-way binding for inputs
-      App.directive("model", (el, { value, effect }) => {
-        const input = el.querySelector("input, textarea, select") || el;
-
-        effect(() => {
-          const store = App.$(value, { raw: true });
-          if (!store) return;
-
-          const unsubscribe = store.subscribe((v) => {
-            if (input.value !== String(v)) input.value = String(v);
-          });
-
-          const onInput = () => store.set(input.value);
-          input.addEventListener("input", onInput);
-
-          return () => {
-            unsubscribe();
-            input.removeEventListener("input", onInput);
-          };
+        const unsubscribe = store.subscribe((v) => {
+          if (input.value !== String(v)) input.value = String(v);
         });
+
+        const onInput = () => store.set(input.value);
+        input.addEventListener("input", onInput);
+
+        return () => {
+          unsubscribe();
+          input.removeEventListener("input", onInput);
+        };
       });
+    });
 
-      // =====================================================
-      // Effects Plugin - Bundles visual effects directives
-      // =====================================================
-      function EffectsPlugin(App) {
-        App.plugin("fx", {
-          directives: {
-            shake: (el) => {
-              setInterval(() => {
-                el.style.opacity = el.style.opacity === "0" ? "1" : "0";
-              }, 100);
-            },
-            // :fx-highlight="color" - Simple styling directive
-            highlight: (el, { value }) => {
-              el.style.backgroundColor = value || "yellow";
-              el.classList.add(...["d-flex", "dy-ce", "px-4"]);
-            },
+    // =====================================================
+    // Effects Plugin - Bundles visual effects directives
+    // =====================================================
+    function EffectsPlugin(App) {
+      App.plugin("fx", {
+        directives: {
+          shake: (el) => {
+            setInterval(() => {
+              el.style.opacity = el.style.opacity === "0" ? "1" : "0";
+            }, 100);
+          },
+          // :fx-highlight="color" - Simple styling directive
+          highlight: (el, { value }) => {
+            el.style.backgroundColor = value || "yellow";
+            el.classList.add(...["d-flex", "dy-ce", "px-4"]);
+          },
 
-            // :fx-tooltip.top="text" - Tooltip directive with modifiers
-            tooltip: (el, { value, modifiers, cleanup }) => {
-              const tooltip = document.createElement("div");
-              tooltip.textContent = value;
-              tooltip.style.cssText = `
+          // :fx-tooltip.top="text" - Tooltip directive with modifiers
+          tooltip: (el, { value, modifiers, cleanup }) => {
+            const tooltip = document.createElement("div");
+            tooltip.textContent = value;
+            tooltip.style.cssText = `
                                   position: absolute;
                                   background: #333;
                                   color: #fff;
@@ -310,276 +239,287 @@
                                   transition: opacity 0.2s;
                                   z-index: 9999;
                               `;
-              document.body.appendChild(tooltip);
+            document.body.appendChild(tooltip);
 
-              const position = modifiers.includes("top") ? "top" : "bottom";
+            const position = modifiers.includes("top") ? "top" : "bottom";
 
-              const show = () => {
-                const rect = el.getBoundingClientRect();
-                tooltip.style.left =
-                  rect.left + rect.width / 2 - tooltip.offsetWidth / 2 + "px";
-                tooltip.style.top =
-                  position === "top"
-                    ? rect.top - tooltip.offsetHeight - 8 + "px"
-                    : rect.bottom + 8 + "px";
-                tooltip.style.opacity = "1";
-              };
+            const show = () => {
+              const rect = el.getBoundingClientRect();
+              tooltip.style.left =
+                rect.left + rect.width / 2 - tooltip.offsetWidth / 2 + "px";
+              tooltip.style.top =
+                position === "top"
+                  ? rect.top - tooltip.offsetHeight - 8 + "px"
+                  : rect.bottom + 8 + "px";
+              tooltip.style.opacity = "1";
+            };
 
-              const hide = () => {
-                tooltip.style.opacity = "0";
-              };
+            const hide = () => {
+              tooltip.style.opacity = "0";
+            };
 
-              el.addEventListener("mouseenter", show);
-              el.addEventListener("mouseleave", hide);
+            el.addEventListener("mouseenter", show);
+            el.addEventListener("mouseleave", hide);
 
-              cleanup(() => {
-                el.removeEventListener("mouseenter", show);
-                el.removeEventListener("mouseleave", hide);
-                tooltip.remove();
+            cleanup(() => {
+              el.removeEventListener("mouseenter", show);
+              el.removeEventListener("mouseleave", hide);
+              tooltip.remove();
+            });
+          },
+
+          // :fx-show="store.path" - Conditional visibility
+          show: (el, { value, effect }) => {
+            effect(() => {
+              const store = App.$(value, { raw: true });
+              if (!store) {
+                el.style.display = value ? "" : "none";
+                return;
+              }
+              return store.subscribe((v) => {
+                el.style.display = v ? "" : "none";
               });
-            },
-
-            // :fx-show="store.path" - Conditional visibility
-            show: (el, { value, effect }) => {
-              effect(() => {
-                const store = App.$(value, { raw: true });
-                if (!store) {
-                  el.style.display = value ? "" : "none";
-                  return;
-                }
-                return store.subscribe((v) => {
-                  el.style.display = v ? "" : "none";
-                });
-              });
-            },
-
-            // :fx-fade - Fade animation on visibility
-            fade: (el) => {
-              el.style.transition = "opacity 0.3s ease";
-            },
+            });
           },
-        });
-      }
 
-      function PluginUI(App) {
-        App.plugin("ui", {
-          components: {
-            button: {
-              base: ({ size }) => {
-                return {
-                  "px-2 py-2": size === "sm",
-                  "px-4 py-4": size === "md",
-                  "px-8 py-8": size === "lg",
-                };
-              },
-              primary: (props) => {
-                return ["bd-a", uizy.use(["ui.button.base"], props)];
-              },
-            },
-          },
-        });
-      }
-      // =====================================================
-      // Start Uizy
-      // =====================================================
-
-      App.start({
-        globals: true, // Enables window.$ and window.$emit
-
-        plugins: [EffectsPlugin, PluginUI],
-
-        layout: {
-          layout: {
-            system: 28,
-            header: 56,
-            footer: 48,
-            left: 220,
-            right: 260,
-            leftMini: 48,
-            rightMini: 48,
-            drawerSpeed: 0.25,
-          },
-          overlay: {
-            opacity: 0.5,
-            color: "black",
-          },
-          breakpoint: {
-            name: "md",
-            main: true,
-            header: true,
-            left: true,
-            right: true,
+          // :fx-fade - Fade animation on visibility
+          fade: (el) => {
+            el.style.transition = "opacity 0.3s ease";
           },
         },
+      });
+    }
 
-        theme: {
-          colors: {
-            1: "green",
-            primary: "#6b08a5",
-            secondary: "#f5f5f5",
-            accent: "#1eadff",
-            focus: "#1eadff",
-            info: "#0050b9",
-            success: "#28b77b",
-            warning: "#f2c94c",
-            danger: "#d64545",
-            error: "#ff4d4d",
-          },
-          scrollbar: {
-            size: 8,
-            color: "rgba(0, 0, 0, 0.2)",
-            hover: "rgba(0, 0, 0, 0.4)",
-          },
-          brands: [],
-        },
-
-        // Component classes
+    function PluginUI(App) {
+      App.plugin("ui", {
         components: {
           button: {
-            primary: () => "px-4 py-2 bd-a e-p e-ns",
-            secondary: () => "px-4 py-2 bd-a br-1 e-p e-ns",
-            small: () => "px-3 py-1 bd-a br-1 e-p e-ns text-sm",
-            icon: () => "p-2 e-p e-ns br-1",
-            interactive: () => "px-4 py-2 e-p e-ns",
-            // Component with props via use:props='{"size":"lg"}'
-            base: () => "td-b",
-            sized: (props) => {
-              const sizes = {
-                sm: "px-2 py-1 text-xs",
-                md: "px-4 py-2",
-                lg: "px-6 py-3 text-lg",
+            base: ({ size }) => {
+              return {
+                "px-2 py-2": size === "sm",
+                "px-4 py-4": size === "md",
+                "px-8 py-8": size === "lg",
               };
-              return `${
-                sizes[props?.size] || sizes.md
+            },
+            primary: (props) => {
+              return ["bd-a", uizy.use(["ui.button.base"], props)];
+            },
+          },
+        },
+      });
+    }
+    // =====================================================
+    // Start Uizy
+    // =====================================================
+
+    App.start({
+      globals: true, // Enables window.$ and window.$emit
+
+      plugins: [EffectsPlugin, PluginUI],
+
+      layout: {
+        layout: {
+          system: 28,
+          header: 56,
+          footer: 48,
+          left: 220,
+          right: 260,
+          leftMini: 48,
+          rightMini: 48,
+          drawerSpeed: 0.25,
+        },
+        overlay: {
+          opacity: 0.5,
+          color: "black",
+        },
+        breakpoint: {
+          name: "md",
+          main: true,
+          header: true,
+          left: true,
+          right: true,
+          top: true,
+          bottom: true
+        },
+      },
+
+      theme: {
+        colors: {
+          1: "green",
+          primary: "#6b08a5",
+          secondary: "#f5f5f5",
+          accent: "#1eadff",
+          focus: "#1eadff",
+          info: "#0050b9",
+          success: "#28b77b",
+          warning: "#f2c94c",
+          danger: "#d64545",
+          error: "#ff4d4d",
+        },
+        scrollbar: {
+          size: 8,
+          color: "rgba(0, 0, 0, 0.2)",
+          hover: "rgba(0, 0, 0, 0.4)",
+        },
+        brands: [],
+      },
+
+      // Component classes
+      components: {
+        button: {
+          primary: () => "px-4 py-2 bd-a e-p e-ns",
+          secondary: () => "px-4 py-2 bd-a br-1 e-p e-ns",
+          small: () => "px-3 py-1 bd-a br-1 e-p e-ns text-sm",
+          icon: () => "p-2 e-p e-ns br-1",
+          interactive: () => "px-4 py-2 e-p e-ns",
+          // Component with props via use:props='{"size":"lg"}'
+          base: () => "td-b",
+          sized: (props) => {
+            const sizes = {
+              sm: "px-2 py-1 text-xs",
+              md: "px-4 py-2",
+              lg: "px-6 py-3 text-lg",
+            };
+            return `${sizes[props?.size] || sizes.md
               } bd-a br-1 e-p e-ns br-accent bw-4`;
-            },
-          },
-          badge: {
-            status: () => "px-2 py-1 br-1 text-xs",
-          },
-          nav: {
-            item: () => "d-block px-3 py-2 mb-1 br-1 e-p e-ns",
           },
         },
-
-        // Actions
-        actions: {
-          counter: {
-            increment: () =>
-              App.$set("counter.value", App.$("counter.value") + 1),
-            decrement: () =>
-              App.$set(
-                "counter.value",
-                Math.max(0, App.$("counter.value") - 1)
-              ),
-            reset: () => App.$set("counter.value", 0),
-          },
-          drawer: {
-            toggleLeft: () => {
-              const app = App.get("app");
-              app?.action("left", ({ set }) => set());
-              app?.action("main", ({ set }) => set("left"));
-            },
-            toggleRight: () => {
-              const app = App.get("app");
-              app?.action("right", ({ set }) => set());
-              app?.action("main", ({ set }) => set("right"));
-            },
-          },
-          nav: {
-            goto: (page) => {
-              App.$set("nav.current", page);
-              console.log("Navigate to:", page);
-            },
-          },
-          theme: {
-            toggle: () => {
-              const current = App.$("settings.theme");
-              App.$set(
-                "settings.theme",
-                current === "light" ? "dark" : "light"
-              );
-            },
-          },
-          user: {
-            login: (data) => {
-              console.log("Login:", data);
-              App.emit("notification.show", `Welcome, ${data.name}!`);
-            },
-          },
-          notification: {
-            show: (message) => {
-              App.$set("notification.message", message);
-              App.$set("notification.visible", true);
-              setTimeout(() => App.$set("notification.visible", false), 3000);
-            },
-          },
+        badge: {
+          status: () => "px-2 py-1 br-1 text-xs",
         },
+        nav: {
+          item: () => "d-block px-3 py-2 mb-1 br-1 e-p e-ns",
+        },
+      },
 
-        // Stores (reactive state)
-        stores: {
-          app: {
-            status: App.store.atom("online"),
-            version: App.store.atom("0.1.1"),
-          },
-          counter: {
-            value: App.store.atom(0),
-          },
-          user: {
-            first_name: App.store.atom("John"),
-            last_name: App.store.atom("Doe"),
-            full_name: App.$computed(
-              // Alias
-              {
-                fname: "user.first_name",
-                lname: "user.last_name",
-              },
-              // Computed
-              ({ fname, lname }) => `${fname} ${lname}`
+      // Actions
+      actions: {
+        counter: {
+          increment: () =>
+            App.$set("counter.value", App.$("counter.value") + 1),
+          decrement: () =>
+            App.$set(
+              "counter.value",
+              Math.max(0, App.$("counter.value") - 1)
             ),
+          reset: () => App.$set("counter.value", 0),
+        },
+        drawer: {
+          toggleLeft: () => {
+            const app = App.get("app");
+            app?.action("left", ({ set }) => set());
+            app?.action("main", ({ set }) => set("left"));
           },
-          nav: {
-            current: App.store.atom("home"),
-          },
-          settings: {
-            theme: App.store.atom("light"),
-          },
-          notification: {
-            visible: App.store.atom(false),
-            message: App.store.atom(""),
+          toggleRight: () => {
+            const app = App.get("app");
+            app?.action("right", ({ set }) => set());
+            app?.action("main", ({ set }) => set("right"));
           },
         },
-
-        onReady: () => {
-          console.log("Uizy is ready!", uizy.__version__);
-
-          // Close overlay on start
-          const app = App.get("app");
-          app?.action("overlay", ({ set }) => set(false));
-
-          //app?.action("left.mini", ({ set }) => set(true));
+        nav: {
+          goto: (page) => {
+            App.$set("nav.current", page);
+            console.log("Navigate to:", page);
+          },
         },
-      });
+        theme: {
+          toggle: () => {
+            const current = App.$("settings.theme");
+            App.$set(
+              "settings.theme",
+              current === "light" ? "dark" : "light"
+            );
+          },
+        },
+        user: {
+          login: (data) => {
+            console.log("Login:", data);
+            App.emit("notification.show", `Welcome, ${data.name}!`);
+          },
+        },
+        notification: {
+          show: (message) => {
+            App.$set("notification.message", message);
+            App.$set("notification.visible", true);
+            setTimeout(() => App.$set("notification.visible", false), 3000);
+          },
+        },
+      },
 
-      ///
-      // Listen for changes only
-      const unlisten = uizy.$on("user.first_name", (value) => {
-        console.log("Name changed to:", value); // NOT called immediately
-      });
-    </script>
+      // Stores (reactive state)
+      stores: {
+        app: {
+          status: App.store.atom("online"),
+          version: App.store.atom("0.1.1"),
+        },
+        counter: {
+          value: App.store.atom(0),
+        },
+        user: {
+          first_name: App.store.atom("John"),
+          last_name: App.store.atom("Doe"),
+          full_name: App.$computed(
+            // Alias
+            {
+              fname: "user.first_name",
+              lname: "user.last_name",
+            },
+            // Computed
+            ({ fname, lname }) => `${fname} ${lname}`
+          ),
+        },
+        nav: {
+          current: App.store.atom("home"),
+        },
+        settings: {
+          theme: App.store.atom("light"),
+        },
+        notification: {
+          visible: App.store.atom(false),
+          message: App.store.atom(""),
+        },
+      },
 
-    <!-- Layout -->
-    <style>
-      .uizy-header,
-      .uizy-footer {
-        background: white;
-      }
-    </style>
-    <!-- Theme -->
-    <style>
-      .br-accent {
-        border-color: var(--color-primary);
-      }
-    </style>
-  </body>
+      onReady: () => {
+        console.log("Uizy is ready!", uizy.__version__);
+
+        // Close overlay on start
+        const app = App.get("app");
+        app?.action("overlay", ({ set }) => set(false));
+
+        //app?.action("left.mini", ({ set }) => set(true));
+      },
+    });
+
+    ///
+    // Listen for changes only
+    const unlisten = uizy.$on("user.first_name", (value) => {
+      console.log("Name changed to:", value); // NOT called immediately
+    });
+
+
+    // Get current state
+    uizy.screen.get(); // { width: 1024, size: "lg" }
+
+    // Subscribe to changes
+    uizy.screen.subscribe(({ width, size }) => {
+      console.log(`${size} (${width}px)`); // "md (768px)"
+    });
+  </script>
+
+  <!-- Layout -->
+  <style>
+    .uizy-header,
+    .uizy-footer {
+      background: white;
+    }
+  </style>
+  <!-- Theme -->
+  <style>
+    .br-accent {
+      border-color: var(--color-primary);
+    }
+  </style>
+</body>
+
 </html>

@@ -81,6 +81,23 @@ uizy.start({
 - **Directives** – Custom attributes with modifiers (`:tooltip.top="text"`)
 - **Plugins** – Namespace and bundle related functionality
 - **Responsive** – Mobile-first breakpoints (`sm`, `md`, `lg`, `xl`, `xxl`)
+- **Screen Store** – Reactive `uizy.screen` tracks current viewport `{ width, size }`
+
+## Screen Store
+
+Track the current breakpoint reactively:
+
+```js
+// Get current state
+uizy.screen.get(); // { width: 1024, size: "lg" }
+
+// Subscribe to changes
+uizy.screen.subscribe(({ width, size }) => {
+  console.log(`${size} (${width}px)`); // "md (768px)"
+});
+```
+
+Breakpoint sizes: `xs` < 576 < `sm` < 768 < `md` < 992 < `lg` < 1200 < `xl` < 1400 < `xxl`
 
 ## License
 
