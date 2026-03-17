@@ -1,4 +1,4 @@
-@use 'variables' as *;
+@use "variables" as *;
 
 // =============================================================================
 // Extra Utilities
@@ -11,18 +11,24 @@
   user-select: none;
 }
 
-.e-ne { pointer-events: none; }
-.e-p { cursor: pointer; }
+.e-ne {
+  pointer-events: none;
+}
+.e-p {
+  cursor: pointer;
+}
 
 // =============================================================================
 // Dimensions
 // =============================================================================
 
 @each $suffix, $value in $dimension-values {
-  .eh-#{$suffix} { height: $value !important; }
+  .eh-#{$suffix} {
+    height: $value !important;
+  }
   // Use dvw for width viewport, dvh for height viewport
   .ew-#{$suffix} {
-    @if $suffix == '100v' {
+    @if $suffix == "100v" {
       width: 100dvw !important;
     } @else {
       width: $value !important;
@@ -34,5 +40,9 @@
 // Float
 // =============================================================================
 
-.ef-r { float: right !important; }
-.ef-l { float: left !important; }
+.ef-r {
+  float: right !important;
+}
+.ef-l {
+  float: left !important;
+}

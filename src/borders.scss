@@ -1,4 +1,4 @@
-@use 'variables' as *;
+@use "variables" as *;
 
 // =============================================================================
 // Border Utilities
@@ -22,21 +22,46 @@
 
 // Border width (using CSS variables)
 @each $key in $border-width-keys {
-  .bw-#{$key} { border-width: var(--bw-#{$key}) !important; }
+  .bw-#{$key} {
+    border-width: var(--bw-#{$key}) !important;
+  }
 }
 
 // Border style
 @each $style in $border-styles {
-  .bs-#{$style} { border-style: $style !important; }
+  .bs-#{$style} {
+    border-style: $style !important;
+  }
 }
 
 // Border radius (using CSS variables)
 @each $key in $border-radius-keys {
-  .br-#{$key} { border-radius: var(--br-#{$key}) !important; }
+  .br-#{$key} {
+    border-radius: var(--br-#{$key}) !important;
+  }
 }
 
 // Border radius corners (remove specific corner radius)
-.br-bl { border-top-left-radius: 0 !important; }
-.br-br { border-top-right-radius: 0 !important; }
-.br-tl { border-bottom-left-radius: 0 !important; }
-.br-tr { border-bottom-right-radius: 0 !important; }
+.br-bl {
+  border-top-left-radius: 0 !important;
+}
+.br-br {
+  border-top-right-radius: 0 !important;
+}
+.br-tl {
+  border-bottom-left-radius: 0 !important;
+}
+.br-tr {
+  border-bottom-right-radius: 0 !important;
+}
+
+// =============================================================================
+// Box Sizes (square)
+// =============================================================================
+
+@each $key in $box-size-keys {
+  .bx-#{$key} {
+    width: var(--bx-#{$key}) !important;
+    height: var(--bx-#{$key}) !important;
+  }
+}

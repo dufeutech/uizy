@@ -34,6 +34,9 @@ $breakpoints: (
   xxl: 1400px,
 );
 
+// Box size keys
+$box-size-keys: (1, 2, 3, 4);
+
 // Maps for generating classes (keys only)
 $border-radius-keys: (0, 1, 2, 3, 4, 100p, pill);
 $border-width-keys: (0, 1, 2, 3, 4, 5);
@@ -150,6 +153,11 @@ $dimension-values: (
   --bw-3: 0.4rem;
   --bw-4: 0.525rem;
   --bw-5: 0.65rem;
+
+  // Box sizes (common square dimensions)
+  --bx-1: 36px;
+  --bx-2: 48px;
+  --bx-3: 64px;
 
   // Border color (default)
   --border-color: currentColor;

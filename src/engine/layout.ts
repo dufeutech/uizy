@@ -68,7 +68,7 @@ const DEFAULT_BREAKPOINT: BreakpointConfig = {
 
 const DEFAULT_LAYOUT: LayoutConfig = {
   system: 0,
-  header: 56,
+  header: 52,
   footer: 48,
   left: 240,
   right: 240,

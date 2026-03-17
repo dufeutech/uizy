@@ -1,11 +1,12 @@
-@use 'variables' as *;
+@use "variables" as *;
 
 // =============================================================================
 // Base Reset & Core Utilities
 // =============================================================================
 
 // Minimal reset
-ul, li {
+ul,
+li {
   list-style: none;
 }
 
@@ -17,34 +18,52 @@ ul, li {
 // Visibility
 // =============================================================================
 
-.d-hide { visibility: hidden !important; }
+.d-hide {
+  visibility: hidden !important;
+}
 
 // =============================================================================
 // Position
 // =============================================================================
 
 @each $suffix, $value in $positions {
-  .dp-#{$suffix} { position: $value; }
+  .dp-#{$suffix} {
+    position: $value;
+  }
 }
 
 // =============================================================================
 // Flexbox Utilities
 // =============================================================================
 
-.df-fw { flex-wrap: wrap !important; }
-.df-g0 { flex-grow: 0 !important; }
-.df-g1 { flex-grow: 1 !important; }
-.df-row { flex-direction: row !important; }
-.df-col { flex-direction: column !important; }
+.df-fw {
+  flex-wrap: wrap !important;
+}
+.df-g0 {
+  flex-grow: 0 !important;
+}
+.df-g1 {
+  flex-grow: 1 !important;
+}
+.df-row {
+  flex-direction: row !important;
+}
+.df-col {
+  flex-direction: column !important;
+}
 
 // Align items (Y axis)
 @each $suffix, $value in $align-items {
-  .dy-#{$suffix} { align-items: $value !important; }
+  .dy-#{$suffix} {
+    align-items: $value !important;
+  }
 }
 
 // Justify content (X axis)
 @each $suffix, $value in $justify-content {
-  .dx-#{$suffix} { justify-content: $value !important; }
+  .dx-#{$suffix} {
+    justify-content: $value !important;
+  }
 }
 
 // =============================================================================
@@ -52,6 +71,10 @@ ul, li {
 // =============================================================================
 
 @each $suffix, $value in $overflow-values {
-  .oy-#{$suffix} { overflow-y: $value !important; }
-  .ox-#{$suffix} { overflow-x: $value !important; }
+  .oy-#{$suffix} {
+    overflow-y: $value !important;
+  }
+  .ox-#{$suffix} {
+    overflow-x: $value !important;
+  }
 }

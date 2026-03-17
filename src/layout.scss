@@ -44,6 +44,27 @@ $layout: (
 }
 
 // ==========================
+// Custom Elements Default Display
+// ==========================
+// Custom elements default to display: inline which collapses to zero size
+uizy-app,
+uizy-system-bar,
+uizy-header,
+uizy-footer,
+uizy-drawer,
+uizy-overlay,
+uizy-main,
+ui-box {
+  display: block;
+}
+
+/* Reactive text elements default to inline */
+ui-box[u-text],
+ui-box[\:text] {
+  display: inline;
+}
+
+// ==========================
 // App Ready Gate
 // ==========================
 // Hidden until JS init completes (prevents layout flash)

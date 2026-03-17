@@ -11,14 +11,14 @@ Add borders and rounded corners to make your elements look polished!
 
 Use `br-*` (Border Radius) to round corners:
 
-| Class | Description |
-|-------|-------------|
-| `br-0` | No rounding (sharp corners) |
-| `br-1` | Slightly rounded (2px) |
-| `br-2` | Medium rounded (4px) |
-| `br-3` | More rounded (8px) |
-| `br-4` | Very rounded (16px) |
-| `br-100p` | Circle (for squares) |
+| Class     | Description                  |
+| --------- | ---------------------------- |
+| `br-0`    | No rounding (sharp corners)  |
+| `br-1`    | Slightly rounded (2px)       |
+| `br-2`    | Medium rounded (4px)         |
+| `br-3`    | More rounded (8px)           |
+| `br-4`    | Very rounded (16px)          |
+| `br-100p` | Circle (for squares)         |
 | `br-pill` | Pill shape (very round ends) |
 
 ```html
@@ -30,25 +30,23 @@ Use `br-*` (Border Radius) to round corners:
 
 ### Circle Avatar
 
-Use `br-100p` with a square element:
+Use `br-100p` with a box size:
 
 ```html
-<div class="br-100p" style="width: 80px; height: 80px;">
-  JD
-</div>
+<ui-box class="bx-2 br-100p">JD</ui-box>
 ```
 
 ## Border Width
 
 Use `bw-*` (Border Width) classes:
 
-| Class | Description |
-|-------|-------------|
-| `bw-0` | No border |
-| `bw-1` | Thin border (2px) |
+| Class  | Description         |
+| ------ | ------------------- |
+| `bw-0` | No border           |
+| `bw-1` | Thin border (2px)   |
 | `bw-2` | Medium border (4px) |
-| `bw-3` | Thick border (8px) |
-| `bw-4` | Very thick (16px) |
+| `bw-3` | Thick border (8px)  |
+| `bw-4` | Very thick (16px)   |
 
 ```html
 <div class="bd-a bw-1">Thin border</div>
@@ -64,13 +62,13 @@ You need to add `bd-a` (border-all) or a side-specific class for the border to s
 
 Add borders to specific sides:
 
-| Class | Description |
-|-------|-------------|
-| `bd-a` | Border All sides |
-| `bd-t` | Border Top only |
+| Class  | Description        |
+| ------ | ------------------ |
+| `bd-a` | Border All sides   |
+| `bd-t` | Border Top only    |
 | `bd-b` | Border Bottom only |
-| `bd-l` | Border Left only |
-| `bd-r` | Border Right only |
+| `bd-l` | Border Left only   |
+| `bd-r` | Border Right only  |
 
 ```html
 <div class="bd-t bw-2">Top border only</div>
@@ -82,11 +80,11 @@ Add borders to specific sides:
 
 Change the border line style:
 
-| Class | Description |
-|-------|-------------|
-| `bs-solid` | Solid line (default) |
-| `bs-dashed` | Dashed line (- - -) |
-| `bs-dotted` | Dotted line (. . .) |
+| Class       | Description          |
+| ----------- | -------------------- |
+| `bs-solid`  | Solid line (default) |
+| `bs-dashed` | Dashed line (- - -)  |
+| `bs-dotted` | Dotted line (. . .)  |
 
 ```html
 <div class="bd-a bw-2 bs-solid">Solid border</div>
@@ -119,9 +117,7 @@ Left border for emphasis:
 ### Pill Button
 
 ```html
-<button class="px-4 py-2 br-pill bd-a bw-1">
-  Click Me
-</button>
+<button class="px-4 py-2 br-pill bd-a bw-1">Click Me</button>
 ```
 
 ### Divider Line
@@ -136,11 +132,32 @@ Use border-bottom as a separator:
 </div>
 ```
 
+## Box Sizes
+
+Use `bx-*` (Box) to create fixed square elements — perfect for icons, avatars, and thumbnails:
+
+| Class  | Size | Use Case                |
+| ------ | ---- | ----------------------- |
+| `bx-1` | 36px | Icons                   |
+| `bx-2` | 48px | Touch target, avatar    |
+| `bx-3` | 64px | Thumbnail, large avatar |
+
+```html
+<ui-box class="bx-1">36px icon</ui-box>
+<ui-box class="bx-2 br-100p">48px circle avatar</ui-box>
+<ui-box class="bx-3 br-2">64px thumbnail</ui-box>
+```
+
+:::tip
+Combine with `br-100p` for circle avatars or `br-2` for rounded thumbnails.
+:::
+
 ## Quick Reference
 
-| Category | Classes |
-|----------|---------|
-| Radius (br-*) | `0, 1, 2, 3, 4, 100p, pill` |
-| Width (bw-*) | `0, 1, 2, 3, 4, 5` |
-| Sides | `bd-a, bd-t, bd-b, bd-l, bd-r` |
-| Style (bs-*) | `solid, dashed, dotted` |
+| Category       | Classes                                   |
+| -------------- | ----------------------------------------- |
+| Radius (br-\*) | `0, 1, 2, 3, 4, 100p, pill`               |
+| Width (bw-\*)  | `0, 1, 2, 3, 4, 5`                        |
+| Sides          | `bd-a, bd-t, bd-b, bd-l, bd-r`            |
+| Style (bs-\*)  | `solid, dashed, dotted`                   |
+| Box (bx-\*)    | `1 (24px), 2 (48px), 3 (64px), 4 (128px)` |
