@@ -1,47 +1,66 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title>Uizy Example</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <script src="dist/uizy.iife.js"></script>
-    <link href="dist/index.css" rel="stylesheet" />
-  </head>
-  <body>
-    <!-- App -->
-    <style>
-      uizy-header {
-        background: var(--color-primary);
-      }
-      uizy-footer {
-        background: var(--color-accent);
-      }
-    </style>
-    <uizy-app>
-      <uizy-header class="bd-a">Header</uizy-header>
-      <uizy-drawer clip-top clip-bottom class="bd-a" open>Sidebar</uizy-drawer>
-      <uizy-main clip-top clip-bottom clip-left class="pa-8 bd-a">
-        <uizy-box use="button" onclick="uizy.$set('counter', $('counter') + 1)"
-          >Add +</uizy-box
-        >
-        Count: <uizy-box :text="counter"></uizy-box>
-      </uizy-main>
-      <uizy-footer class="bd-a">Footer</uizy-footer>
-    </uizy-app>
-    <!-- Script -->
-    <script>
-      uizy.start({
-        globals: true,
-        layout: { layout: { header: 56, footer: 48, left: 240 } },
-        theme: { colors: { primary: "#6b08a5", accent: "#1eadff" } },
-        components: {
-          button: () => "px-4 py-2 bd-a br-1 e-p e-ns",
+
+<head>
+  <meta charset="utf-8" />
+  <title>Uizy Example</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script src="dist/uizy.iife.js"></script>
+  <link href="dist/index.css" rel="stylesheet" />
+</head>
+
+<body>
+  <!-- App -->
+  <style>
+    uizy-header {
+      background: var(--color-primary);
+      color: white;
+    }
+
+    uizy-footer {
+      background: var(--color-accent);
+    }
+  </style>
+  <uizy-app>
+    <uizy-header class="dy-ce">
+      Header
+      <uizy-toggle left class="e-ns">☰ Menu</uizy-toggle>
+    </uizy-header>
+    <uizy-drawer clip-top clip-bottom class="bd-a" open>Sidebar</uizy-drawer>
+    <uizy-main clip-top clip-bottom clip-left class="pa-8 bd-a">
+      <uizy-box use="button" onclick="uizy.$set('counter', $('counter') + 1)">Add +</uizy-box>
+      Count: <uizy-box :text="counter"></uizy-box>
+    </uizy-main>
+    <uizy-footer class="d-flex dx-ce dy-ce">Footer</uizy-footer>
+  </uizy-app>
+  <!-- Script -->
+  <script>
+    uizy.start({
+      globals: true,
+      layout: {
+        layout: { header: 58, footer: 48, left: 240 },
+        breakpoint: {
+          name: "lg",
+          main: true,
+          header: true,
+          top: true,
+          bottom: true,
+          left: true,
+          right: true,
+          drawer: true,
         },
-        stores: {
-          counter: uizy.store.atom(0),
-        },
-        onReady: () => console.log("Ready!"),
-      });
-    </script>
-  </body>
+      },
+      theme: { colors: { primary: "#6b08a5", accent: "#1eadff" } },
+      components: {
+        button: () => "px-4 py-2 bd-a br-1 e-p e-ns d-inline-block",
+      },
+      stores: {
+        counter: uizy.store.atom(0),
+      },
+
+      onReady: () => console.log("Ready!"),
+    });
+  </script>
+</body>
+
 </html>
