@@ -336,6 +336,76 @@ const toDisplayText = (value: unknown): string => {
   return String(value);
 };
 
+/* ------------------------------------------------------------------ */
+/* Toggle                                                             */
+/* ------------------------------------------------------------------ */
+
+const TOGGLE_TARGETS: Record<string, string> = {
+  left: "left",
+  right: "right",
+  "left-mini": "left.mini",
+  "right-mini": "right.mini",
+};
+
+class UizyToggle extends BaseElement {
+  private cleanup: (() => void) | null = null;
+
+  connectedCallback() {
+    this.updateClass(["uizy-toggle"]);
+
+    if (!this.hasAttribute("tabindex")) this.setAttribute("tabindex", "0");
+    if (!this.hasAttribute("role")) this.setAttribute("role", "button");
+    this.style.cursor = "pointer";
+
+    const handleActivate = () => this.toggle();
+    const handleKeydown = (e: KeyboardEvent) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        this.toggle();
+      }
+    };
+
+    this.addEventListener("click", handleActivate);
+    this.addEventListener("keydown", handleKeydown);
+    this.cleanup = () => {
+      this.removeEventListener("click", handleActivate);
+      this.removeEventListener("keydown", handleKeydown);
+    };
+  }
+
+  disconnectedCallback() {
+    this.cleanup?.();
+    this.cleanup = null;
+  }
+
+  private getApp(): UizyApp | null {
+    return this.closest<UizyApp>("uizy-app");
+  }
+
+  private getTarget(): string | null {
+    for (const [attr, section] of Object.entries(TOGGLE_TARGETS)) {
+      if (this.hasAttribute(attr)) return section;
+    }
+    return null;
+  }
+
+  private toggle(): void {
+    const app = this.getApp();
+    const target = this.getTarget();
+    if (!app || !target) return;
+
+    app.action(target, ({ set, self }) => {
+      set();
+      const isOpen = self.classList.contains(CLASS.DRAWER_OPEN);
+      this.classList.toggle("uizy-toggle--active", isOpen);
+    });
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Box                                                                */
+/* ------------------------------------------------------------------ */
+
 class UizyBox extends BaseElement {
   private cleanupFns: Array<() => void> = [];
 
@@ -530,7 +600,8 @@ const COMPONENT_REGISTRY: [string, CustomElementConstructor][] = [
   ["uizy-overlay", UizyOverlay],
   ["uizy-main", UizyMain],
   ["uizy-drawer", UizyDrawer],
-  ["ui-box", UizyBox],
+  ["uizy-box", UizyBox],
+  ["uizy-toggle", UizyToggle],
 ];
 
 export const initialize = (): void => {
@@ -549,4 +620,5 @@ export {
   UizyMain,
   UizyDrawer,
   UizyBox,
+  UizyToggle,
 };

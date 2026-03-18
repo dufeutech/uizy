@@ -1,0 +1,106 @@
+---
+sidebar_position: 8
+sidebar_label: "<uizy-toggle>"
+---
+
+# `<uizy-toggle>`
+
+A declarative shell element that toggles drawers with zero JavaScript. Put any content inside — text, icons, SVGs — and use an attribute to specify which drawer it controls.
+
+## Attributes
+
+| Attribute    | Description                   |
+| ------------ | ----------------------------- |
+| `left`       | Toggles the left drawer       |
+| `right`      | Toggles the right drawer      |
+| `left-mini`  | Toggles the left mini drawer  |
+| `right-mini` | Toggles the right mini drawer |
+
+## Usage
+
+### Basic Toggle
+
+```html
+<uizy-toggle left>☰ Menu</uizy-toggle>
+```
+
+### Right Drawer Toggle
+
+```html
+<uizy-toggle right>Details →</uizy-toggle>
+```
+
+### Mini Drawer Toggles
+
+```html
+<uizy-toggle left-mini>⇤</uizy-toggle> <uizy-toggle right-mini>⇥</uizy-toggle>
+```
+
+### With Icons or SVGs
+
+```html
+<uizy-toggle left>
+  <svg width="24" height="24" viewBox="0 0 24 24">
+    <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" />
+  </svg>
+</uizy-toggle>
+```
+
+### Styled with Utility Classes
+
+```html
+<uizy-toggle left class="d-flex dx-ce dy-ce pa-2 br-2"> ☰ Menu </uizy-toggle>
+```
+
+## State Reflection
+
+When the target drawer is open, the toggle receives the `uizy-toggle--active` class. Use this to style the toggle differently based on drawer state:
+
+```css
+uizy-toggle {
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+uizy-toggle.uizy-toggle--active {
+  opacity: 1;
+  background: rgba(0, 0, 0, 0.05);
+}
+```
+
+## Accessibility
+
+`<uizy-toggle>` automatically provides:
+
+- `role="button"` for screen readers
+- `tabindex="0"` for keyboard focus
+- **Enter** and **Space** key activation
+- `cursor: pointer`
+
+No additional ARIA setup is needed.
+
+## Placement
+
+Place `<uizy-toggle>` anywhere inside a `<uizy-app>`. It walks up the DOM to find the nearest `<uizy-app>` ancestor and uses its `action()` method to toggle the drawer.
+
+```html
+<uizy-app id="app">
+  <uizy-header shadow="4">
+    <uizy-toggle left>☰</uizy-toggle>
+    <span>My App</span>
+    <uizy-toggle right>⚙️</uizy-toggle>
+  </uizy-header>
+
+  <uizy-drawer open shadow="6" clip-top clip-bottom> Navigation </uizy-drawer>
+
+  <uizy-drawer right shadow="6" clip-top clip-bottom> Settings </uizy-drawer>
+
+  <uizy-overlay clip-top clip-bottom></uizy-overlay>
+
+  <uizy-main clip-top clip-bottom clip-left clip-right> Content </uizy-main>
+</uizy-app>
+```
+
+:::tip
+`<uizy-toggle>` is a shell — it renders no default visual styles beyond `cursor: pointer`. Style it however you want using classes, inline styles, or utility classes.
+:::

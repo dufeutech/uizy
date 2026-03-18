@@ -9,9 +9,9 @@ Semi-transparent backdrop for modals, drawers, and focus states.
 
 ## Attributes
 
-| Attribute | Description |
-|-----------|-------------|
-| `clip-top` | Position below header |
+| Attribute     | Description           |
+| ------------- | --------------------- |
+| `clip-top`    | Position below header |
 | `clip-bottom` | Position above footer |
 
 ## Usage
@@ -22,11 +22,11 @@ Semi-transparent backdrop for modals, drawers, and focus states.
 
 ## CSS Variables
 
-| Variable | Default | Description |
-|----------|---------|-------------|
-| `--uizy-overlay-color` | `black` | Overlay background color |
-| `--uizy-overlay-opacity` | `0.45` | Overlay opacity |
-| `--uizy-overlay-layer` | `10` | z-index |
+| Variable                 | Default | Description              |
+| ------------------------ | ------- | ------------------------ |
+| `--uizy-overlay-color`   | `black` | Overlay background color |
+| `--uizy-overlay-opacity` | `0.45`  | Overlay opacity          |
+| `--uizy-overlay-layer`   | `10`    | z-index                  |
 
 ## Controlling the Overlay
 
@@ -60,26 +60,24 @@ app.action("overlay", ({ set }) => set(true, true)); // second param = full
 
 ```html
 <uizy-app id="app">
-    <uizy-header shadow="12">
-        <button id="open-modal">Open Modal</button>
-    </uizy-header>
+  <uizy-header shadow="12">
+    <button id="open-modal">Open Modal</button>
+  </uizy-header>
 
-    <uizy-overlay clip-top clip-bottom></uizy-overlay>
+  <uizy-overlay clip-top clip-bottom></uizy-overlay>
 
-    <uizy-main clip-top clip-bottom>
-        Content
-    </uizy-main>
+  <uizy-main clip-top clip-bottom> Content </uizy-main>
 </uizy-app>
 
 <script type="module">
-    import uizy from "@dufeut/uizy";
+  import uizy from "@dufeut/uizy";
 
-    uizy.init(() => {
-        const app = uizy.get("app");
+  uizy.init(() => {
+    const app = uizy.get("app");
 
-        document.getElementById("open-modal").onclick = () => {
-            app.action("overlay", ({ set }) => set(true));
-        };
-    });
+    document.getElementById("open-modal").onclick = () => {
+      app.action("overlay", ({ set }) => set(true));
+    };
+  });
 </script>
 ```

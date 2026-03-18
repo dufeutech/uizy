@@ -9,28 +9,28 @@ The main application header, positioned below the system bar.
 
 ## Attributes
 
-| Attribute | Description |
-|-----------|-------------|
-| `shadow` | Shadow intensity (1-24) |
-| `clip-left` | Add left margin for sidebar |
+| Attribute    | Description                  |
+| ------------ | ---------------------------- |
+| `shadow`     | Shadow intensity (1-24)      |
+| `clip-left`  | Add left margin for sidebar  |
 | `clip-right` | Add right margin for sidebar |
 
 ## Usage
 
 ```html
 <uizy-header shadow="12">
-    <button>Menu</button>
-    <h1>My App</h1>
-    <button>Settings</button>
+  <button>Menu</button>
+  <h1>My App</h1>
+  <button>Settings</button>
 </uizy-header>
 ```
 
 ## CSS Variables
 
-| Variable | Default | Description |
-|----------|---------|-------------|
-| `--uizy-header-height` | `56px` | Height of the header |
-| `--uizy-header-layer` | `20` | z-index |
+| Variable               | Default | Description          |
+| ---------------------- | ------- | -------------------- |
+| `--uizy-header-height` | `56px`  | Height of the header |
+| `--uizy-header-layer`  | `20`    | z-index              |
 
 :::info
 The header uses flexbox with `space-between` by default.
@@ -42,12 +42,12 @@ The header uses flexbox with `space-between` by default.
 
 ```html
 <uizy-header shadow="12">
-    <span>Logo</span>
-    <nav>
-        <a href="#">Home</a>
-        <a href="#">About</a>
-    </nav>
-    <button>Login</button>
+  <span>Logo</span>
+  <nav>
+    <a href="#">Home</a>
+    <a href="#">About</a>
+  </nav>
+  <button>Login</button>
 </uizy-header>
 ```
 
@@ -57,7 +57,7 @@ When you want the header to respect sidebar widths:
 
 ```html
 <uizy-header shadow="12" clip-left clip-right>
-    Content stays between sidebars
+  Content stays between sidebars
 </uizy-header>
 ```
 
@@ -65,25 +65,26 @@ When you want the header to respect sidebar widths:
 
 ```html
 <uizy-header shadow="12">
-    <div class="header-left">
-        <button id="menu">☰</button>
-        <span>Dashboard</span>
-    </div>
-    <div class="header-right">
-        <button>🔔</button>
-        <button>👤</button>
-    </div>
+  <div class="header-left">
+    <button id="menu">☰</button>
+    <span>Dashboard</span>
+  </div>
+  <div class="header-right">
+    <button>🔔</button>
+    <button>👤</button>
+  </div>
 </uizy-header>
 
 <style>
-    uizy-header {
-        background: #fff;
-        padding: 0 1rem;
-    }
-    .header-left, .header-right {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-    }
+  uizy-header {
+    background: #fff;
+    padding: 0 1rem;
+  }
+  .header-left,
+  .header-right {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
 </style>
 ```

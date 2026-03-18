@@ -14,16 +14,16 @@ Components are nested functions that return CSS classes, HTML strings, or any va
 ```javascript
 // Register
 uizy.add({
-    button: {
-        primary: () => "px-4 py-2 bg-primary text-white rounded",
-        secondary: () => "px-4 py-2 bg-gray-200 rounded",
-        sized: (size) => `px-${size} py-${size / 2}`,
-    },
+  button: {
+    primary: () => "px-4 py-2 bg-primary text-white rounded",
+    secondary: () => "px-4 py-2 bg-gray-200 rounded",
+    sized: (size) => `px-${size} py-${size / 2}`,
+  },
 });
 
 // Use
-uizy.use("button.primary");        // "px-4 py-2 bg-primary text-white rounded"
-uizy.use("button.sized", 6);       // "px-6 py-3"
+uizy.use("button.primary"); // "px-4 py-2 bg-primary text-white rounded"
+uizy.use("button.sized", 6); // "px-6 py-3"
 ```
 
 ## Registration
@@ -32,16 +32,16 @@ uizy.use("button.sized", 6);       // "px-6 py-3"
 
 ```javascript
 uizy.start({
-    components: {
-        card: {
-            base: () => "rounded shadow p-4",
-            elevated: () => "rounded shadow-lg p-4",
-        },
-        text: {
-            heading: () => "text-2xl font-bold",
-            body: () => "text-base leading-relaxed",
-        },
+  components: {
+    card: {
+      base: () => "rounded shadow p-4",
+      elevated: () => "rounded shadow-lg p-4",
     },
+    text: {
+      heading: () => "text-2xl font-bold",
+      body: () => "text-base leading-relaxed",
+    },
+  },
 });
 ```
 
@@ -49,11 +49,11 @@ uizy.start({
 
 ```javascript
 uizy.add({
-    modal: {
-        container: () => "fixed inset-0 flex items-center justify-center",
-        backdrop: () => "absolute inset-0 bg-black/50",
-        content: () => "relative bg-white rounded-lg shadow-xl p-6",
-    },
+  modal: {
+    container: () => "fixed inset-0 flex items-center justify-center",
+    backdrop: () => "absolute inset-0 bg-black/50",
+    content: () => "relative bg-white rounded-lg shadow-xl p-6",
+  },
 });
 ```
 
@@ -84,14 +84,14 @@ Pass configuration to components:
 
 ```javascript
 uizy.add({
-    spacing: {
-        pad: (props) => `p-${props.size}`,
-        margin: ({ x, y }) => `mx-${x} my-${y}`,
-    },
+  spacing: {
+    pad: (props) => `p-${props.size}`,
+    margin: ({ x, y }) => `mx-${x} my-${y}`,
+  },
 });
 
-uizy.use("spacing.pad", { size: 4 });        // "p-4"
-uizy.use("spacing.margin", { x: 2, y: 4 });  // "mx-2 my-4"
+uizy.use("spacing.pad", { size: 4 }); // "p-4"
+uizy.use("spacing.margin", { x: 2, y: 4 }); // "mx-2 my-4"
 
 // Props are shared across all components when using arrays
 uizy.use(["button.base", "button.sized"], { size: "lg" });
@@ -143,11 +143,11 @@ uizy.use("button.sized", { size: "lg", variant: "primary" });
 
 Call component(s) by path. Returns combined CSS classes as a string.
 
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| `path` | `string \| string[]` | Single path or array of paths |
-| `props` | `unknown` | Props passed to all components |
-| **Returns** | `string` | Combined CSS classes |
+| Parameter   | Type                 | Description                    |
+| ----------- | -------------------- | ------------------------------ |
+| `path`      | `string \| string[]` | Single path or array of paths  |
+| `props`     | `unknown`            | Props passed to all components |
+| **Returns** | `string`             | Combined CSS classes           |
 
 ```javascript
 // Single component
@@ -166,7 +166,7 @@ Register components. Merges with existing components.
 
 ```javascript
 uizy.add({
-    newComponent: () => "classes",
+  newComponent: () => "classes",
 });
 ```
 
@@ -176,7 +176,7 @@ Check if a component exists.
 
 ```javascript
 uizy.components.has("button.primary"); // true
-uizy.components.has("nonexistent");    // false
+uizy.components.has("nonexistent"); // false
 ```
 
 ### `uizy.components.paths()`
@@ -204,18 +204,18 @@ Get the raw component tree (readonly).
 const tree = uizy.components.getTree();
 ```
 
-## Using with `<ui-box>`
+## Using with `<uizy-box>`
 
-The `<ui-box>` web component automatically applies component classes:
+The `<uizy-box>` web component automatically applies component classes:
 
 ```html
-<ui-box use="button.primary">Click me</ui-box>
+<uizy-box use="button.primary">Click me</uizy-box>
 <!-- Renders with class="px-4 py-2 bg-primary text-white rounded" -->
 
-<ui-box use="card.elevated">
-    <h2>Card Title</h2>
-    <p>Card content</p>
-</ui-box>
+<uizy-box use="card.elevated">
+  <h2>Card Title</h2>
+  <p>Card content</p>
+</uizy-box>
 ```
 
 ### Multiple Components in HTML
@@ -223,9 +223,9 @@ The `<ui-box>` web component automatically applies component classes:
 Use space-separated component names:
 
 ```html
-<ui-box use="button.base button.primary button.lg">
-    Large Primary Button
-</ui-box>
+<uizy-box use="button.base button.primary button.lg">
+  Large Primary Button
+</uizy-box>
 ```
 
 ### Props in HTML
@@ -233,14 +233,14 @@ Use space-separated component names:
 Pass props using `use:props` attribute:
 
 ```html
-<ui-box use="button.sized" use:props='{"size": "lg", "variant": "primary"}'>
-    Large Primary Button
-</ui-box>
+<uizy-box use="button.sized" use:props='{"size": "lg", "variant": "primary"}'>
+  Large Primary Button
+</uizy-box>
 
 <!-- Props are passed to all components -->
-<ui-box use="button.base button.sized" use:props='{"size": "lg"}'>
-    Large Button
-</ui-box>
+<uizy-box use="button.base button.sized" use:props='{"size": "lg"}'>
+  Large Button
+</uizy-box>
 ```
 
 ## Examples
@@ -249,35 +249,36 @@ Pass props using `use:props` attribute:
 
 ```javascript
 uizy.start({
-    components: {
-        // Typography
-        text: {
-            h1: () => "text-4xl font-bold tracking-tight",
-            h2: () => "text-3xl font-semibold",
-            h3: () => "text-2xl font-medium",
-            body: () => "text-base leading-relaxed",
-            small: () => "text-sm text-gray-600",
-        },
-
-        // Buttons
-        btn: {
-            base: () => "inline-flex items-center justify-center rounded font-medium transition",
-            primary: () => "bg-primary text-white hover:bg-primary-dark",
-            secondary: () => "bg-gray-100 text-gray-900 hover:bg-gray-200",
-            ghost: () => "bg-transparent hover:bg-gray-100",
-            sm: () => "px-3 py-1.5 text-sm",
-            md: () => "px-4 py-2 text-base",
-            lg: () => "px-6 py-3 text-lg",
-        },
-
-        // Cards
-        card: {
-            container: () => "bg-white rounded-lg border border-gray-200",
-            header: () => "px-4 py-3 border-b border-gray-200",
-            body: () => "px-4 py-4",
-            footer: () => "px-4 py-3 border-t border-gray-200 bg-gray-50",
-        },
+  components: {
+    // Typography
+    text: {
+      h1: () => "text-4xl font-bold tracking-tight",
+      h2: () => "text-3xl font-semibold",
+      h3: () => "text-2xl font-medium",
+      body: () => "text-base leading-relaxed",
+      small: () => "text-sm text-gray-600",
     },
+
+    // Buttons
+    btn: {
+      base: () =>
+        "inline-flex items-center justify-center rounded font-medium transition",
+      primary: () => "bg-primary text-white hover:bg-primary-dark",
+      secondary: () => "bg-gray-100 text-gray-900 hover:bg-gray-200",
+      ghost: () => "bg-transparent hover:bg-gray-100",
+      sm: () => "px-3 py-1.5 text-sm",
+      md: () => "px-4 py-2 text-base",
+      lg: () => "px-6 py-3 text-lg",
+    },
+
+    // Cards
+    card: {
+      container: () => "bg-white rounded-lg border border-gray-200",
+      header: () => "px-4 py-3 border-b border-gray-200",
+      body: () => "px-4 py-4",
+      footer: () => "px-4 py-3 border-t border-gray-200 bg-gray-50",
+    },
+  },
 });
 ```
 
@@ -285,22 +286,22 @@ uizy.start({
 
 ```javascript
 uizy.add({
-    grid: {
-        cols: (n) => `grid grid-cols-${n} gap-4`,
-        responsive: ({ sm, md, lg }) =>
-            `grid grid-cols-${sm} md:grid-cols-${md} lg:grid-cols-${lg} gap-4`,
-    },
-    flex: {
-        row: () => "flex flex-row",
-        col: () => "flex flex-col",
-        center: () => "flex items-center justify-center",
-        between: () => "flex items-center justify-between",
-        gap: (n) => `flex gap-${n}`,
-    },
+  grid: {
+    cols: (n) => `grid grid-cols-${n} gap-4`,
+    responsive: ({ sm, md, lg }) =>
+      `grid grid-cols-${sm} md:grid-cols-${md} lg:grid-cols-${lg} gap-4`,
+  },
+  flex: {
+    row: () => "flex flex-row",
+    col: () => "flex flex-col",
+    center: () => "flex items-center justify-center",
+    between: () => "flex items-center justify-between",
+    gap: (n) => `flex gap-${n}`,
+  },
 });
 
 // Usage
-uizy.use("grid.cols", 3);                              // "grid grid-cols-3 gap-4"
+uizy.use("grid.cols", 3); // "grid grid-cols-3 gap-4"
 uizy.use("grid.responsive", { sm: 1, md: 2, lg: 4 }); // "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4"
 ```
 
@@ -308,13 +309,16 @@ uizy.use("grid.responsive", { sm: 1, md: 2, lg: 4 }); // "grid grid-cols-1 md:gr
 
 ```javascript
 uizy.add({
-    input: {
-        field: ({ error, disabled }) => [
-            "w-full px-3 py-2 border rounded",
-            error ? "border-red-500 focus:ring-red-500" : "border-gray-300 focus:ring-blue-500",
-            disabled ? "bg-gray-100 cursor-not-allowed" : "bg-white",
-        ].join(" "),
-    },
+  input: {
+    field: ({ error, disabled }) =>
+      [
+        "w-full px-3 py-2 border rounded",
+        error
+          ? "border-red-500 focus:ring-red-500"
+          : "border-gray-300 focus:ring-blue-500",
+        disabled ? "bg-gray-100 cursor-not-allowed" : "bg-white",
+      ].join(" "),
+  },
 });
 
 uizy.use("input.field", { error: true, disabled: false });

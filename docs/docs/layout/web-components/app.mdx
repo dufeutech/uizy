@@ -9,16 +9,16 @@ The root container that manages all layout components. Required for the JavaScri
 
 ## Attributes
 
-| Attribute | Description |
-|-----------|-------------|
-| `id` | Required for accessing via `uizy.get()` |
+| Attribute            | Description                                             |
+| -------------------- | ------------------------------------------------------- |
+| `id`                 | Required for accessing via `uizy.get()`                 |
 | `class="uizy-ready"` | Reveals the app (added automatically by `uizy.start()`) |
 
 ## Usage
 
 ```html
 <uizy-app id="app">
-    <!-- All other components go here -->
+  <!-- All other components go here -->
 </uizy-app>
 ```
 
@@ -28,10 +28,10 @@ The root container that manages all layout components. Required for the JavaScri
 
 ```javascript
 uizy.init(() => {
-    const app = uizy.get("app");
-    if (!app) return;
+  const app = uizy.get("app");
+  if (!app) return;
 
-    // Use the app instance...
+  // Use the app instance...
 });
 ```
 
@@ -63,53 +63,49 @@ app.action("overlay", ({ set }) => set(null));
 
 ### Action Targets
 
-| Target | Description |
-|--------|-------------|
-| `overlay` | Controls the overlay visibility |
-| `left` | Controls the left drawer |
-| `left.mini` | Controls the left mini drawer |
-| `right` | Controls the right drawer |
-| `right.mini` | Controls the right mini drawer |
+| Target       | Description                     |
+| ------------ | ------------------------------- |
+| `overlay`    | Controls the overlay visibility |
+| `left`       | Controls the left drawer        |
+| `left.mini`  | Controls the left mini drawer   |
+| `right`      | Controls the right drawer       |
+| `right.mini` | Controls the right mini drawer  |
 
 ### Set Function Values
 
-| Value | Description |
-|-------|-------------|
-| `true` | Open/show the element |
-| `false` | Close/hide the element |
-| `undefined` or no arg | Toggle the current state |
-| `null` | Auto mode (overlay follows drawer state) |
+| Value                 | Description                              |
+| --------------------- | ---------------------------------------- |
+| `true`                | Open/show the element                    |
+| `false`               | Close/hide the element                   |
+| `undefined` or no arg | Toggle the current state                 |
+| `null`                | Auto mode (overlay follows drawer state) |
 
 ## Example
 
 ```html
 <uizy-app id="app">
-    <uizy-header shadow="12">
-        <button id="menu-btn">Menu</button>
-        <span>My App</span>
-    </uizy-header>
+  <uizy-header shadow="12">
+    <button id="menu-btn">Menu</button>
+    <span>My App</span>
+  </uizy-header>
 
-    <uizy-drawer shadow="6" clip-top clip-bottom>
-        Navigation
-    </uizy-drawer>
+  <uizy-drawer shadow="6" clip-top clip-bottom> Navigation </uizy-drawer>
 
-    <uizy-overlay clip-top clip-bottom></uizy-overlay>
+  <uizy-overlay clip-top clip-bottom></uizy-overlay>
 
-    <uizy-main clip-top clip-bottom clip-left>
-        Content
-    </uizy-main>
+  <uizy-main clip-top clip-bottom clip-left> Content </uizy-main>
 </uizy-app>
 
 <script type="module">
-    import uizy from "@dufeut/uizy";
+  import uizy from "@dufeut/uizy";
 
-    uizy.init(() => {
-        const app = uizy.get("app");
+  uizy.init(() => {
+    const app = uizy.get("app");
 
-        document.getElementById("menu-btn").onclick = () => {
-            app.action("left", ({ set }) => set());
-        };
-    });
+    document.getElementById("menu-btn").onclick = () => {
+      app.action("left", ({ set }) => set());
+    };
+  });
 </script>
 ```
 
@@ -129,7 +125,7 @@ If you're using only the CSS without the JS engine, add the `uizy-ready` class m
 
 ```html
 <uizy-app class="uizy-ready">
-    <!-- Your layout -->
+  <!-- Your layout -->
 </uizy-app>
 ```
 

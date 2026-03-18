@@ -11,11 +11,11 @@ Helpful utilities for cursors, dimensions, overflow, and positioning!
 
 Change the mouse cursor and control user interactions:
 
-| Class | Description |
-|-------|-------------|
-| `e-p` | Cursor Pointer (hand) - for clickable items |
-| `e-ns` | No Select - prevents text selection |
-| `e-ne` | No Events - disables pointer events |
+| Class  | Description                                 |
+| ------ | ------------------------------------------- |
+| `e-p`  | Cursor Pointer (hand) - for clickable items |
+| `e-ns` | No Select - prevents text selection         |
+| `e-ne` | No Events - disables pointer events         |
 
 ```html
 <div class="e-p">Click me!</div>
@@ -29,21 +29,21 @@ Add `e-p` to any clickable element that isn't already a button or link. This hel
 
 Set width and height of elements:
 
-### Width (ew-*)
+### Width (ew-\*)
 
-| Class | Description |
-|-------|-------------|
-| `ew-100p` | Width 100% (full width of parent) |
+| Class     | Description                        |
+| --------- | ---------------------------------- |
+| `ew-100p` | Width 100% (full width of parent)  |
 | `ew-100v` | Width 100dvw (full viewport width) |
-| `ew-i` | Width inherit (same as parent) |
+| `ew-i`    | Width inherit (same as parent)     |
 
-### Height (eh-*)
+### Height (eh-\*)
 
-| Class | Description |
-|-------|-------------|
-| `eh-100p` | Height 100% (full height of parent) |
+| Class     | Description                          |
+| --------- | ------------------------------------ |
+| `eh-100p` | Height 100% (full height of parent)  |
 | `eh-100v` | Height 100dvh (full viewport height) |
-| `eh-i` | Height inherit (same as parent) |
+| `eh-i`    | Height inherit (same as parent)      |
 
 ```html
 <div class="ew-100p">I take up all the space!</div>
@@ -57,12 +57,12 @@ These are "dynamic viewport" units that work better on mobile phones where the a
 
 Control what happens when content is bigger than its container:
 
-| Class | Description |
-|-------|-------------|
-| `ox-h` | Overflow-X Hidden (horizontal) |
+| Class  | Description                         |
+| ------ | ----------------------------------- |
+| `ox-h` | Overflow-X Hidden (horizontal)      |
 | `ox-a` | Overflow-X Auto (horizontal scroll) |
-| `oy-h` | Overflow-Y Hidden (vertical) |
-| `oy-a` | Overflow-Y Auto (vertical scroll) |
+| `oy-h` | Overflow-Y Hidden (vertical)        |
+| `oy-a` | Overflow-Y Auto (vertical scroll)   |
 
 ### Overflow Hidden
 
@@ -91,12 +91,12 @@ Shows scrollbars when content overflows:
 
 Control how elements are positioned on the page:
 
-| Class | Description |
-|-------|-------------|
+| Class  | Description                                 |
+| ------ | ------------------------------------------- |
 | `dp-r` | Position Relative - normal flow, can offset |
-| `dp-a` | Position Absolute - relative to parent |
-| `dp-f` | Position Fixed - relative to viewport |
-| `dp-s` | Position Sticky - sticks when scrolling |
+| `dp-a` | Position Absolute - relative to parent      |
+| `dp-f` | Position Fixed - relative to viewport       |
+| `dp-s` | Position Sticky - sticks when scrolling     |
 
 ### Relative + Absolute
 
@@ -105,9 +105,7 @@ Common pattern for overlays:
 ```html
 <div class="dp-r">
   <img src="photo.jpg" />
-  <span class="dp-a" style="top: 0; right: 0;">
-    Badge
-  </span>
+  <span class="dp-a" style="top: 0; right: 0;"> Badge </span>
 </div>
 ```
 
@@ -121,22 +119,22 @@ Align items within a flex container:
 
 ### Justify Content (X-axis / horizontal)
 
-| Class | Description |
-|-------|-------------|
+| Class   | Description                       |
+| ------- | --------------------------------- |
 | `dx-fs` | Justify Content Flex-Start (left) |
-| `dx-fe` | Justify Content Flex-End (right) |
-| `dx-ce` | Justify Content Center |
-| `dx-sb` | Justify Content Space-Between |
-| `dx-sa` | Justify Content Space-Around |
-| `dx-se` | Justify Content Space-Evenly |
+| `dx-fe` | Justify Content Flex-End (right)  |
+| `dx-ce` | Justify Content Center            |
+| `dx-sb` | Justify Content Space-Between     |
+| `dx-sa` | Justify Content Space-Around      |
+| `dx-se` | Justify Content Space-Evenly      |
 
 ### Align Items (Y-axis / vertical)
 
-| Class | Description |
-|-------|-------------|
-| `dy-fs` | Align Items Flex-Start (top) |
+| Class   | Description                   |
+| ------- | ----------------------------- |
+| `dy-fs` | Align Items Flex-Start (top)  |
 | `dy-fe` | Align Items Flex-End (bottom) |
-| `dy-ce` | Align Items Center |
+| `dy-ce` | Align Items Center            |
 | `dy-st` | Align Items Stretch (default) |
 
 ### Centering with Flex
@@ -162,9 +160,9 @@ Push items to opposite ends:
 
 ## Quick Reference
 
-| Category | Classes |
-|----------|---------|
-| Events | `e-p, e-ns, e-ne` |
-| Dimensions | `ew-100p, eh-100v` |
-| Overflow | `ox-h, oy-a` |
-| Position | `dp-r, dp-a, dp-f, dp-s` |
+| Category   | Classes                  |
+| ---------- | ------------------------ |
+| Events     | `e-p, e-ns, e-ne`        |
+| Dimensions | `ew-100p, eh-100v`       |
+| Overflow   | `ox-h, oy-a`             |
+| Position   | `dp-r, dp-a, dp-f, dp-s` |

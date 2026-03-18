@@ -9,26 +9,24 @@ Fixed footer at the bottom of the viewport.
 
 ## Attributes
 
-| Attribute | Description |
-|-----------|-------------|
-| `shadow` | Shadow intensity (1-24) |
-| `clip-left` | Add left margin for sidebar |
+| Attribute    | Description                  |
+| ------------ | ---------------------------- |
+| `shadow`     | Shadow intensity (1-24)      |
+| `clip-left`  | Add left margin for sidebar  |
 | `clip-right` | Add right margin for sidebar |
 
 ## Usage
 
 ```html
-<uizy-footer shadow="12">
-    © 2024 My App
-</uizy-footer>
+<uizy-footer shadow="12"> © 2024 My App </uizy-footer>
 ```
 
 ## CSS Variables
 
-| Variable | Default | Description |
-|----------|---------|-------------|
-| `--uizy-footer-height` | `48px` | Height of the footer |
-| `--uizy-footer-layer` | `20` | z-index |
+| Variable               | Default | Description          |
+| ---------------------- | ------- | -------------------- |
+| `--uizy-footer-height` | `48px`  | Height of the footer |
+| `--uizy-footer-layer`  | `20`    | z-index              |
 
 ## Examples
 
@@ -36,7 +34,7 @@ Fixed footer at the bottom of the viewport.
 
 ```html
 <uizy-footer shadow="12">
-    <span>© 2024 Company Name</span>
+  <span>© 2024 Company Name</span>
 </uizy-footer>
 ```
 
@@ -44,26 +42,26 @@ Fixed footer at the bottom of the viewport.
 
 ```html
 <uizy-footer shadow="6">
-    <nav>
-        <a href="#">Privacy</a>
-        <a href="#">Terms</a>
-        <a href="#">Contact</a>
-    </nav>
-    <span>Made with ❤️</span>
+  <nav>
+    <a href="#">Privacy</a>
+    <a href="#">Terms</a>
+    <a href="#">Contact</a>
+  </nav>
+  <span>Made with ❤️</span>
 </uizy-footer>
 
 <style>
-    uizy-footer {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 0 1rem;
-        background: #f5f5f5;
-    }
-    uizy-footer nav {
-        display: flex;
-        gap: 1rem;
-    }
+  uizy-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1rem;
+    background: #f5f5f5;
+  }
+  uizy-footer nav {
+    display: flex;
+    gap: 1rem;
+  }
 </style>
 ```
 
@@ -71,6 +69,6 @@ Fixed footer at the bottom of the viewport.
 
 ```html
 <uizy-footer shadow="12" clip-left clip-right>
-    Footer respects sidebar widths
+  Footer respects sidebar widths
 </uizy-footer>
 ```

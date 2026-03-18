@@ -163,8 +163,8 @@ function installPlugin(plugin: Plugin, options?: unknown): void {
  * }
  *
  * // Usage after installing plugin:
- * // Components: uizy.use("mylib.button") or <ui-box use="mylib.button">
- * // Directives: <ui-box :mylib-hover="value">
+ * // Components: uizy.use("mylib.button") or <uizy-box use="mylib.button">
+ * // Directives: <uizy-box :mylib-hover="value">
  * ```
  */
 function registerPlugin(namespace: string, exports: PluginExports): void {

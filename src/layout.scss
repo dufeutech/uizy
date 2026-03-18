@@ -54,13 +54,13 @@ uizy-footer,
 uizy-drawer,
 uizy-overlay,
 uizy-main,
-ui-box {
+uizy-box {
   display: block;
 }
 
 /* Reactive text elements default to inline */
-ui-box[u-text],
-ui-box[\:text] {
+uizy-box[u-text],
+uizy-box[\:text] {
   display: inline;
 }
 

@@ -5,22 +5,22 @@ sidebar_label: Directives
 
 # Directives
 
-Create custom attributes for `<ui-box>` elements with reusable logic.
+Create custom attributes for `<uizy-box>` elements with reusable logic.
 
 ## Overview
 
-Directives are custom attributes that extend `<ui-box>` functionality. They receive the element and a context object with utilities for reactive effects and cleanup.
+Directives are custom attributes that extend `<uizy-box>` functionality. They receive the element and a context object with utilities for reactive effects and cleanup.
 
 ```javascript
 // Register a directive
 uizy.directive("highlight", (el, { value }) => {
-    el.style.backgroundColor = value || "yellow";
+  el.style.backgroundColor = value || "yellow";
 });
 ```
 
 ```html
 <!-- Use it -->
-<ui-box u-highlight="red">Highlighted text</ui-box>
+<uizy-box u-highlight="red">Highlighted text</uizy-box>
 ```
 
 ## Syntax
@@ -29,10 +29,10 @@ uizy.directive("highlight", (el, { value }) => {
 Always use the `u-` prefix for better compatibility across build tools and frameworks. Some TSX/JSX transformers struggle with `:` prefixed attributes.
 :::
 
-| Prefix | Example | Notes |
-|--------|---------|-------|
-| `u-` | `u-foo:arg="value"` | **Recommended** - Works everywhere |
-| `:` | `:foo:arg="value"` | May cause issues with some transformers |
+| Prefix | Example             | Notes                                   |
+| ------ | ------------------- | --------------------------------------- |
+| `u-`   | `u-foo:arg="value"` | **Recommended** - Works everywhere      |
+| `:`    | `:foo:arg="value"`  | May cause issues with some transformers |
 
 ### Modifiers
 
@@ -40,12 +40,12 @@ Split multiple modifiers into separate attributes for clarity:
 
 ```html
 <!-- ✅ Recommended -->
-<ui-box u-tooltip:top u-tooltip:arrow u-tooltip:delay="500">
+<uizy-box u-tooltip:top u-tooltip:arrow u-tooltip:delay="500">
   Hover me
-</ui-box>
+</uizy-box>
 
 <!-- ⚠️ May cause parsing issues -->
-<ui-box u-tooltip:top:arrow:delay="500">Hover me</ui-box>
+<uizy-box u-tooltip:top:arrow:delay="500">Hover me</uizy-box>
 ```
 
 ## Registration
@@ -54,27 +54,27 @@ Split multiple modifiers into separate attributes for clarity:
 
 ```javascript
 uizy.start({
-    directives: {
-        // Simple directive
-        uppercase: (el) => {
-            el.style.textTransform = "uppercase";
-        },
-
-        // With value
-        color: (el, { value }) => {
-            el.style.color = value || "inherit";
-        },
-
-        // Reactive directive
-        bind: (el, { value, effect }) => {
-            effect(() => {
-                const store = uizy.$(value, { raw: true });
-                return store?.subscribe((v) => {
-                    el.textContent = String(v);
-                });
-            });
-        },
+  directives: {
+    // Simple directive
+    uppercase: (el) => {
+      el.style.textTransform = "uppercase";
     },
+
+    // With value
+    color: (el, { value }) => {
+      el.style.color = value || "inherit";
+    },
+
+    // Reactive directive
+    bind: (el, { value, effect }) => {
+      effect(() => {
+        const store = uizy.$(value, { raw: true });
+        return store?.subscribe((v) => {
+          el.textContent = String(v);
+        });
+      });
+    },
+  },
 });
 ```
 
@@ -82,8 +82,8 @@ uizy.start({
 
 ```javascript
 uizy.directive("tooltip", (el, { value, modifiers }) => {
-    const position = modifiers.includes("top") ? "top" : "bottom";
-    // Setup tooltip...
+  const position = modifiers.includes("top") ? "top" : "bottom";
+  // Setup tooltip...
 });
 ```
 
@@ -93,11 +93,11 @@ The second argument provides utilities:
 
 ```javascript
 uizy.directive("example", (el, ctx) => {
-    ctx.value      // Attribute value (string)
-    ctx.modifiers  // Array of modifier args
-    ctx.bindings   // All bindings for this directive
-    ctx.effect     // Register reactive effect (auto-cleanup)
-    ctx.cleanup    // Register cleanup function
+  ctx.value; // Attribute value (string)
+  ctx.modifiers; // Array of modifier args
+  ctx.bindings; // All bindings for this directive
+  ctx.effect; // Register reactive effect (auto-cleanup)
+  ctx.cleanup; // Register cleanup function
 });
 ```
 
@@ -106,12 +106,12 @@ uizy.directive("example", (el, ctx) => {
 The attribute value as a string:
 
 ```html
-<ui-box u-example="hello world"></ui-box>
+<uizy-box u-example="hello world"></uizy-box>
 ```
 
 ```javascript
 uizy.directive("example", (el, { value }) => {
-    console.log(value); // "hello world"
+  console.log(value); // "hello world"
 });
 ```
 
@@ -120,13 +120,13 @@ uizy.directive("example", (el, { value }) => {
 Args from multiple bindings:
 
 ```html
-<ui-box u-tooltip:top u-tooltip:arrow="Help text"></ui-box>
+<uizy-box u-tooltip:top u-tooltip:arrow="Help text"></uizy-box>
 ```
 
 ```javascript
 uizy.directive("tooltip", (el, { value, modifiers }) => {
-    console.log(modifiers); // ["top", "arrow"]
-    console.log(value);     // "" (from first binding)
+  console.log(modifiers); // ["top", "arrow"]
+  console.log(value); // "" (from first binding)
 });
 ```
 
@@ -135,17 +135,17 @@ uizy.directive("tooltip", (el, { value, modifiers }) => {
 Access individual binding values:
 
 ```html
-<ui-box u-config:theme="dark" u-config:size="lg"></ui-box>
+<uizy-box u-config:theme="dark" u-config:size="lg"></uizy-box>
 ```
 
 ```javascript
 uizy.directive("config", (el, { bindings }) => {
-    // [{ arg: "theme", value: "dark" }, { arg: "size", value: "lg" }]
+  // [{ arg: "theme", value: "dark" }, { arg: "size", value: "lg" }]
 
-    const config = Object.fromEntries(
-        bindings.map(b => [b.arg, b.value || true])
-    );
-    // { theme: "dark", size: "lg" }
+  const config = Object.fromEntries(
+    bindings.map((b) => [b.arg, b.value || true]),
+  );
+  // { theme: "dark", size: "lg" }
 });
 ```
 
@@ -155,15 +155,15 @@ Register a reactive effect with automatic cleanup:
 
 ```javascript
 uizy.directive("autosize", (el, { effect }) => {
-    effect(() => {
-        const resize = () => {
-            el.style.height = "auto";
-            el.style.height = el.scrollHeight + "px";
-        };
+  effect(() => {
+    const resize = () => {
+      el.style.height = "auto";
+      el.style.height = el.scrollHeight + "px";
+    };
 
-        el.addEventListener("input", resize);
-        return () => el.removeEventListener("input", resize);
-    });
+    el.addEventListener("input", resize);
+    return () => el.removeEventListener("input", resize);
+  });
 });
 ```
 
@@ -173,11 +173,14 @@ Register cleanup functions directly:
 
 ```javascript
 uizy.directive("interval", (el, { value, cleanup }) => {
-    const id = setInterval(() => {
-        el.textContent = new Date().toLocaleTimeString();
-    }, parseInt(value) || 1000);
+  const id = setInterval(
+    () => {
+      el.textContent = new Date().toLocaleTimeString();
+    },
+    parseInt(value) || 1000,
+  );
 
-    cleanup(() => clearInterval(id));
+  cleanup(() => clearInterval(id));
 });
 ```
 
@@ -190,120 +193,118 @@ uizy.directive("focus", (el) => el.focus());
 ```
 
 ```html
-<ui-box u-focus>Auto-focused</ui-box>
+<uizy-box u-focus>Auto-focused</uizy-box>
 ```
 
 ### Click Outside
 
 ```javascript
 uizy.directive("click-outside", (el, { value, cleanup }) => {
-    const handler = (e) => {
-        if (!el.contains(e.target)) {
-            new Function(value).call(el);
-        }
-    };
-    document.addEventListener("click", handler);
-    cleanup(() => document.removeEventListener("click", handler));
+  const handler = (e) => {
+    if (!el.contains(e.target)) {
+      new Function(value).call(el);
+    }
+  };
+  document.addEventListener("click", handler);
+  cleanup(() => document.removeEventListener("click", handler));
 });
 ```
 
 ```html
-<ui-box u-click-outside="uizy.emit('modal.close')">
-    Click outside to close
-</ui-box>
+<uizy-box u-click-outside="uizy.emit('modal.close')">
+  Click outside to close
+</uizy-box>
 ```
 
 ### Lazy Load Images
 
 ```javascript
 uizy.directive("lazy", (el, { value, cleanup }) => {
-    const img = el.querySelector("img") || el;
+  const img = el.querySelector("img") || el;
 
-    const observer = new IntersectionObserver((entries) => {
-        if (entries[0].isIntersecting) {
-            img.src = value;
-            observer.disconnect();
-        }
-    });
+  const observer = new IntersectionObserver((entries) => {
+    if (entries[0].isIntersecting) {
+      img.src = value;
+      observer.disconnect();
+    }
+  });
 
-    observer.observe(el);
-    cleanup(() => observer.disconnect());
+  observer.observe(el);
+  cleanup(() => observer.disconnect());
 });
 ```
 
 ```html
-<ui-box u-lazy="/images/large-photo.jpg">
-    <img src="/images/placeholder.jpg" alt="Photo" />
-</ui-box>
+<uizy-box u-lazy="/images/large-photo.jpg">
+  <img src="/images/placeholder.jpg" alt="Photo" />
+</uizy-box>
 ```
 
 ### Two-Way Binding
 
 ```javascript
 uizy.directive("model", (el, { value, effect }) => {
-    const input = el.querySelector("input") || el;
+  const input = el.querySelector("input") || el;
 
-    effect(() => {
-        const store = uizy.$(value, { raw: true });
-        if (!store) return;
+  effect(() => {
+    const store = uizy.$(value, { raw: true });
+    if (!store) return;
 
-        const unsubscribe = store.subscribe((v) => {
-            if (input.value !== v) input.value = v;
-        });
-
-        const onInput = () => store.set(input.value);
-        input.addEventListener("input", onInput);
-
-        return () => {
-            unsubscribe();
-            input.removeEventListener("input", onInput);
-        };
+    const unsubscribe = store.subscribe((v) => {
+      if (input.value !== v) input.value = v;
     });
+
+    const onInput = () => store.set(input.value);
+    input.addEventListener("input", onInput);
+
+    return () => {
+      unsubscribe();
+      input.removeEventListener("input", onInput);
+    };
+  });
 });
 ```
 
 ```html
-<ui-box u-model="form.username">
-    <input type="text" />
-</ui-box>
+<uizy-box u-model="form.username">
+  <input type="text" />
+</uizy-box>
 ```
 
 ### Conditional Show/Hide
 
 ```javascript
 uizy.directive("show", (el, { value, effect }) => {
-    effect(() => {
-        const store = uizy.$(value, { raw: true });
-        if (!store) {
-            el.style.display = value ? "" : "none";
-            return;
-        }
+  effect(() => {
+    const store = uizy.$(value, { raw: true });
+    if (!store) {
+      el.style.display = value ? "" : "none";
+      return;
+    }
 
-        return store.subscribe((v) => {
-            el.style.display = v ? "" : "none";
-        });
+    return store.subscribe((v) => {
+      el.style.display = v ? "" : "none";
     });
+  });
 });
 ```
 
 ```html
-<ui-box u-show="ui.modalOpen">Modal content</ui-box>
+<uizy-box u-show="ui.modalOpen">Modal content</uizy-box>
 ```
 
 ### Inline Styles
 
 ```javascript
 uizy.directive("style", (el, { bindings }) => {
-    for (const { arg, value } of bindings) {
-        if (arg && value) el.style[arg] = value;
-    }
+  for (const { arg, value } of bindings) {
+    if (arg && value) el.style[arg] = value;
+  }
 });
 ```
 
 ```html
-<ui-box u-style:color="red" u-style:fontSize="20px">
-    Styled text
-</ui-box>
+<uizy-box u-style:color="red" u-style:fontSize="20px"> Styled text </uizy-box>
 ```
 
 ## Best Practices
@@ -315,17 +316,21 @@ Prevent memory leaks with proper cleanup:
 ```javascript
 // ✅ Using cleanup()
 uizy.directive("interval", (el, { value, cleanup }) => {
-    const id = setInterval(() => { /* ... */ }, 1000);
-    cleanup(() => clearInterval(id));
+  const id = setInterval(() => {
+    /* ... */
+  }, 1000);
+  cleanup(() => clearInterval(id));
 });
 
 // ✅ Using effect return
 uizy.directive("resize", (el, { effect }) => {
-    effect(() => {
-        const handler = () => { /* ... */ };
-        window.addEventListener("resize", handler);
-        return () => window.removeEventListener("resize", handler);
-    });
+  effect(() => {
+    const handler = () => {
+      /* ... */
+    };
+    window.addEventListener("resize", handler);
+    return () => window.removeEventListener("resize", handler);
+  });
 });
 ```
 
@@ -335,11 +340,11 @@ Provide defaults for optional values:
 
 ```javascript
 uizy.directive("color", (el, { value }) => {
-    el.style.color = value || "inherit"; // ✅ Fallback
+  el.style.color = value || "inherit"; // ✅ Fallback
 });
 
 uizy.directive("delay", (el, { value }) => {
-    const ms = parseInt(value) || 1000; // ✅ Parse + default
+  const ms = parseInt(value) || 1000; // ✅ Parse + default
 });
 ```
 
@@ -364,31 +369,31 @@ uizy.directive("setup", (el, { modifiers }) => {
 
 ### `uizy.directive(name, handler)`
 
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| `name` | `string` | Directive name (used as `u-name`) |
-| `handler` | `(el, ctx) => void` | Handler function |
+| Parameter | Type                | Description                       |
+| --------- | ------------------- | --------------------------------- |
+| `name`    | `string`            | Directive name (used as `u-name`) |
+| `handler` | `(el, ctx) => void` | Handler function                  |
 
 ### `uizy.directives`
 
-| Method | Description |
-|--------|-------------|
+| Method                | Description          |
+| --------------------- | -------------------- |
 | `.add(name, handler)` | Register a directive |
-| `.addAll(directives)` | Register multiple |
-| `.get(name)` | Get handler |
-| `.has(name)` | Check if exists |
-| `.names()` | List all names |
-| `.clear()` | Remove all |
+| `.addAll(directives)` | Register multiple    |
+| `.get(name)`          | Get handler          |
+| `.has(name)`          | Check if exists      |
+| `.names()`            | List all names       |
+| `.clear()`            | Remove all           |
 
 ### Types
 
 ```typescript
 interface DirectiveContext {
-    value: string;
-    modifiers: string[];
-    bindings: { arg: string; value: string }[];
-    effect: (fn: () => (() => void) | void) => void;
-    cleanup: (fn: () => void) => void;
+  value: string;
+  modifiers: string[];
+  bindings: { arg: string; value: string }[];
+  effect: (fn: () => (() => void) | void) => void;
+  cleanup: (fn: () => void) => void;
 }
 
 type DirectiveHandler = (el: HTMLElement, ctx: DirectiveContext) => void;

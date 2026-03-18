@@ -11,8 +11,8 @@ Build layouts using utility classes on standard HTML elements.
 
 An optional top bar for system status, notifications, or branding. Sits above everything else.
 
-| Class | Description |
-|-------|-------------|
+| Class             | Description                                   |
+| ----------------- | --------------------------------------------- |
 | `uizy-system-bar` | Fixed top bar at the very top of the viewport |
 
 ```html
@@ -30,8 +30,8 @@ Configure the height with `--uizy-system-bar-height` (default: 0px). Set to 0 if
 
 The main application header, positioned below the system bar.
 
-| Class | Description |
-|-------|-------------|
+| Class         | Description                   |
+| ------------- | ----------------------------- |
 | `uizy-header` | Fixed header below system bar |
 
 ```html
@@ -50,14 +50,12 @@ Configure with `--uizy-header-height` (default: 50px) and `--uizy-header-layer` 
 
 Fixed footer at the bottom of the viewport.
 
-| Class | Description |
-|-------|-------------|
+| Class         | Description                |
+| ------------- | -------------------------- |
 | `uizy-footer` | Fixed footer at the bottom |
 
 ```html
-<footer class="uizy-footer">
-  My Application - v1.0.0
-</footer>
+<footer class="uizy-footer">My Application - v1.0.0</footer>
 ```
 
 :::info
@@ -68,9 +66,9 @@ Configure with `--uizy-footer-height` (default: 50px).
 
 Fixed left sidebar for navigation. Can be collapsed to a mini width.
 
-| Class | Description |
-|-------|-------------|
-| `uizy-left` | Fixed left sidebar |
+| Class             | Description            |
+| ----------------- | ---------------------- |
+| `uizy-left`       | Fixed left sidebar     |
 | `uizy-left--mini` | Collapsed mini sidebar |
 
 ```html
@@ -90,9 +88,9 @@ Use `--uizy-left-width` (default: 185px) and `--uizy-left-mini-width` (default: 
 
 Fixed right sidebar for details panels, settings, or secondary content.
 
-| Class | Description |
-|-------|-------------|
-| `uizy-right` | Fixed right sidebar |
+| Class              | Description                  |
+| ------------------ | ---------------------------- |
+| `uizy-right`       | Fixed right sidebar          |
 | `uizy-right--mini` | Collapsed mini right sidebar |
 
 ```html
@@ -110,12 +108,14 @@ Configure with `--uizy-right-width` and `--uizy-right-mini-width`.
 
 The main content area. Uses `100dvh` for full viewport height and supports margin transitions.
 
-| Class | Description |
-|-------|-------------|
+| Class       | Description                                 |
+| ----------- | ------------------------------------------- |
 | `uizy-main` | Main content area with full viewport height |
 
 ```html
-<main class="uizy-main uizy-clip-top uizy-clip-bottom uizy-clip-left uizy-clip-right">
+<main
+  class="uizy-main uizy-clip-top uizy-clip-bottom uizy-clip-left uizy-clip-right"
+>
   <div class="card">
     <h2>Welcome</h2>
     <p>Your main content goes here.</p>
@@ -127,12 +127,12 @@ The main content area. Uses `100dvh` for full viewport height and supports margi
 
 Animated slide-in panels. Perfect for mobile navigation or contextual panels.
 
-| Class | Description |
-|-------|-------------|
-| `uizy-drawer` | Base drawer with transform animation |
-| `uizy-drawer--left` | Slides in from the left |
-| `uizy-drawer--right` | Slides in from the right |
-| `uizy-drawer--open` | Shows the drawer (translateX(0)) |
+| Class                | Description                          |
+| -------------------- | ------------------------------------ |
+| `uizy-drawer`        | Base drawer with transform animation |
+| `uizy-drawer--left`  | Slides in from the left              |
+| `uizy-drawer--right` | Slides in from the right             |
+| `uizy-drawer--open`  | Shows the drawer (translateX(0))     |
 
 ```html
 <!-- Left drawer (hidden by default on mobile) -->
@@ -143,7 +143,7 @@ Animated slide-in panels. Perfect for mobile navigation or contextual panels.
 <!-- Toggle with JavaScript -->
 <script>
   function toggleLeft() {
-    document.getElementById('leftNav').classList.toggle('uizy-drawer--open');
+    document.getElementById("leftNav").classList.toggle("uizy-drawer--open");
   }
 </script>
 ```
@@ -158,22 +158,24 @@ Position elements relative to the layout structure. Clip classes adjust margins 
 
 ### Vertical Clipping
 
-| Class | Description |
-|-------|-------------|
-| `uizy-clip-system-bar` | Position below system bar only |
-| `uizy-clip-top` | Position below system bar + header |
-| `uizy-clip-bottom` | Position above footer |
+| Class                  | Description                        |
+| ---------------------- | ---------------------------------- |
+| `uizy-clip-system-bar` | Position below system bar only     |
+| `uizy-clip-top`        | Position below system bar + header |
+| `uizy-clip-bottom`     | Position above footer              |
 
 ### Horizontal Clipping
 
-| Class | Description |
-|-------|-------------|
-| `uizy-clip-left` | Add left margin for sidebar (resets on mobile) |
+| Class             | Description                                     |
+| ----------------- | ----------------------------------------------- |
+| `uizy-clip-left`  | Add left margin for sidebar (resets on mobile)  |
 | `uizy-clip-right` | Add right margin for sidebar (resets on mobile) |
 
 ```html
 <!-- Main content clipped on all sides -->
-<main class="uizy-main uizy-clip-top uizy-clip-bottom uizy-clip-left uizy-clip-right">
+<main
+  class="uizy-main uizy-clip-top uizy-clip-bottom uizy-clip-left uizy-clip-right"
+>
   Content fits between header, footer, and sidebars
 </main>
 
@@ -191,26 +193,30 @@ Horizontal clip classes (`uizy-clip-left`, `uizy-clip-right`) automatically rese
 
 Semi-transparent backdrop for drawers and modals. Use with clip classes to match the main content area.
 
-| Class | Description |
-|-------|-------------|
+| Class               | Description                                       |
+| ------------------- | ------------------------------------------------- |
 | `uizy-overlay-mask` | Clickable overlay container (for closing drawers) |
-| `uizy-overlay` | The visual overlay with opacity |
+| `uizy-overlay`      | The visual overlay with opacity                   |
 
 ```html
-<div class="uizy-overlay-mask uizy-clip-top uizy-clip-bottom" id="overlay" style="display: none;">
+<div
+  class="uizy-overlay-mask uizy-clip-top uizy-clip-bottom"
+  id="overlay"
+  style="display: none;"
+>
   <div class="uizy-overlay"></div>
 </div>
 
 <script>
   function toggleDrawer() {
-    const drawer = document.getElementById('drawer');
-    const overlay = document.getElementById('overlay');
-    const isOpen = drawer.classList.toggle('uizy-drawer--open');
-    overlay.style.display = isOpen ? 'block' : 'none';
+    const drawer = document.getElementById("drawer");
+    const overlay = document.getElementById("overlay");
+    const isOpen = drawer.classList.toggle("uizy-drawer--open");
+    overlay.style.display = isOpen ? "block" : "none";
   }
 
   // Close on overlay click
-  document.getElementById('overlay').onclick = toggleDrawer;
+  document.getElementById("overlay").onclick = toggleDrawer;
 </script>
 ```
 
@@ -263,58 +269,62 @@ Here's a full layout structure:
 
 ```html
 <!-- System Bar -->
-<div class="uizy-system-bar">
-    Status: Online
-</div>
+<div class="uizy-system-bar">Status: Online</div>
 
 <!-- Header -->
 <header class="uizy-header">
-    <button onclick="toggleLeft()">Menu</button>
-    <h1>My App</h1>
+  <button onclick="toggleLeft()">Menu</button>
+  <h1>My App</h1>
 </header>
 
 <!-- Left Sidebar (Drawer) -->
-<aside class="
+<aside
+  class="
   uizy-left
   uizy-drawer
   uizy-drawer--left
   uizy-clip-system-bar
-">
-    <nav>...</nav>
+"
+>
+  <nav>...</nav>
 </aside>
 
 <!-- Right Panel (Drawer) -->
-<aside class="
+<aside
+  class="
   uizy-right
   uizy-drawer
   uizy-drawer--right
   uizy-clip-system-bar
-">
-    <div>Details...</div>
+"
+>
+  <div>Details...</div>
 </aside>
 
 <!-- Overlay -->
-<div class="
+<div
+  class="
   uizy-overlay-mask
   uizy-clip-top
   uizy-clip-bottom
-">
-    <div class="uizy-overlay"></div>
+"
+>
+  <div class="uizy-overlay"></div>
 </div>
 
 <!-- Main Content -->
-<main class="
+<main
+  class="
   uizy-main
   uizy-clip-top
   uizy-clip-bottom
   uizy-clip-left
   uizy-clip-right
-">
-    <div>Content here...</div>
+"
+>
+  <div>Content here...</div>
 </main>
 
 <!-- Footer -->
-<footer class="uizy-footer">
-    Footer
-</footer>
+<footer class="uizy-footer">Footer</footer>
 ```

@@ -50,7 +50,7 @@ const sidebars: SidebarsConfig = {
             "layout/web-components/main",
             "layout/web-components/overlay",
             "layout/web-components/system-bar",
-            "layout/web-components/ui-box",
+            "layout/web-components/uizy-box",
           ],
         },
       ],

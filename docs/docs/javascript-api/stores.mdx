@@ -14,20 +14,20 @@ Stores provide reactive state management with automatic subscriptions. Uizy inte
 ```javascript
 // Register stores
 uizy.start({
-    stores: {
-        user: {
-            name: uizy.store.atom("Guest"),
-            isLoggedIn: uizy.store.atom(false),
-        },
-        settings: {
-            theme: uizy.store.atom("light"),
-            language: uizy.store.atom("en"),
-        },
+  stores: {
+    user: {
+      name: uizy.store.atom("Guest"),
+      isLoggedIn: uizy.store.atom(false),
     },
+    settings: {
+      theme: uizy.store.atom("light"),
+      language: uizy.store.atom("en"),
+    },
+  },
 });
 
 // Read values
-uizy.$("user.name");      // "Guest"
+uizy.$("user.name"); // "Guest"
 uizy.$("settings.theme"); // "light"
 
 // Update values
@@ -46,9 +46,9 @@ Simple value store:
 ```javascript
 const count = uizy.store.atom(0);
 
-count.get();     // 0
-count.set(5);    // Sets to 5
-count.set(n => n + 1); // Increment
+count.get(); // 0
+count.set(5); // Sets to 5
+count.set((n) => n + 1); // Increment
 ```
 
 ### Map
@@ -57,11 +57,11 @@ Object store with key-level updates:
 
 ```javascript
 const user = uizy.store.map({
-    name: "John",
-    email: "john@example.com",
+  name: "John",
+  email: "john@example.com",
 });
 
-user.get();           // { name: "John", email: "john@example.com" }
+user.get(); // { name: "John", email: "john@example.com" }
 user.setKey("name", "Jane");
 ```
 
@@ -74,8 +74,8 @@ const firstName = uizy.store.atom("John");
 const lastName = uizy.store.atom("Doe");
 
 const fullName = uizy.store.computed(
-    [firstName, lastName],
-    (first, last) => `${first} ${last}`
+  [firstName, lastName],
+  (first, last) => `${first} ${last}`,
 );
 
 fullName.get(); // "John Doe"
@@ -87,23 +87,23 @@ fullName.get(); // "John Doe"
 
 ```javascript
 uizy.start({
-    stores: {
-        app: {
-            isLoading: uizy.store.atom(false),
-            error: uizy.store.atom(null),
-        },
-        user: {
-            profile: uizy.store.map({
-                id: null,
-                name: "",
-                email: "",
-            }),
-            preferences: uizy.store.map({
-                theme: "system",
-                notifications: true,
-            }),
-        },
+  stores: {
+    app: {
+      isLoading: uizy.store.atom(false),
+      error: uizy.store.atom(null),
     },
+    user: {
+      profile: uizy.store.map({
+        id: null,
+        name: "",
+        email: "",
+      }),
+      preferences: uizy.store.map({
+        theme: "system",
+        notifications: true,
+      }),
+    },
+  },
 });
 ```
 
@@ -111,10 +111,10 @@ uizy.start({
 
 ```javascript
 uizy.state({
-    cart: {
-        items: uizy.store.atom([]),
-        total: uizy.store.atom(0),
-    },
+  cart: {
+    items: uizy.store.atom([]),
+    total: uizy.store.atom(0),
+  },
 });
 ```
 
@@ -123,8 +123,8 @@ uizy.state({
 ### Get Value
 
 ```javascript
-uizy.$("user.name");        // Returns current value
-uizy.$("settings.theme");   // "light"
+uizy.$("user.name"); // Returns current value
+uizy.$("settings.theme"); // "light"
 ```
 
 ### Get Raw Store
@@ -135,7 +135,7 @@ Access the store object to call `.set()`, `.subscribe()`, etc:
 const nameStore = uizy.$("user.name", { raw: true });
 
 nameStore.set("Jane");
-nameStore.subscribe(value => console.log("Name changed:", value));
+nameStore.subscribe((value) => console.log("Name changed:", value));
 ```
 
 ### Silent Mode
@@ -179,7 +179,7 @@ Subscribe to store changes (immediate + updates). Callback is called immediately
 ```javascript
 // Subscribe to changes
 const unsubscribe = uizy.$sub("user.name", (value) => {
-    console.log("Name:", value); // Called immediately, then on changes
+  console.log("Name:", value); // Called immediately, then on changes
 });
 
 // Later: stop listening
@@ -193,7 +193,7 @@ Listen to store changes (updates only). Callback is only called when value chang
 ```javascript
 // Listen for changes only
 const unlisten = uizy.$on("user.name", (value) => {
-    console.log("Name changed to:", value); // NOT called immediately
+  console.log("Name changed to:", value); // NOT called immediately
 });
 
 // Later: stop listening
@@ -207,17 +207,17 @@ Create a computed store from multiple registered stores using aliases:
 ```javascript
 // Register stores first
 uizy.state({
-    project: { name: uizy.store.atom("My App") },
-    date: { now: uizy.store.atom("2024-01-15") },
+  project: { name: uizy.store.atom("My App") },
+  date: { now: uizy.store.atom("2024-01-15") },
 });
 
 // Create a computed store with aliases
 const $summary = uizy.$computed(
-    {
-        myAlias: "project.name",
-        today: "date.now",
-    },
-    ({ myAlias, today }) => `${myAlias} live on ${today}`
+  {
+    myAlias: "project.name",
+    today: "date.now",
+  },
+  ({ myAlias, today }) => `${myAlias} live on ${today}`,
 );
 
 $summary.get(); // "My App live on 2024-01-15"
@@ -233,60 +233,60 @@ $summary.get(); // "New App live on 2024-01-15"
 
 Get store value or raw store.
 
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| `path` | `string` | Dot-notation path |
-| `options.raw` | `boolean` | Return raw store instead of value |
-| `options.silent` | `boolean` | Return undefined if not found |
+| Parameter        | Type      | Description                       |
+| ---------------- | --------- | --------------------------------- |
+| `path`           | `string`  | Dot-notation path                 |
+| `options.raw`    | `boolean` | Return raw store instead of value |
+| `options.silent` | `boolean` | Return undefined if not found     |
 
 ### `uizy.$set(path, value)`
 
 Set a store value directly.
 
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| `path` | `string` | Dot-notation path to store |
-| `value` | `any` | Value to set |
+| Parameter | Type     | Description                |
+| --------- | -------- | -------------------------- |
+| `path`    | `string` | Dot-notation path to store |
+| `value`   | `any`    | Value to set               |
 
 ### `uizy.$key(path, key, value)`
 
 Update a single key in a map store.
 
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| `path` | `string` | Dot-notation path to map store |
-| `key` | `string` | Key to update |
-| `value` | `any` | Value to set |
+| Parameter | Type     | Description                    |
+| --------- | -------- | ------------------------------ |
+| `path`    | `string` | Dot-notation path to map store |
+| `key`     | `string` | Key to update                  |
+| `value`   | `any`    | Value to set                   |
 
 ### `uizy.$sub(path, callback)`
 
 Subscribe to store changes. Callback is called immediately with current value, then on every change. Returns unsubscribe function.
 
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| `path` | `string` | Dot-notation path to store |
-| `callback` | `(value) => void` | Called with value |
-| **Returns** | `() => void` | Unsubscribe function |
+| Parameter   | Type              | Description                |
+| ----------- | ----------------- | -------------------------- |
+| `path`      | `string`          | Dot-notation path to store |
+| `callback`  | `(value) => void` | Called with value          |
+| **Returns** | `() => void`      | Unsubscribe function       |
 
 ### `uizy.$on(path, callback)`
 
 Listen to store changes. Callback is only called when value changes (not immediately). Returns unlisten function.
 
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| `path` | `string` | Dot-notation path to store |
-| `callback` | `(value) => void` | Called on changes |
-| **Returns** | `() => void` | Unlisten function |
+| Parameter   | Type              | Description                |
+| ----------- | ----------------- | -------------------------- |
+| `path`      | `string`          | Dot-notation path to store |
+| `callback`  | `(value) => void` | Called on changes          |
+| **Returns** | `() => void`      | Unlisten function          |
 
 ### `uizy.$computed(aliases, fn)` {#computed-ref}
 
 Create a computed store from multiple stores using aliases. Returns a nanostore computed store.
 
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| `aliases` | `object` | Object mapping alias names to store paths |
-| `fn` | `(values) => T` | Function receiving aliased values, returns computed value |
-| **Returns** | `ReadableAtom<T>` | A computed store |
+| Parameter   | Type              | Description                                               |
+| ----------- | ----------------- | --------------------------------------------------------- |
+| `aliases`   | `object`          | Object mapping alias names to store paths                 |
+| `fn`        | `(values) => T`   | Function receiving aliased values, returns computed value |
+| **Returns** | `ReadableAtom<T>` | A computed store                                          |
 
 ### `uizy.state(items)`
 
@@ -296,28 +296,28 @@ Register stores. Merges with existing stores.
 
 Access to nanostores utilities:
 
-| Property | Description |
-|----------|-------------|
-| `uizy.store.atom(value)` | Create an atom store |
-| `uizy.store.map(object)` | Create a map store |
+| Property                        | Description             |
+| ------------------------------- | ----------------------- |
+| `uizy.store.atom(value)`        | Create an atom store    |
+| `uizy.store.map(object)`        | Create a map store      |
 | `uizy.store.computed(deps, fn)` | Create a computed store |
-| `uizy.store.deepMap(object)` | Create a deep map store |
+| `uizy.store.deepMap(object)`    | Create a deep map store |
 
 ### Store Methods
 
 Each store has these methods:
 
-| Method | Description |
-|--------|-------------|
-| `.get()` | Get current value |
-| `.set(value)` | Set value |
+| Method           | Description                                |
+| ---------------- | ------------------------------------------ |
+| `.get()`         | Get current value                          |
+| `.set(value)`    | Set value                                  |
 | `.subscribe(fn)` | Subscribe to changes (immediate + updates) |
-| `.listen(fn)` | Listen to changes (updates only) |
+| `.listen(fn)`    | Listen to changes (updates only)           |
 
 Map stores also have:
 
-| Method | Description |
-|--------|-------------|
+| Method                | Description       |
+| --------------------- | ----------------- |
 | `.setKey(key, value)` | Update single key |
 
 ## Examples
@@ -326,34 +326,34 @@ Map stores also have:
 
 ```javascript
 uizy.start({
-    stores: {
-        auth: {
-            user: uizy.store.atom(null),
-            token: uizy.store.atom(null),
-            isAuthenticated: uizy.store.atom(false),
-        },
+  stores: {
+    auth: {
+      user: uizy.store.atom(null),
+      token: uizy.store.atom(null),
+      isAuthenticated: uizy.store.atom(false),
     },
-    actions: {
-        auth: {
-            login: async (credentials) => {
-                const { user, token } = await api.login(credentials);
+  },
+  actions: {
+    auth: {
+      login: async (credentials) => {
+        const { user, token } = await api.login(credentials);
 
-                uizy.$set("auth.user", user);
-                uizy.$set("auth.token", token);
-                uizy.$set("auth.isAuthenticated", true);
-            },
-            logout: () => {
-                uizy.$set("auth.user", null);
-                uizy.$set("auth.token", null);
-                uizy.$set("auth.isAuthenticated", false);
-            },
-        },
+        uizy.$set("auth.user", user);
+        uizy.$set("auth.token", token);
+        uizy.$set("auth.isAuthenticated", true);
+      },
+      logout: () => {
+        uizy.$set("auth.user", null);
+        uizy.$set("auth.token", null);
+        uizy.$set("auth.isAuthenticated", false);
+      },
     },
+  },
 });
 
 // Check auth status
 if (uizy.$("auth.isAuthenticated")) {
-    console.log("Logged in as:", uizy.$("auth.user").name);
+  console.log("Logged in as:", uizy.$("auth.user").name);
 }
 ```
 
@@ -361,36 +361,42 @@ if (uizy.$("auth.isAuthenticated")) {
 
 ```javascript
 uizy.state({
-    cart: {
-        items: uizy.store.atom([]),
-        count: uizy.store.atom(0),
-        total: uizy.store.atom(0),
-    },
+  cart: {
+    items: uizy.store.atom([]),
+    count: uizy.store.atom(0),
+    total: uizy.store.atom(0),
+  },
 });
 
 uizy.on({
-    cart: {
-        add: (product) => {
-            const current = uizy.$("cart.items");
-            const updated = [...current, product];
+  cart: {
+    add: (product) => {
+      const current = uizy.$("cart.items");
+      const updated = [...current, product];
 
-            uizy.$set("cart.items", updated);
-            uizy.$set("cart.count", updated.length);
-            uizy.$set("cart.total", updated.reduce((sum, p) => sum + p.price, 0));
-        },
-        remove: (productId) => {
-            const updated = uizy.$("cart.items").filter(p => p.id !== productId);
-
-            uizy.$set("cart.items", updated);
-            uizy.$set("cart.count", updated.length);
-            uizy.$set("cart.total", updated.reduce((sum, p) => sum + p.price, 0));
-        },
-        clear: () => {
-            uizy.$set("cart.items", []);
-            uizy.$set("cart.count", 0);
-            uizy.$set("cart.total", 0);
-        },
+      uizy.$set("cart.items", updated);
+      uizy.$set("cart.count", updated.length);
+      uizy.$set(
+        "cart.total",
+        updated.reduce((sum, p) => sum + p.price, 0),
+      );
     },
+    remove: (productId) => {
+      const updated = uizy.$("cart.items").filter((p) => p.id !== productId);
+
+      uizy.$set("cart.items", updated);
+      uizy.$set("cart.count", updated.length);
+      uizy.$set(
+        "cart.total",
+        updated.reduce((sum, p) => sum + p.price, 0),
+      );
+    },
+    clear: () => {
+      uizy.$set("cart.items", []);
+      uizy.$set("cart.count", 0);
+      uizy.$set("cart.total", 0);
+    },
+  },
 });
 ```
 
@@ -398,29 +404,27 @@ uizy.on({
 
 ```javascript
 uizy.state({
-    ui: {
-        theme: uizy.store.atom(
-            localStorage.getItem("theme") || "system"
-        ),
-        sidebarOpen: uizy.store.atom(true),
-    },
+  ui: {
+    theme: uizy.store.atom(localStorage.getItem("theme") || "system"),
+    sidebarOpen: uizy.store.atom(true),
+  },
 });
 
 // Subscribe to theme changes
 uizy.$sub("ui.theme", (theme) => {
-    document.documentElement.dataset.theme = theme;
-    localStorage.setItem("theme", theme);
+  document.documentElement.dataset.theme = theme;
+  localStorage.setItem("theme", theme);
 });
 
 // Toggle theme
 uizy.on({
-    ui: {
-        toggleTheme: () => {
-            const current = uizy.$("ui.theme");
-            const next = current === "light" ? "dark" : "light";
-            uizy.$set("ui.theme", next);
-        },
+  ui: {
+    toggleTheme: () => {
+      const current = uizy.$("ui.theme");
+      const next = current === "light" ? "dark" : "light";
+      uizy.$set("ui.theme", next);
     },
+  },
 });
 ```
 
@@ -428,36 +432,35 @@ uizy.on({
 
 ```javascript
 uizy.state({
-    form: {
-        data: uizy.store.map({
-            name: "",
-            email: "",
-            message: "",
-        }),
-        errors: uizy.store.map({}),
-        isSubmitting: uizy.store.atom(false),
-    },
+  form: {
+    data: uizy.store.map({
+      name: "",
+      email: "",
+      message: "",
+    }),
+    errors: uizy.store.map({}),
+    isSubmitting: uizy.store.atom(false),
+  },
 });
 
 uizy.on({
-    form: {
-        setField: ({ field, value }) => {
-            uizy.$key("form.data", field, value);
-        },
-        submit: async () => {
-            const data = uizy.$("form.data");
-            uizy.$set("form.isSubmitting", true);
-
-            try {
-                await api.submit(data);
-                uizy.emit("notification.success", "Form submitted!");
-            } catch (error) {
-                uizy.$set("form.errors", error.errors);
-            } finally {
-                uizy.$set("form.isSubmitting", false);
-            }
-        },
+  form: {
+    setField: ({ field, value }) => {
+      uizy.$key("form.data", field, value);
     },
+    submit: async () => {
+      const data = uizy.$("form.data");
+      uizy.$set("form.isSubmitting", true);
+
+      try {
+        await api.submit(data);
+        uizy.emit("notification.success", "Form submitted!");
+      } catch (error) {
+        uizy.$set("form.errors", error.errors);
+      } finally {
+        uizy.$set("form.isSubmitting", false);
+      }
+    },
+  },
 });
 ```
-

@@ -18,63 +18,62 @@ import "@dufeut/uizy/index.css";
 
 ```html
 <uizy-app id="app">
-    <!-- System Bar -->
-    <uizy-system-bar>System bar</uizy-system-bar>
+  <!-- System Bar -->
+  <uizy-system-bar>System bar</uizy-system-bar>
 
-    <!-- Header -->
-    <uizy-header shadow="12">
-        <span></span>
-        Header
-        <span></span>
-    </uizy-header>
+  <!-- Header -->
+  <uizy-header shadow="12">
+    <span></span>
+    Header
+    <span></span>
+  </uizy-header>
 
-    <!-- Left Drawers -->
-    <uizy-drawer open shadow="6" clip-top clip-bottom>
-        Left Sidebar
-    </uizy-drawer>
+  <!-- Left Drawers -->
+  <uizy-drawer open shadow="6" clip-top clip-bottom> Left Sidebar </uizy-drawer>
 
-    <!-- Right Drawers -->
-    <uizy-drawer right open shadow="6" clip-top clip-bottom>
-        Right Sidebar
-    </uizy-drawer>
+  <!-- Right Drawers -->
+  <uizy-drawer right open shadow="6" clip-top clip-bottom>
+    Right Sidebar
+  </uizy-drawer>
 
-    <!-- Overlay -->
-    <uizy-overlay clip-top clip-bottom></uizy-overlay>
+  <!-- Overlay -->
+  <uizy-overlay clip-top clip-bottom></uizy-overlay>
 
-    <!-- Main Content -->
-    <uizy-main clip-top clip-bottom clip-left clip-right>
-        <p>Main content here</p>
-    </uizy-main>
+  <!-- Main Content -->
+  <uizy-main clip-top clip-bottom clip-left clip-right>
+    <p>Main content here</p>
+  </uizy-main>
 
-    <!-- Footer -->
-    <uizy-footer shadow="12">Footer</uizy-footer>
+  <!-- Footer -->
+  <uizy-footer shadow="12">Footer</uizy-footer>
 </uizy-app>
 ```
 
 ## Available Components
 
-| Component | Description |
-|-----------|-------------|
-| [`<uizy-app>`](/layout/web-components/app) | Root container that manages all layout components |
-| [`<uizy-system-bar>`](/layout/web-components/system-bar) | Top bar for system status or branding |
-| [`<uizy-header>`](/layout/web-components/header) | Main application header |
-| [`<uizy-footer>`](/layout/web-components/footer) | Fixed footer |
-| [`<uizy-drawer>`](/layout/web-components/drawer) | Animated slide-in panels |
-| [`<uizy-overlay>`](/layout/web-components/overlay) | Semi-transparent backdrop |
-| [`<uizy-main>`](/layout/web-components/main) | Main content area |
-| [`<ui-box>`](/layout/web-components/ui-box) | Utility component for reactive binding and events |
+| Component                                                | Description                                        |
+| -------------------------------------------------------- | -------------------------------------------------- |
+| [`<uizy-app>`](/layout/web-components/app)               | Root container that manages all layout components  |
+| [`<uizy-system-bar>`](/layout/web-components/system-bar) | Top bar for system status or branding              |
+| [`<uizy-header>`](/layout/web-components/header)         | Main application header                            |
+| [`<uizy-footer>`](/layout/web-components/footer)         | Fixed footer                                       |
+| [`<uizy-drawer>`](/layout/web-components/drawer)         | Animated slide-in panels                           |
+| [`<uizy-overlay>`](/layout/web-components/overlay)       | Semi-transparent backdrop                          |
+| [`<uizy-main>`](/layout/web-components/main)             | Main content area                                  |
+| [`<uizy-toggle>`](/layout/web-components/toggle)         | Declarative drawer toggle — put any content inside |
+| [`<uizy-box>`](/layout/web-components/uizy-box)          | Utility component for reactive binding and events  |
 
 ## Clipping System
 
 Clip attributes adjust positioning to account for other layout elements:
 
-| Attribute | Description |
-|-----------|-------------|
-| `clip-top` | Position below system bar + header |
-| `clip-bottom` | Position above footer |
-| `clip-left` | Add left margin for sidebar |
-| `clip-right` | Add right margin for sidebar |
-| `clip-system` | Position below system bar only |
+| Attribute     | Description                        |
+| ------------- | ---------------------------------- |
+| `clip-top`    | Position below system bar + header |
+| `clip-bottom` | Position above footer              |
+| `clip-left`   | Add left margin for sidebar        |
+| `clip-right`  | Add right margin for sidebar       |
+| `clip-system` | Position below system bar only     |
 
 :::info
 Horizontal clips (`clip-left`, `clip-right`) automatically reset on mobile breakpoints.

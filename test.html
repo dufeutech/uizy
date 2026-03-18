@@ -21,10 +21,10 @@
       <uizy-header class="bd-a">Header</uizy-header>
       <uizy-drawer clip-top clip-bottom class="bd-a" open>Sidebar</uizy-drawer>
       <uizy-main clip-top clip-bottom clip-left class="pa-8 bd-a">
-        <ui-box use="button" onclick="uizy.$set('counter', $('counter') + 1)"
-          >Add +</ui-box
+        <uizy-box use="button" onclick="uizy.$set('counter', $('counter') + 1)"
+          >Add +</uizy-box
         >
-        Count: <ui-box :text="counter"></ui-box>
+        Count: <uizy-box :text="counter"></uizy-box>
       </uizy-main>
       <uizy-footer class="bd-a">Footer</uizy-footer>
     </uizy-app>

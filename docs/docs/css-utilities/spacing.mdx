@@ -11,16 +11,14 @@ Add space around and inside elements! Spacing is one of the most important parts
 
 There are two types of spacing:
 
-| Type | Description |
-|------|-------------|
-| **Padding** | Space *inside* the element, between the border and content |
-| **Margin** | Space *outside* the element, pushing other elements away |
+| Type        | Description                                                |
+| ----------- | ---------------------------------------------------------- |
+| **Padding** | Space _inside_ the element, between the border and content |
+| **Margin**  | Space _outside_ the element, pushing other elements away   |
 
 ```html
 <!-- Padding (inside) -->
-<div class="pa-4" style="background: lightblue;">
-  I have padding inside me!
-</div>
+<div class="pa-4" style="background: lightblue;">I have padding inside me!</div>
 
 <!-- Margin (outside) -->
 <div class="ma-4" style="background: lightgreen;">
@@ -32,15 +30,15 @@ There are two types of spacing:
 
 Spacing uses a simple number system. Each number = 4 pixels:
 
-| Class | Size |
-|-------|------|
-| `*-0` | 0px |
-| `*-1` | 4px |
-| `*-2` | 8px |
-| `*-3` | 12px |
-| `*-4` | 16px |
-| `*-6` | 24px |
-| `*-8` | 32px |
+| Class  | Size |
+| ------ | ---- |
+| `*-0`  | 0px  |
+| `*-1`  | 4px  |
+| `*-2`  | 8px  |
+| `*-3`  | 12px |
+| `*-4`  | 16px |
+| `*-6`  | 24px |
+| `*-8`  | 32px |
 | `*-12` | 48px |
 | `*-16` | 64px |
 | `*-24` | 96px |
@@ -54,13 +52,13 @@ Multiply the number by 4 to get pixels!
 
 Add space inside elements:
 
-| Class | Description |
-|-------|-------------|
-| `pa-*` | Padding All sides |
-| `pt-*` | Padding Top |
-| `pb-*` | Padding Bottom |
-| `pl-*` | Padding Left |
-| `pr-*` | Padding Right |
+| Class  | Description                   |
+| ------ | ----------------------------- |
+| `pa-*` | Padding All sides             |
+| `pt-*` | Padding Top                   |
+| `pb-*` | Padding Bottom                |
+| `pl-*` | Padding Left                  |
+| `pr-*` | Padding Right                 |
 | `px-*` | Padding X-axis (left + right) |
 | `py-*` | Padding Y-axis (top + bottom) |
 
@@ -79,13 +77,13 @@ Add space inside elements:
 
 Add space outside elements:
 
-| Class | Description |
-|-------|-------------|
-| `ma-*` | Margin All sides |
-| `mt-*` | Margin Top |
-| `mb-*` | Margin Bottom |
-| `ml-*` | Margin Left |
-| `mr-*` | Margin Right |
+| Class  | Description                  |
+| ------ | ---------------------------- |
+| `ma-*` | Margin All sides             |
+| `mt-*` | Margin Top                   |
+| `mb-*` | Margin Bottom                |
+| `ml-*` | Margin Left                  |
+| `mr-*` | Margin Right                 |
 | `mx-*` | Margin X-axis (left + right) |
 | `my-*` | Margin Y-axis (top + bottom) |
 
@@ -101,21 +99,19 @@ Add space outside elements:
 Use `mx-auto` to center block elements:
 
 ```html
-<div class="mx-auto" style="width: 200px;">
-  I'm centered!
-</div>
+<div class="mx-auto" style="width: 200px;">I'm centered!</div>
 ```
 
 ## Gap (for Flexbox/Grid)
 
 The easiest way to add space between items in a flex or grid container:
 
-| Class | Description |
-|-------|-------------|
-| `gx-0` | No column gap (0px) |
-| `gx-1` | 4px column gap |
-| `gx-2` | 8px column gap |
-| `gx-4` | 16px column gap |
+| Class  | Description                |
+| ------ | -------------------------- |
+| `gx-0` | No column gap (0px)        |
+| `gx-1` | 4px column gap             |
+| `gx-2` | 8px column gap             |
+| `gx-4` | 16px column gap            |
 | `gy-*` | Row gap (for wrapped rows) |
 
 ```html
@@ -164,22 +160,24 @@ It's cleaner than margin because you don't have to worry about extra space on th
 ## Cheat Sheet
 
 ### Sides
-| Code | Meaning |
-|------|---------|
-| `a` | All |
-| `t` | Top |
-| `b` | Bottom |
-| `l` | Left |
-| `r` | Right |
-| `x` | Left + Right |
-| `y` | Top + Bottom |
+
+| Code | Meaning      |
+| ---- | ------------ |
+| `a`  | All          |
+| `t`  | Top          |
+| `b`  | Bottom       |
+| `l`  | Left         |
+| `r`  | Right        |
+| `x`  | Left + Right |
+| `y`  | Top + Bottom |
 
 ### Values (x 4px)
-| Value | Size |
-|-------|------|
-| `0` | 0px |
-| `1` | 4px |
-| `2` | 8px |
-| `4` | 16px |
-| `8` | 32px |
+
+| Value  | Size |
+| ------ | ---- |
+| `0`    | 0px  |
+| `1`    | 4px  |
+| `2`    | 8px  |
+| `4`    | 16px |
+| `8`    | 32px |
 | `auto` | auto |

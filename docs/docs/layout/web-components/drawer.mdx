@@ -9,15 +9,15 @@ Animated slide-in panels for navigation, sidebars, or contextual content.
 
 ## Attributes
 
-| Attribute | Description |
-|-----------|-------------|
-| `right` | Position on right side (default: left) |
-| `open` | Shows the drawer |
-| `mini` | Collapsed/mini state |
-| `shadow` | Shadow intensity (1-24) |
-| `clip-top` | Clip below header |
-| `clip-bottom` | Clip above footer |
-| `clip-system` | Clip below system bar only |
+| Attribute     | Description                            |
+| ------------- | -------------------------------------- |
+| `right`       | Position on right side (default: left) |
+| `open`        | Shows the drawer                       |
+| `mini`        | Collapsed/mini state                   |
+| `shadow`      | Shadow intensity (1-24)                |
+| `clip-top`    | Clip below header                      |
+| `clip-bottom` | Clip above footer                      |
+| `clip-system` | Clip below system bar only             |
 
 ## Usage
 
@@ -25,7 +25,7 @@ Animated slide-in panels for navigation, sidebars, or contextual content.
 
 ```html
 <uizy-drawer open shadow="6" clip-top clip-bottom>
-    Main Navigation
+  Main Navigation
 </uizy-drawer>
 ```
 
@@ -33,7 +33,7 @@ Animated slide-in panels for navigation, sidebars, or contextual content.
 
 ```html
 <uizy-drawer right open shadow="6" clip-top clip-bottom>
-    Details Panel
+  Details Panel
 </uizy-drawer>
 ```
 
@@ -41,22 +41,22 @@ Animated slide-in panels for navigation, sidebars, or contextual content.
 
 ```html
 <uizy-drawer open mini shadow="6" clip-system clip-bottom>
-    Icons Only
+  Icons Only
 </uizy-drawer>
 ```
 
 ## CSS Variables
 
-| Variable | Default | Description |
-|----------|---------|-------------|
-| `--uizy-left-width` | `240px` | Left drawer width |
-| `--uizy-left-mini-width` | `64px` | Left mini drawer width |
-| `--uizy-right-width` | `240px` | Right drawer width |
-| `--uizy-right-mini-width` | `64px` | Right mini drawer width |
-| `--uizy-drawer-speed` | `0.2s` | Animation duration |
-| `--uizy-drawer-easing` | `cubic-bezier(0.4, 0, 0.2, 1)` | Animation easing |
-| `--uizy-left-layer` | `20` | Left drawer z-index |
-| `--uizy-right-layer` | `20` | Right drawer z-index |
+| Variable                  | Default                        | Description             |
+| ------------------------- | ------------------------------ | ----------------------- |
+| `--uizy-left-width`       | `240px`                        | Left drawer width       |
+| `--uizy-left-mini-width`  | `64px`                         | Left mini drawer width  |
+| `--uizy-right-width`      | `240px`                        | Right drawer width      |
+| `--uizy-right-mini-width` | `64px`                         | Right mini drawer width |
+| `--uizy-drawer-speed`     | `0.2s`                         | Animation duration      |
+| `--uizy-drawer-easing`    | `cubic-bezier(0.4, 0, 0.2, 1)` | Animation easing        |
+| `--uizy-left-layer`       | `20`                           | Left drawer z-index     |
+| `--uizy-right-layer`      | `20`                           | Right drawer z-index    |
 
 ## Controlling Drawers
 
@@ -84,39 +84,40 @@ app.action("left.mini", ({ set }) => set());
 
 ```html
 <uizy-drawer open shadow="6" clip-top clip-bottom>
-    <nav class="nav-menu">
-        <a href="#" class="nav-item active">
-            <span class="icon">🏠</span>
-            <span class="label">Home</span>
-        </a>
-        <a href="#" class="nav-item">
-            <span class="icon">📁</span>
-            <span class="label">Projects</span>
-        </a>
-        <a href="#" class="nav-item">
-            <span class="icon">⚙️</span>
-            <span class="label">Settings</span>
-        </a>
-    </nav>
+  <nav class="nav-menu">
+    <a href="#" class="nav-item active">
+      <span class="icon">🏠</span>
+      <span class="label">Home</span>
+    </a>
+    <a href="#" class="nav-item">
+      <span class="icon">📁</span>
+      <span class="label">Projects</span>
+    </a>
+    <a href="#" class="nav-item">
+      <span class="icon">⚙️</span>
+      <span class="label">Settings</span>
+    </a>
+  </nav>
 </uizy-drawer>
 
 <style>
-    .nav-menu {
-        display: flex;
-        flex-direction: column;
-        padding: 1rem 0;
-    }
-    .nav-item {
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-        padding: 0.75rem 1rem;
-        text-decoration: none;
-        color: inherit;
-    }
-    .nav-item:hover, .nav-item.active {
-        background: rgba(0,0,0,0.05);
-    }
+  .nav-menu {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 0;
+  }
+  .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    text-decoration: none;
+    color: inherit;
+  }
+  .nav-item:hover,
+  .nav-item.active {
+    background: rgba(0, 0, 0, 0.05);
+  }
 </style>
 ```
 
@@ -125,12 +126,12 @@ app.action("left.mini", ({ set }) => set());
 ```html
 <!-- Full drawer -->
 <uizy-drawer open shadow="6" clip-top clip-bottom>
-    <nav>Full navigation with labels</nav>
+  <nav>Full navigation with labels</nav>
 </uizy-drawer>
 
 <!-- Mini drawer (icons only) -->
 <uizy-drawer open mini shadow="6" clip-system clip-bottom>
-    <nav>🏠 📁 ⚙️</nav>
+  <nav>🏠 📁 ⚙️</nav>
 </uizy-drawer>
 ```
 
@@ -138,10 +139,10 @@ app.action("left.mini", ({ set }) => set());
 
 ```html
 <uizy-drawer right shadow="6" clip-top clip-bottom>
-    <h3>Details</h3>
-    <p>Selected item information...</p>
-    <button>Edit</button>
-    <button>Delete</button>
+  <h3>Details</h3>
+  <p>Selected item information...</p>
+  <button>Edit</button>
+  <button>Delete</button>
 </uizy-drawer>
 ```
 
@@ -159,9 +160,7 @@ When the `breakpoint.drawer` option is enabled (default: `true`), drawers declar
 
 ```html
 <!-- This drawer will be open on desktop and auto-closed on mobile -->
-<uizy-drawer open shadow="6" clip-top clip-bottom>
-    Navigation
-</uizy-drawer>
+<uizy-drawer open shadow="6" clip-top clip-bottom> Navigation </uizy-drawer>
 ```
 
 ```javascript

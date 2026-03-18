@@ -46,51 +46,51 @@ uizy.start({
 
 ## Core Concepts
 
-| Feature | Purpose | Access |
-|---------|---------|--------|
-| [Components](/javascript-api/components) | Reusable CSS class generators | `uizy.use("path")` |
-| [Actions](/javascript-api/actions) | Event handlers & side effects | `uizy.emit("path")` |
-| [Stores](/javascript-api/stores) | Reactive state management | `uizy.$("path")` |
-| [Directives](/javascript-api/directives) | Custom HTML attributes | `u-name="value"` |
-| [Plugins](/javascript-api/plugins) | Bundled, namespaced modules | `uizy.plugin()` |
+| Feature                                  | Purpose                       | Access              |
+| ---------------------------------------- | ----------------------------- | ------------------- |
+| [Components](/javascript-api/components) | Reusable CSS class generators | `uizy.use("path")`  |
+| [Actions](/javascript-api/actions)       | Event handlers & side effects | `uizy.emit("path")` |
+| [Stores](/javascript-api/stores)         | Reactive state management     | `uizy.$("path")`    |
+| [Directives](/javascript-api/directives) | Custom HTML attributes        | `u-name="value"`    |
+| [Plugins](/javascript-api/plugins)       | Bundled, namespaced modules   | `uizy.plugin()`     |
 
 ## API Quick Reference
 
 ### Configuration
 
-| Method | Description |
-|--------|-------------|
-| `uizy.start(config)` | Initialize with full configuration |
-| `uizy.layout(config)` | Configure layout dimensions |
-| `uizy.theme(config)` | Configure colors and styles |
+| Method                | Description                        |
+| --------------------- | ---------------------------------- |
+| `uizy.start(config)`  | Initialize with full configuration |
+| `uizy.layout(config)` | Configure layout dimensions        |
+| `uizy.theme(config)`  | Configure colors and styles        |
 
 ### Components
 
-| Method | Description |
-|--------|-------------|
+| Method                   | Description                    |
+| ------------------------ | ------------------------------ |
 | `uizy.use(path, props?)` | Get CSS classes from component |
-| `uizy.add(items)` | Register components |
+| `uizy.add(items)`        | Register components            |
 
 ### Actions
 
-| Method | Description |
-|--------|-------------|
-| `uizy.emit(path, payload?)` | Call an action |
-| `uizy.on(items)` | Register actions |
+| Method                      | Description      |
+| --------------------------- | ---------------- |
+| `uizy.emit(path, payload?)` | Call an action   |
+| `uizy.on(items)`            | Register actions |
 
 ### Stores
 
-| Method | Description |
-|--------|-------------|
-| `uizy.$(path)` | Get store value |
-| `uizy.$set(path, value)` | Set store value |
-| `uizy.$sub(path, fn)` | Subscribe to changes |
-| `uizy.state(items)` | Register stores |
+| Method                   | Description          |
+| ------------------------ | -------------------- |
+| `uizy.$(path)`           | Get store value      |
+| `uizy.$set(path, value)` | Set store value      |
+| `uizy.$sub(path, fn)`    | Subscribe to changes |
+| `uizy.state(items)`      | Register stores      |
 
 ### Directives
 
-| Method | Description |
-|--------|-------------|
+| Method                          | Description          |
+| ------------------------------- | -------------------- |
 | `uizy.directive(name, handler)` | Register a directive |
 
 ## Next Steps

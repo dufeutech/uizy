@@ -32,14 +32,14 @@ Start with the smallest screen, then add classes for larger ones. Classes withou
 
 Here are the screen size breakpoints:
 
-| Prefix | Screen Size | Description |
-|--------|-------------|-------------|
-| (no prefix) | All screens | Mobile-first base |
-| `-sm-` | >=576px | Small tablets, large phones |
-| `-md-` | >=768px | Tablets |
-| `-lg-` | >=992px | Laptops, small desktops |
-| `-xl-` | >=1200px | Large desktops |
-| `-xxl-` | >=1400px | Extra large desktops |
+| Prefix      | Screen Size | Description                 |
+| ----------- | ----------- | --------------------------- |
+| (no prefix) | All screens | Mobile-first base           |
+| `-sm-`      | >=576px     | Small tablets, large phones |
+| `-md-`      | >=768px     | Tablets                     |
+| `-lg-`      | >=992px     | Laptops, small desktops     |
+| `-xl-`      | >=1200px    | Large desktops              |
+| `-xxl-`     | >=1400px    | Extra large desktops        |
 
 ## Responsive Display
 
@@ -116,14 +116,10 @@ Sidebar becomes top section on mobile:
 ```html
 <div class="row gx-4 gy-2">
   <!-- Sidebar (full width on mobile, 1/4 on desktop) -->
-  <aside class="col-12 col-lg-3">
-    Sidebar
-  </aside>
+  <aside class="col-12 col-lg-3">Sidebar</aside>
 
   <!-- Main content (full width on mobile, 3/4 on desktop) -->
-  <main class="col-12 col-lg-9">
-    Main Content
-  </main>
+  <main class="col-12 col-lg-9">Main Content</main>
 </div>
 ```
 
@@ -160,14 +156,14 @@ Beyond responsive CSS classes, Uizy's JavaScript engine provides a **layout brea
 uizy.start({
   layout: {
     breakpoint: {
-      name: "lg",      // Trigger at 992px
-      main: true,      // Reset main content margins
-      header: true,    // Reset header margins
-      top: true,       // Reset top clipping
-      bottom: true,    // Reset bottom clipping
-      left: true,      // Reset left margins
-      right: true,     // Reset right margins
-      drawer: true,    // Close open drawers on mobile, re-open on desktop
+      name: "lg", // Trigger at 992px
+      main: true, // Reset main content margins
+      header: true, // Reset header margins
+      top: true, // Reset top clipping
+      bottom: true, // Reset bottom clipping
+      left: true, // Reset left margins
+      right: true, // Reset right margins
+      drawer: true, // Close open drawers on mobile, re-open on desktop
     },
   },
 });
@@ -176,6 +172,7 @@ uizy.start({
 ### Responsive Drawers
 
 When `drawer: true` (default), any `<uizy-drawer open>` will:
+
 - **Auto-close** when the viewport drops below the breakpoint
 - **Auto-re-open** when the viewport goes back above the breakpoint
 - **Still respond** to manual `action()` toggle calls at any size
@@ -188,12 +185,12 @@ The `<uizy-app>` element is hidden until initialization completes, preventing an
 
 ## Quick Reference
 
-| Class | Description |
-|-------|-------------|
-| `.d-none` | Hidden on all screens |
-| `.d-sm-block` | Visible on 576px+ |
-| `.d-md-flex` | Flex on 768px+ |
-| `.d-lg-grid` | Grid on 992px+ |
-| `.col-sm-6` | Half width on 576px+ |
-| `.col-md-4` | One-third on 768px+ |
-| `.col-lg-3` | One-quarter on 992px+ |
+| Class         | Description           |
+| ------------- | --------------------- |
+| `.d-none`     | Hidden on all screens |
+| `.d-sm-block` | Visible on 576px+     |
+| `.d-md-flex`  | Flex on 768px+        |
+| `.d-lg-grid`  | Grid on 992px+        |
+| `.col-sm-6`   | Half width on 576px+  |
+| `.col-md-4`   | One-third on 768px+   |
+| `.col-lg-3`   | One-quarter on 992px+ |

@@ -11,9 +11,9 @@ Build complete application layouts with headers, sidebars, drawers, and responsi
 
 Uizy offers two ways to build layouts:
 
-| Approach | Best For | Method |
-|----------|----------|--------|
-| [CSS Classes](/layout/css-classes) | Static sites, quick prototypes | Add classes to HTML elements |
+| Approach                                 | Best For                       | Method                         |
+| ---------------------------------------- | ------------------------------ | ------------------------------ |
+| [CSS Classes](/layout/css-classes)       | Static sites, quick prototypes | Add classes to HTML elements   |
 | [Web Components](/layout/web-components) | Dynamic apps, JS interactivity | Use `<uizy-*>` custom elements |
 
 Both approaches use the same CSS variables and are fully compatible.
@@ -42,26 +42,26 @@ Both approaches use the same CSS variables and are fully compatible.
 
 ## Layout Elements
 
-| Element | Description |
-|---------|-------------|
-| System Bar | Top-most bar for status/branding |
-| Header | Main navigation bar |
-| Footer | Bottom bar |
-| Left/Right Sidebar | Fixed side panels |
-| Drawer | Animated slide-in panels |
-| Overlay | Semi-transparent backdrop |
-| Main | Primary content area |
+| Element            | Description                      |
+| ------------------ | -------------------------------- |
+| System Bar         | Top-most bar for status/branding |
+| Header             | Main navigation bar              |
+| Footer             | Bottom bar                       |
+| Left/Right Sidebar | Fixed side panels                |
+| Drawer             | Animated slide-in panels         |
+| Overlay            | Semi-transparent backdrop        |
+| Main               | Primary content area             |
 
 ## Clipping System
 
 Clip elements to account for fixed layout parts:
 
-| Clip | Effect |
-|------|--------|
-| `clip-top` | Position below header |
-| `clip-bottom` | Position above footer |
-| `clip-left` | Account for left sidebar |
-| `clip-right` | Account for right sidebar |
+| Clip          | Effect                         |
+| ------------- | ------------------------------ |
+| `clip-top`    | Position below header          |
+| `clip-bottom` | Position above footer          |
+| `clip-left`   | Account for left sidebar       |
+| `clip-right`  | Account for right sidebar      |
 | `clip-system` | Position below system bar only |
 
 ## Configuration
@@ -71,12 +71,12 @@ Configure dimensions via JavaScript:
 ```javascript
 uizy.layout({
   layout: {
-    header: 56,      // Header height (px)
-    footer: 48,      // Footer height (px)
-    left: 240,       // Left drawer width (px)
-    right: 240,      // Right drawer width (px)
-    drawerSpeed: 0.2 // Animation speed (s)
-  }
+    header: 56, // Header height (px)
+    footer: 48, // Footer height (px)
+    left: 240, // Left drawer width (px)
+    right: 240, // Right drawer width (px)
+    drawerSpeed: 0.2, // Animation speed (s)
+  },
 });
 ```
 

@@ -434,7 +434,7 @@ const directivesMap = new Map<string, DirectiveHandler>();
 /**
  * Registry for custom directives.
  *
- * Directives are custom attributes that can be applied to ui-box elements.
+ * Directives are custom attributes that can be applied to uizy-box elements.
  * They receive the element and a context object with utilities for reactive effects.
  *
  * @example
@@ -444,7 +444,7 @@ const directivesMap = new Map<string, DirectiveHandler>();
  *   el.style.backgroundColor = value || "yellow";
  * });
  *
- * // Usage: <ui-box :highlight="red">Highlighted</ui-box>
+ * // Usage: <uizy-box :highlight="red">Highlighted</uizy-box>
  *
  * // Register a directive with modifiers
  * uizy.directive("tooltip", (el, { value, modifiers }) => {
@@ -452,7 +452,7 @@ const directivesMap = new Map<string, DirectiveHandler>();
  *   // Setup tooltip...
  * });
  *
- * // Usage: <ui-box :tooltip.top="Help text">Hover me</ui-box>
+ * // Usage: <uizy-box :tooltip.top="Help text">Hover me</uizy-box>
  *
  * // Register a reactive directive
  * uizy.directive("bind", (el, { value, effect }) => {

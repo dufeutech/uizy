@@ -14,14 +14,14 @@ Actions are nested functions for handling events, commands, and side effects. Th
 ```javascript
 // Register
 uizy.on({
-    user: {
-        login: (credentials) => authenticate(credentials),
-        logout: () => clearSession(),
-    },
-    cart: {
-        add: (item) => addToCart(item),
-        remove: (id) => removeFromCart(id),
-    },
+  user: {
+    login: (credentials) => authenticate(credentials),
+    logout: () => clearSession(),
+  },
+  cart: {
+    add: (item) => addToCart(item),
+    remove: (id) => removeFromCart(id),
+  },
 });
 
 // Emit
@@ -35,22 +35,22 @@ uizy.emit("cart.add", { id: 123, name: "Product", qty: 1 });
 
 ```javascript
 uizy.start({
-    actions: {
-        auth: {
-            login: async (data) => {
-                const user = await api.login(data);
-                return user;
-            },
-            logout: () => {
-                api.logout();
-                window.location.href = "/";
-            },
-        },
-        notification: {
-            show: (message) => toast.success(message),
-            error: (message) => toast.error(message),
-        },
+  actions: {
+    auth: {
+      login: async (data) => {
+        const user = await api.login(data);
+        return user;
+      },
+      logout: () => {
+        api.logout();
+        window.location.href = "/";
+      },
     },
+    notification: {
+      show: (message) => toast.success(message),
+      error: (message) => toast.error(message),
+    },
+  },
 });
 ```
 
@@ -58,10 +58,10 @@ uizy.start({
 
 ```javascript
 uizy.on({
-    modal: {
-        open: (id) => document.getElementById(id)?.showModal(),
-        close: (id) => document.getElementById(id)?.close(),
-    },
+  modal: {
+    open: (id) => document.getElementById(id)?.showModal(),
+    close: (id) => document.getElementById(id)?.close(),
+  },
 });
 ```
 
@@ -77,8 +77,8 @@ uizy.emit("notification.show", "Item saved!");
 
 ```javascript
 uizy.emit("user.login", {
-    email: "user@example.com",
-    password: "secret",
+  email: "user@example.com",
+  password: "secret",
 });
 ```
 
@@ -86,12 +86,12 @@ uizy.emit("user.login", {
 
 ```javascript
 uizy.on({
-    data: {
-        fetch: async (url) => {
-            const response = await fetch(url);
-            return response.json();
-        },
+  data: {
+    fetch: async (url) => {
+      const response = await fetch(url);
+      return response.json();
     },
+  },
 });
 
 const data = await uizy.emit("data.fetch", "/api/users");
@@ -111,11 +111,11 @@ uizy.emit("nonexistent.action", null, { silent: true }); // undefined
 
 Call an action by its dot-notation path.
 
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| `path` | `string` | Dot-notation path (e.g., "user.login") |
-| `payload` | `unknown` | Data to pass to the action |
-| `options.silent` | `boolean` | Return undefined instead of throwing |
+| Parameter        | Type      | Description                            |
+| ---------------- | --------- | -------------------------------------- |
+| `path`           | `string`  | Dot-notation path (e.g., "user.login") |
+| `payload`        | `unknown` | Data to pass to the action             |
+| `options.silent` | `boolean` | Return undefined instead of throwing   |
 
 ### `uizy.on(items)`
 
@@ -123,7 +123,7 @@ Register actions. Merges with existing actions.
 
 ```javascript
 uizy.on({
-    newAction: (data) => handleData(data),
+  newAction: (data) => handleData(data),
 });
 ```
 
@@ -132,7 +132,7 @@ uizy.on({
 Check if an action exists.
 
 ```javascript
-uizy.actions.has("user.login");  // true
+uizy.actions.has("user.login"); // true
 uizy.actions.has("nonexistent"); // false
 ```
 
@@ -167,57 +167,55 @@ const tree = uizy.actions.getTree();
 
 ```javascript
 uizy.start({
-    actions: {
-        ui: {
-            drawer: {
-                toggle: (side) => {
-                    const app = uizy.get("app");
-                    app?.action(side, ({ set }) => set());
-                },
-                open: (side) => {
-                    const app = uizy.get("app");
-                    app?.action(side, ({ set }) => set(true));
-                },
-                close: (side) => {
-                    const app = uizy.get("app");
-                    app?.action(side, ({ set }) => set(false));
-                },
-            },
+  actions: {
+    ui: {
+      drawer: {
+        toggle: (side) => {
+          const app = uizy.get("app");
+          app?.action(side, ({ set }) => set());
         },
+        open: (side) => {
+          const app = uizy.get("app");
+          app?.action(side, ({ set }) => set(true));
+        },
+        close: (side) => {
+          const app = uizy.get("app");
+          app?.action(side, ({ set }) => set(false));
+        },
+      },
     },
+  },
 });
 
 // Usage in HTML
-<button onclick="uizy.emit('ui.drawer.toggle', 'left')">
-    Toggle Menu
-</button>
+<button onclick="uizy.emit('ui.drawer.toggle', 'left')">Toggle Menu</button>;
 ```
 
 ### Form Handling
 
 ```javascript
 uizy.on({
-    form: {
-        submit: async (formData) => {
-            try {
-                const response = await api.post("/submit", formData);
-                uizy.emit("notification.success", "Form submitted!");
-                return response;
-            } catch (error) {
-                uizy.emit("notification.error", error.message);
-                throw error;
-            }
-        },
-        validate: (data) => {
-            const errors = {};
-            if (!data.email) errors.email = "Email is required";
-            if (!data.password) errors.password = "Password is required";
-            return Object.keys(errors).length ? errors : null;
-        },
-        reset: (formId) => {
-            document.getElementById(formId)?.reset();
-        },
+  form: {
+    submit: async (formData) => {
+      try {
+        const response = await api.post("/submit", formData);
+        uizy.emit("notification.success", "Form submitted!");
+        return response;
+      } catch (error) {
+        uizy.emit("notification.error", error.message);
+        throw error;
+      }
     },
+    validate: (data) => {
+      const errors = {};
+      if (!data.email) errors.email = "Email is required";
+      if (!data.password) errors.password = "Password is required";
+      return Object.keys(errors).length ? errors : null;
+    },
+    reset: (formId) => {
+      document.getElementById(formId)?.reset();
+    },
+  },
 });
 ```
 
@@ -225,20 +223,20 @@ uizy.on({
 
 ```javascript
 uizy.on({
-    analytics: {
-        track: (event, data) => {
-            gtag("event", event, data);
-        },
-        page: (path) => {
-            gtag("config", "GA_ID", { page_path: path });
-        },
+  analytics: {
+    track: (event, data) => {
+      gtag("event", event, data);
     },
+    page: (path) => {
+      gtag("config", "GA_ID", { page_path: path });
+    },
+  },
 });
 
 // Track button clicks
 <button onclick="uizy.emit('analytics.track', 'click', { button: 'signup' })">
-    Sign Up
-</button>
+  Sign Up
+</button>;
 ```
 
 ### API Layer
@@ -247,29 +245,29 @@ uizy.on({
 const API_BASE = "/api/v1";
 
 uizy.on({
-    api: {
-        get: async (endpoint) => {
-            const response = await fetch(`${API_BASE}${endpoint}`);
-            if (!response.ok) throw new Error(response.statusText);
-            return response.json();
-        },
-        post: async ({ endpoint, data }) => {
-            const response = await fetch(`${API_BASE}${endpoint}`, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(data),
-            });
-            if (!response.ok) throw new Error(response.statusText);
-            return response.json();
-        },
-        delete: async (endpoint) => {
-            const response = await fetch(`${API_BASE}${endpoint}`, {
-                method: "DELETE",
-            });
-            if (!response.ok) throw new Error(response.statusText);
-            return response.ok;
-        },
+  api: {
+    get: async (endpoint) => {
+      const response = await fetch(`${API_BASE}${endpoint}`);
+      if (!response.ok) throw new Error(response.statusText);
+      return response.json();
     },
+    post: async ({ endpoint, data }) => {
+      const response = await fetch(`${API_BASE}${endpoint}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      if (!response.ok) throw new Error(response.statusText);
+      return response.json();
+    },
+    delete: async (endpoint) => {
+      const response = await fetch(`${API_BASE}${endpoint}`, {
+        method: "DELETE",
+      });
+      if (!response.ok) throw new Error(response.statusText);
+      return response.ok;
+    },
+  },
 });
 
 // Usage
@@ -282,24 +280,24 @@ await uizy.emit("api.delete", "/users/123");
 
 ```javascript
 uizy.start({
-    stores: {
-        user: {
-            current: uizy.store.atom(null),
-            isLoading: uizy.store.atom(false),
-        },
+  stores: {
+    user: {
+      current: uizy.store.atom(null),
+      isLoading: uizy.store.atom(false),
     },
-    actions: {
-        user: {
-            fetch: async () => {
-                uizy.$("user.isLoading", { raw: true }).set(true);
-                try {
-                    const user = await api.getCurrentUser();
-                    uizy.$("user.current", { raw: true }).set(user);
-                } finally {
-                    uizy.$("user.isLoading", { raw: true }).set(false);
-                }
-            },
-        },
+  },
+  actions: {
+    user: {
+      fetch: async () => {
+        uizy.$("user.isLoading", { raw: true }).set(true);
+        try {
+          const user = await api.getCurrentUser();
+          uizy.$("user.current", { raw: true }).set(user);
+        } finally {
+          uizy.$("user.isLoading", { raw: true }).set(false);
+        }
+      },
     },
+  },
 });
 ```

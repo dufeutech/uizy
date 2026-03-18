@@ -16,7 +16,7 @@ Choose the method that works best for you:
 Just add this line to your HTML file's `<head>`:
 
 ```html
-<link rel="stylesheet" href="https://unpkg.com/@dufeut/uizy/dist/index.css">
+<link rel="stylesheet" href="https://unpkg.com/@dufeut/uizy/dist/index.css" />
 ```
 
 ### Option 2: NPM
@@ -46,6 +46,7 @@ The `<uizy-app>` element is hidden by default and revealed automatically by `uiz
 ```html
 <uizy-app class="uizy-ready">...</uizy-app>
 ```
+
 :::
 
 ## How Classes Work
@@ -62,14 +63,14 @@ Uizy uses short class names that tell you exactly what they do. Here's the patte
 
 ### Common Abbreviations
 
-| Class | Description |
-|-------|-------------|
+| Class  | Description       |
+| ------ | ----------------- |
 | `pa-*` | Padding All sides |
-| `ma-*` | Margin All sides |
-| `ta-*` | Text Align |
-| `d-*` | Display |
-| `br-*` | Border Radius |
-| `ts-*` | Text Size |
+| `ma-*` | Margin All sides  |
+| `ta-*` | Text Align        |
+| `d-*`  | Display           |
+| `br-*` | Border Radius     |
+| `ts-*` | Text Size         |
 
 ## Your First Uizy Code
 
@@ -83,29 +84,28 @@ Let's create a simple card using only utility classes!
 ```
 
 :::info What each class does
+
 - `pa-4` - Padding of 16px on all sides
 - `br-2` - Border radius (rounded corners)
 - `sb-4` - A nice drop shadow (bottom)
 - `ts-4` - Text size 4 (1.25rem)
 - `ta-c` - Text align center
 - `mt-2` - Margin top of 8px
-:::
+  :::
 
 ## Responsive Classes
 
 Make your site look great on all devices! Add a breakpoint prefix to any class:
 
-| Class | Description |
-|-------|-------------|
-| `d-none` | Hidden on all screens |
+| Class        | Description                              |
+| ------------ | ---------------------------------------- |
+| `d-none`     | Hidden on all screens                    |
 | `d-sm-block` | Visible on small screens and up (576px+) |
-| `d-md-flex` | Flex on medium screens and up (768px+) |
-| `d-lg-grid` | Grid on large screens and up (992px+) |
+| `d-md-flex`  | Flex on medium screens and up (768px+)   |
+| `d-lg-grid`  | Grid on large screens and up (992px+)    |
 
 ```html
-<div class="d-none d-md-block">
-  I only show on tablets and larger!
-</div>
+<div class="d-none d-md-block">I only show on tablets and larger!</div>
 ```
 
 ## You're Ready!

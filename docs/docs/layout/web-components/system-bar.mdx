@@ -9,32 +9,28 @@ An optional top bar for system status, notifications, or branding. Sits at the v
 
 ## Attributes
 
-| Attribute | Description |
-|-----------|-------------|
-| `shadow` | Shadow intensity (1-24) |
+| Attribute | Description             |
+| --------- | ----------------------- |
+| `shadow`  | Shadow intensity (1-24) |
 
 ## Usage
 
 ```html
-<uizy-system-bar>
-    Status: Online | v1.0.0
-</uizy-system-bar>
+<uizy-system-bar> Status: Online | v1.0.0 </uizy-system-bar>
 ```
 
 ## With Shadow
 
 ```html
-<uizy-system-bar shadow="6">
-    My Application
-</uizy-system-bar>
+<uizy-system-bar shadow="6"> My Application </uizy-system-bar>
 ```
 
 ## CSS Variables
 
-| Variable | Default | Description |
-|----------|---------|-------------|
-| `--uizy-system-bar-height` | `24px` | Height of the system bar |
-| `--uizy-system-bar-layer` | `40` | z-index |
+| Variable                   | Default | Description              |
+| -------------------------- | ------- | ------------------------ |
+| `--uizy-system-bar-height` | `24px`  | Height of the system bar |
+| `--uizy-system-bar-layer`  | `40`    | z-index                  |
 
 :::tip
 Set `--uizy-system-bar-height` to `0px` if not using a system bar.
@@ -44,22 +40,22 @@ Set `--uizy-system-bar-height` to `0px` if not using a system bar.
 
 ```html
 <uizy-app id="app">
-    <uizy-system-bar>
-        <span>🟢 Connected</span>
-        <span>v2.1.0</span>
-    </uizy-system-bar>
+  <uizy-system-bar>
+    <span>🟢 Connected</span>
+    <span>v2.1.0</span>
+  </uizy-system-bar>
 
-    <!-- Other components -->
+  <!-- Other components -->
 </uizy-app>
 
 <style>
-    uizy-system-bar {
-        display: flex;
-        justify-content: space-between;
-        padding: 0 1rem;
-        background: #1a1a1a;
-        color: #fff;
-        font-size: 0.75rem;
-    }
+  uizy-system-bar {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 1rem;
+    background: #1a1a1a;
+    color: #fff;
+    font-size: 0.75rem;
+  }
 </style>
 ```

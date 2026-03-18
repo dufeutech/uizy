@@ -78,13 +78,17 @@ uizy.start({
   }
 </style>
 <uizy-app>
-  <uizy-header class="bd-a">Header</uizy-header>
+  <uizy-header class="bd-a">
+    <uizy-toggle left>☰</uizy-toggle>
+    Header
+    <span></span>
+  </uizy-header>
   <uizy-drawer clip-top clip-bottom class="bd-a" open>Sidebar</uizy-drawer>
   <uizy-main clip-top clip-bottom clip-left class="pa-8 bd-a">
-    <ui-box use="button" onclick="uizy.$set('counter', $('counter') + 1)"
-      >Add +</ui-box
+    <uizy-box use="button" onclick="uizy.$set('counter', $('counter') + 1)"
+      >Add +</uizy-box
     >
-    Count: <ui-box :text="counter"></ui-box>
+    Count: <uizy-box :text="counter"></uizy-box>
   </uizy-main>
   <uizy-footer class="bd-a">Footer</uizy-footer>
 </uizy-app>
@@ -93,13 +97,31 @@ uizy.start({
 ## Features
 
 - **Utility CSS** – Atomic classes for rapid styling
-- **Web Components** – `<uizy-app>`, `<uizy-header>`, `<uizy-drawer>`, `<ui-box>`
+- **Web Components** – `<uizy-app>`, `<uizy-header>`, `<uizy-drawer>`, `<uizy-toggle>`, `<uizy-box>`
 - **Reactive State** – Built-in [nanostores](https://github.com/nanostores/nanostores) integration
 - **Components & Actions** – Register reusable styles and event handlers
 - **Directives** – Custom attributes with modifiers (`:tooltip.top="text"`)
 - **Plugins** – Namespace and bundle related functionality
 - **Responsive** – Mobile-first breakpoints (`sm`, `md`, `lg`, `xl`, `xxl`)
 - **Screen Store** – Reactive `uizy.screen` tracks current viewport `{ width, size }`
+
+## Drawer Toggles
+
+Use `<uizy-toggle>` to toggle drawers with zero JavaScript — just set an attribute and put any content inside:
+
+```html
+<!-- Toggle the left drawer -->
+<uizy-toggle left>☰ Menu</uizy-toggle>
+
+<!-- Toggle the right drawer -->
+<uizy-toggle right>Details →</uizy-toggle>
+
+<!-- Toggle mini drawers -->
+<uizy-toggle left-mini>⇤</uizy-toggle>
+<uizy-toggle right-mini>⇥</uizy-toggle>
+```
+
+It's a pure shell — no default visuals, just `cursor: pointer` and built-in keyboard/accessibility support. Style it however you want. When the drawer is open, the toggle gets a `uizy-toggle--active` class for styling.
 
 ## Responsive Breakpoint
 

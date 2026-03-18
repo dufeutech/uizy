@@ -431,7 +431,7 @@ interface ReactiveBindings {
   [key: `u-${string}`]: string | undefined;
 }
 
-/** ui-box specific attributes */
+/** uizy-box specific attributes */
 interface UiBoxAttributes {
   /** Apply registered components (space-separated paths) */
   use?: string;
@@ -479,7 +479,7 @@ declare module "preact" {
       "uizy-overlay": UizyBaseAttributes & ClipAttributes;
 
       // Generic UI Box with reactive bindings
-      "ui-box": UizyBaseAttributes & UiBoxAttributes & ReactiveBindings;
+      "uizy-box": UizyBaseAttributes & UiBoxAttributes & ReactiveBindings;
     }
   }
 }

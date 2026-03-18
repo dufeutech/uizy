@@ -1,0 +1,242 @@
+---
+sidebar_position: 9
+sidebar_label: <uizy-box>
+---
+
+# uizy-box
+
+A utility component for reactive data binding and inline event handling.
+
+## Overview
+
+`<uizy-box>` is a versatile component that combines:
+
+- Reactive text binding to stores
+- Component class application
+- Inline event handlers
+
+```html
+<uizy-box :text="user.name"></uizy-box>
+<uizy-box use="button.primary" :click="console.log('clicked!')"
+  >Click me</uizy-box
+>
+```
+
+## Reactive Text Binding
+
+Bind element text content to a store value with automatic updates:
+
+```html
+<!-- Displays store value and updates automatically -->
+<uizy-box :text="user.name"></uizy-box>
+<uizy-box :text="cart.total"></uizy-box>
+```
+
+```javascript
+uizy.state({
+  user: { name: uizy.store.atom("John") },
+  cart: { total: uizy.store.atom(0) },
+});
+
+// When store updates, uizy-box text updates automatically
+uizy.$set("user.name", "Jane"); // uizy-box now shows "Jane"
+```
+
+Objects and arrays are automatically converted to JSON:
+
+```html
+<uizy-box :text="user.profile"></uizy-box>
+<!-- Displays: {"age":25,"city":"NYC"} -->
+```
+
+## Component Classes
+
+Apply registered component classes with the `use` attribute:
+
+```html
+<uizy-box use="button.primary">Primary Button</uizy-box>
+<uizy-box use="card.elevated">Card Content</uizy-box>
+```
+
+```javascript
+uizy.add({
+  button: {
+    primary: () => "px-4 py-2 bg-primary text-white rounded",
+    secondary: () => "px-4 py-2 bg-gray-200 rounded",
+  },
+  card: {
+    elevated: () => "p-4 shadow-lg rounded-lg",
+  },
+});
+```
+
+### Multiple Components
+
+Combine multiple components with space-separated names:
+
+```html
+<uizy-box use="button.base button.primary button.lg">
+  Large Primary Button
+</uizy-box>
+```
+
+All component classes are combined and applied to the element.
+
+### Passing Props
+
+Pass configuration to components using `use:props` with JSON:
+
+```html
+<uizy-box use="button.sized" use:props='{"size":"lg"}'>Large Button</uizy-box>
+<uizy-box use="spacing.pad" use:props='{"x":4,"y":2}'>Padded</uizy-box>
+
+<!-- Props are passed to all components -->
+<uizy-box use="button.base button.sized" use:props='{"size":"lg"}'>
+  Large Button
+</uizy-box>
+```
+
+```javascript
+uizy.add({
+  button: {
+    sized: (props) => {
+      const sizes = {
+        sm: "px-2 py-1 text-sm",
+        md: "px-4 py-2",
+        lg: "px-6 py-3 text-lg",
+      };
+      return sizes[props?.size] || sizes.md;
+    },
+  },
+  spacing: {
+    pad: ({ x = 0, y = 0 } = {}) => `px-${x} py-${y}`,
+  },
+});
+```
+
+### Conditional Classes
+
+Components can return an object where keys are class strings and values are booleans:
+
+```javascript
+uizy.add({
+  button: {
+    dynamic: (props) => ({
+      "px-2 py-1 text-sm": props.size === "sm",
+      "px-4 py-2": props.size === "md",
+      "px-6 py-3 text-lg": props.size === "lg",
+      "bg-primary text-white": props.variant === "primary",
+      "bg-gray-200": props.variant === "secondary",
+    }),
+  },
+});
+```
+
+```html
+<uizy-box use="button.dynamic" use:props='{"size":"lg","variant":"primary"}'>
+  Large Primary
+</uizy-box>
+<!-- Only classes with truthy values are applied -->
+<!-- Result: class="px-6 py-3 text-lg bg-primary text-white" -->
+```
+
+## Event Handlers
+
+Handle DOM events inline with `:<event>` attributes:
+
+```html
+<!-- Click handler -->
+<uizy-box :click="console.log('clicked!')">Click me</uizy-box>
+
+<!-- Access event object -->
+<uizy-box :click="console.log(event.target)">Log target</uizy-box>
+
+<!-- Call uizy methods -->
+<uizy-box :click="uizy.$set('counter', uizy.$('counter') + 1)"
+  >Increment</uizy-box
+>
+
+<!-- Multiple events -->
+<uizy-box :mouseenter="console.log('enter')" :mouseleave="console.log('leave')">
+  Hover me
+</uizy-box>
+```
+
+### Available Variables
+
+Inside event handlers, these variables are available:
+
+| Variable | Description                   |
+| -------- | ----------------------------- |
+| `event`  | The native DOM event object   |
+| `$event` | Alias for `event`             |
+| `el`     | The `uizy-box` element itself |
+| `$el`    | Alias for `el`                |
+
+### Supported Events
+
+All standard DOM events are supported (note: `:text` is reserved for reactive text binding):
+
+**Mouse Events**
+
+- `:click`, `:dblclick`, `:mousedown`, `:mouseup`
+- `:mouseover`, `:mouseout`, `:mousemove`
+- `:mouseenter`, `:mouseleave`, `:contextmenu`
+
+**Keyboard Events**
+
+- `:keydown`, `:keyup`, `:keypress`
+
+**Focus Events**
+
+- `:focus`, `:blur`, `:focusin`, `:focusout`
+
+**Form Events**
+
+- `:input`, `:change`, `:submit`, `:reset`
+
+**Touch Events**
+
+- `:touchstart`, `:touchend`, `:touchmove`, `:touchcancel`
+
+**Drag Events**
+
+- `:drag`, `:dragstart`, `:dragend`, `:dragover`
+- `:dragenter`, `:dragleave`, `:drop`
+
+**Other Events**
+
+- `:scroll`, `:wheel`
+- `:copy`, `:cut`, `:paste`
+- `:animationstart`, `:animationend`, `:animationiteration`
+- `:transitionstart`, `:transitionend`, `:transitionrun`, `:transitioncancel`
+- `:pointerdown`, `:pointerup`, `:pointermove`, `:pointerover`, `:pointerout`
+- `:pointerenter`, `:pointerleave`, `:pointercancel`
+
+## Combined Example
+
+```html
+<uizy-box
+  :text="counter.value"
+  use="display.large"
+  :click="uizy.$set('counter.value', uizy.$('counter.value') + 1)"
+>
+</uizy-box>
+```
+
+```javascript
+uizy.start({
+  stores: {
+    counter: { value: uizy.store.atom(0) },
+  },
+  components: {
+    display: {
+      large: () => "text-4xl font-bold cursor-pointer select-none",
+    },
+  },
+});
+```
+
+## Cleanup
+
+Event listeners and store subscriptions are automatically cleaned up when the element is removed from the DOM. No manual cleanup is required.

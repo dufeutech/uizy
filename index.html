@@ -21,30 +21,30 @@
     <!-- System Bar -->
     <uizy-system-bar class="d-flex dy-ce bd-b px-3 d-flex dx-sb" style="background: var(--color-1)">
       <span>Uizy Demo</span>
-      <ui-box use="badge.status">
-        Status: <ui-box :text="app.status"></ui-box>
-      </ui-box>
+      <uizy-box use="badge.status">
+        Status: <uizy-box :text="app.status"></uizy-box>
+      </uizy-box>
     </uizy-system-bar>
 
     <!-- Header -->
     <uizy-header shadow="6" class="d-flex dy-ce px-4">
-      <ui-box use="button.icon" onclick="$emit('drawer.toggleLeft')">
+      <uizy-box use="button.icon" onclick="$emit('drawer.toggleLeft')">
         <span class="ts-3">&#9776;</span>
-      </ui-box>
+      </uizy-box>
       <span class="e-ns">Uizy Framework</span>
-      <ui-box use="button.icon" onclick="$emit('drawer.toggleRight')">
+      <uizy-box use="button.icon" onclick="$emit('drawer.toggleRight')">
         <span class="ts-2">&#9881;</span>
-      </ui-box>
+      </uizy-box>
     </uizy-header>
 
     <!-- Left Drawer -->
     <uizy-drawer open shadow="6" clip-top clip-bottom class="d-flex dy-ce p-4" style="background: aquamarine;">
       <h3 class="mb-4">Navigation</h3>
-      <ui-box use="nav.item" onclick="$emit('nav.goto', 'home')">Home</ui-box>
-      <ui-box use="nav.item" onclick="$emit('nav.goto', 'about')">About</ui-box>
-      <ui-box use="nav.item" onclick="$emit('nav.goto', 'contact')">Contact</ui-box>
+      <uizy-box use="nav.item" onclick="$emit('nav.goto', 'home')">Home</uizy-box>
+      <uizy-box use="nav.item" onclick="$emit('nav.goto', 'about')">About</uizy-box>
+      <uizy-box use="nav.item" onclick="$emit('nav.goto', 'contact')">Contact</uizy-box>
       <hr class="my-4 bd-t" />
-      <p class="">Current: <ui-box :text="nav.current"></ui-box></p>
+      <p class="">Current: <uizy-box :text="nav.current"></uizy-box></p>
     </uizy-drawer>
 
     <!-- Right Drawer (Settings) -->
@@ -52,23 +52,23 @@
       <h3 class="mb-4">Settings</h3>
       <div class="mb-4">
         <label class="d-block mb-2">Theme</label>
-        <ui-box use="button.small" onclick="$emit('theme.toggle')" style="background: var(--color-primary)">
+        <uizy-box use="button.small" onclick="$emit('theme.toggle')" style="background: var(--color-primary)">
           Toggle Theme
-        </ui-box>
-        <p class="mt-2">Current: <ui-box :text="settings.themes"></ui-box></p>
+        </uizy-box>
+        <p class="mt-2">Current: <uizy-box :text="settings.themes"></uizy-box></p>
       </div>
     </uizy-drawer>
 
     <!-- Mini Drawers -->
     <uizy-drawer mini shadow="3" clip-system clip-bottom class="d-flex dy-ce">
-      <ui-box class="p-2 ta-c e-p" onclick="$emit('drawer.toggleLeft')">
+      <uizy-box class="p-2 ta-c e-p" onclick="$emit('drawer.toggleLeft')">
         &#9776;
-      </ui-box>
+      </uizy-box>
     </uizy-drawer>
     <uizy-drawer right mini shadow="3" clip-system clip-bottom class="">
-      <ui-box class="p-2 ta-c e-p" onclick="$emit('drawer.toggleRight')">
+      <uizy-box class="p-2 ta-c e-p" onclick="$emit('drawer.toggleRight')">
         &#9881;
-      </ui-box>
+      </uizy-box>
     </uizy-drawer>
 
     <!-- Overlay -->
@@ -83,10 +83,10 @@
             Reactive Counter
           </h3>
           <div class="d-flex">
-            <ui-box use="button.primary" onclick="$emit('counter.decrement')">-</ui-box>
-            <ui-box use="button.primary" class="ff-m ta-c" :text="counter.value" style="width: 40px"></ui-box>
-            <ui-box use="button.primary" onclick="$emit('counter.increment')">+</ui-box>
-            <ui-box class="ml-8" use="button.secondary" onclick="$emit('counter.reset')">Reset</ui-box>
+            <uizy-box use="button.primary" onclick="$emit('counter.decrement')">-</uizy-box>
+            <uizy-box use="button.primary" class="ff-m ta-c" :text="counter.value" style="width: 40px"></uizy-box>
+            <uizy-box use="button.primary" onclick="$emit('counter.increment')">+</uizy-box>
+            <uizy-box class="ml-8" use="button.secondary" onclick="$emit('counter.reset')">Reset</uizy-box>
           </div>
         </div>
 
@@ -94,13 +94,13 @@
         <div class="d-flex df-col mb-6 p-4 br-2">
           <h3 class="mb-3 tt-u">Model (directive)</h3>
           <div class="d-flex">
-            <ui-box :model="user.first_name">
+            <uizy-box :model="user.first_name">
               <input type="text" class="px-3 py-2 bd-a br-1" placeholder="Enter your name..." />
-            </ui-box>
+            </uizy-box>
           </div>
           <p class="mt-3">
             Hello,
-            <ui-box :text="user.full_name"></ui-box>!
+            <uizy-box :text="user.full_name"></uizy-box>!
           </p>
         </div>
 
@@ -108,31 +108,31 @@
         <div class="mb-6 p-4 br-2">
           <h3 class="mb-3 tt-u">Event Handlers</h3>
           <div class="d-flex gx-4">
-            <ui-box u-fx-shake class="bd-a" use="button.interactive" onclick="console.log('Click!', event.target)"
+            <uizy-box u-fx-shake class="bd-a" use="button.interactive" onclick="console.log('Click!', event.target)"
               :mouseenter="el.style.transform = 'scale(1.05)'" :mouseleave="el.style.transform = 'scale(1)'">
               Hover & Click Me
-            </ui-box>
-            <ui-box use="button.secondary" ondblclick="$emit('notification.show', 'Double clicked!')">
+            </uizy-box>
+            <uizy-box use="button.secondary" ondblclick="$emit('notification.show', 'Double clicked!')">
               Double Click Me
-            </ui-box>
+            </uizy-box>
           </div>
         </div>
 
         <!-- Notifications (using fx plugin) -->
-        <ui-box :fx-show="notification.visible" class="p-fixed b-5 r-5 px-5 py-3 br-2 s-3 z-10" :fx-fade>
-          <ui-box :text="notification.message"></ui-box>
-        </ui-box>
+        <uizy-box :fx-show="notification.visible" class="p-fixed b-5 r-5 px-5 py-3 br-2 s-3 z-10" :fx-fade>
+          <uizy-box :text="notification.message"></uizy-box>
+        </uizy-box>
 
         <!-- Actions Demo -->
         <div class="mb-6 p-4 br-2">
           <h3 class="mb-3 tt-u">Actions & Global Shortcuts</h3>
           <div class="d-flex gx-4">
-            <ui-box use="button.primary" onclick="$emit('user.login', { name: $('user.first_name') })">
+            <uizy-box use="button.primary" onclick="$emit('user.login', { name: $('user.first_name') })">
               Login (using $emit & $)
-            </ui-box>
-            <ui-box use="button.secondary" onclick="uizy.emit('notification.show', 'Hello from uizy!')">
+            </uizy-box>
+            <uizy-box use="button.secondary" onclick="uizy.emit('notification.show', 'Hello from uizy!')">
               Show Notification
-            </ui-box>
+            </uizy-box>
           </div>
         </div>
 
@@ -140,9 +140,9 @@
         <div class="mb-6 p-4 br-2">
           <h3 class="mb-3 tt-u">Component Props (use:props)</h3>
           <div class="d-block">
-            <ui-box use="button.base button.sized" use:props='{"size":"sm"}'>Small</ui-box>
-            <ui-box use="button.sized" use:props='{"size":"md"}'>Medium</ui-box>
-            <ui-box use="button.sized" use:props='{"size":"lg"}'>Large</ui-box>
+            <uizy-box use="button.base button.sized" use:props='{"size":"sm"}'>Small</uizy-box>
+            <uizy-box use="button.sized" use:props='{"size":"md"}'>Medium</uizy-box>
+            <uizy-box use="button.sized" use:props='{"size":"lg"}'>Large</uizy-box>
           </div>
         </div>
 
@@ -150,17 +150,17 @@
         <div class="mb-6 p-4 br-2">
           <h3 class="mb-3 tt-u">Plugin Directives (fx-*)</h3>
           <div class="d-flex">
-            <ui-box u-fx-highlight="yellow" class="p-2">:fx-highlight="yellow"</ui-box>
-            <ui-box u-fx-highlight="lightblue" class="p-2">:fx-highlight="lightblue"</ui-box>
-            <ui-box u-fx-tooltip:top="This is a tooltip!" use="button.secondary">
+            <uizy-box u-fx-highlight="yellow" class="p-2">:fx-highlight="yellow"</uizy-box>
+            <uizy-box u-fx-highlight="lightblue" class="p-2">:fx-highlight="lightblue"</uizy-box>
+            <uizy-box u-fx-tooltip:top="This is a tooltip!" use="button.secondary">
               Hover for Tooltip
-            </ui-box>
+            </uizy-box>
           </div>
         </div>
         <div class="mt-12 mb-24">
-          <ui-box use="ui.button.primary" use:props="{size:'sm'}">Sm</ui-box>
-          <ui-box use="ui.button.primary" use:props="{size:'md'}">Md</ui-box>
-          <ui-box use="ui.button.primary" use:props="{size:'lg'}">Lg</ui-box>
+          <uizy-box use="ui.button.primary" use:props="{size:'sm'}">Sm</uizy-box>
+          <uizy-box use="ui.button.primary" use:props="{size:'md'}">Md</uizy-box>
+          <uizy-box use="ui.button.primary" use:props="{size:'lg'}">Lg</uizy-box>
         </div>
       </main>
     </uizy-main>
@@ -168,7 +168,7 @@
     <!-- Footer -->
     <uizy-footer shadow="6" class="px-4 d-flex dy-ce dx-sb">
       <span>Built with Uizy</span>
-      <span>v<ui-box :text="app.version" class="td-b" u-toy:one="hello-world" u-toy:two u-toy:tre></ui-box></span>
+      <span>v<uizy-box :text="app.version" class="td-b" u-toy:one="hello-world" u-toy:two u-toy:tre></uizy-box></span>
     </uizy-footer>
   </uizy-app>
 

@@ -14,22 +14,22 @@ The theme system generates CSS custom properties for consistent styling across y
 ```javascript
 // Initial configuration
 uizy.start({
-    theme: {
-        colors: {
-            primary: "#6b08a5",
-            secondary: "#f5f5f5",
-            accent: "#1eadff",
-        },
-        scrollbar: {
-            size: 12,
-            color: "rgba(121, 121, 121, 0.4)",
-            hover: "rgba(121, 121, 121, 0.7)",
-        },
-        brands: [
-            { name: "success", back: "#28b77b", text: "#fff" },
-            { name: "danger", back: "#d64545", text: "#fff" },
-        ],
+  theme: {
+    colors: {
+      primary: "#6b08a5",
+      secondary: "#f5f5f5",
+      accent: "#1eadff",
     },
+    scrollbar: {
+      size: 12,
+      color: "rgba(121, 121, 121, 0.4)",
+      hover: "rgba(121, 121, 121, 0.7)",
+    },
+    brands: [
+      { name: "success", back: "#28b77b", text: "#fff" },
+      { name: "danger", back: "#d64545", text: "#fff" },
+    ],
+  },
 });
 
 // Update theme at runtime
@@ -40,28 +40,28 @@ uizy.theme({ colors: { primary: "#ff0000" } });
 
 ### ThemeConfig
 
-| Property | Type | Description |
-|----------|------|-------------|
-| `colors` | `Record<string, string>` | System color variables |
-| `scrollbar` | `ScrollbarOptions` | Scrollbar appearance |
-| `brands` | `BrandOptions[]` | Brand color sets |
+| Property    | Type                     | Description            |
+| ----------- | ------------------------ | ---------------------- |
+| `colors`    | `Record<string, string>` | System color variables |
+| `scrollbar` | `ScrollbarOptions`       | Scrollbar appearance   |
+| `brands`    | `BrandOptions[]`         | Brand color sets       |
 
 ### ScrollbarOptions
 
-| Property | Type | Default | Description |
-|----------|------|---------|-------------|
-| `size` | `number` | `22` | Scrollbar width in pixels |
-| `color` | `string` | `rgba(121, 121, 121, 0.4)` | Thumb color |
-| `hover` | `string` | `rgba(121, 121, 121, 0.7)` | Thumb hover color |
+| Property | Type     | Default                    | Description               |
+| -------- | -------- | -------------------------- | ------------------------- |
+| `size`   | `number` | `22`                       | Scrollbar width in pixels |
+| `color`  | `string` | `rgba(121, 121, 121, 0.4)` | Thumb color               |
+| `hover`  | `string` | `rgba(121, 121, 121, 0.7)` | Thumb hover color         |
 
 ### BrandOptions
 
-| Property | Type | Required | Description |
-|----------|------|----------|-------------|
-| `name` | `string` | Yes | Brand name (used in CSS variable names) |
-| `back` | `string` | No | Background color |
-| `text` | `string` | No | Text/foreground color |
-| `line` | `string` | No | Border/line color |
+| Property | Type     | Required | Description                             |
+| -------- | -------- | -------- | --------------------------------------- |
+| `name`   | `string` | Yes      | Brand name (used in CSS variable names) |
+| `back`   | `string` | No       | Background color                        |
+| `text`   | `string` | No       | Text/foreground color                   |
+| `line`   | `string` | No       | Border/line color                       |
 
 ## Runtime Updates
 
@@ -76,8 +76,8 @@ uizy.theme({ scrollbar: { size: 10 } });
 
 // Update multiple aspects
 uizy.theme({
-    colors: { accent: "#6b08a5" },
-    brands: [{ name: "info", back: "#0050b9", text: "#fff" }],
+  colors: { accent: "#6b08a5" },
+  brands: [{ name: "info", back: "#0050b9", text: "#fff" }],
 });
 ```
 
@@ -91,11 +91,11 @@ uizy.theme({
 
 ```javascript
 uizy.theme({
-    colors: {
-        primary: "#6b08a5",
-        secondary: "#f5f5f5",
-        accent: "#1eadff",
-    },
+  colors: {
+    primary: "#6b08a5",
+    secondary: "#f5f5f5",
+    accent: "#1eadff",
+  },
 });
 ```
 
@@ -103,9 +103,9 @@ Generates:
 
 ```css
 :root {
-    --color-primary: #6b08a5;
-    --color-secondary: #f5f5f5;
-    --color-accent: #1eadff;
+  --color-primary: #6b08a5;
+  --color-secondary: #f5f5f5;
+  --color-accent: #1eadff;
 }
 ```
 
@@ -113,11 +113,11 @@ Generates:
 
 ```javascript
 uizy.theme({
-    scrollbar: {
-        size: 12,
-        color: "rgba(121, 121, 121, 0.4)",
-        hover: "rgba(121, 121, 121, 0.7)",
-    },
+  scrollbar: {
+    size: 12,
+    color: "rgba(121, 121, 121, 0.4)",
+    hover: "rgba(121, 121, 121, 0.7)",
+  },
 });
 ```
 
@@ -125,9 +125,9 @@ Generates:
 
 ```css
 :root {
-    --scrollbar-size: 12px;
-    --scrollbar-thumb: rgba(121, 121, 121, 0.4);
-    --scrollbar-thumb-hover: rgba(121, 121, 121, 0.7);
+  --scrollbar-size: 12px;
+  --scrollbar-thumb: rgba(121, 121, 121, 0.4);
+  --scrollbar-thumb-hover: rgba(121, 121, 121, 0.7);
 }
 ```
 
@@ -135,10 +135,10 @@ Generates:
 
 ```javascript
 uizy.theme({
-    brands: [
-        { name: "primary", back: "#6b08a5", text: "#fff" },
-        { name: "danger", back: "#d64545", text: "#fff", line: "#b83030" },
-    ],
+  brands: [
+    { name: "primary", back: "#6b08a5", text: "#fff" },
+    { name: "danger", back: "#d64545", text: "#fff", line: "#b83030" },
+  ],
 });
 ```
 
@@ -146,12 +146,12 @@ Generates:
 
 ```css
 :root {
-    --color-primary-back: #6b08a5;
-    --color-primary-text: #fff;
+  --color-primary-back: #6b08a5;
+  --color-primary-text: #fff;
 
-    --color-danger-back: #d64545;
-    --color-danger-text: #fff;
-    --color-danger-line: #b83030;
+  --color-danger-back: #d64545;
+  --color-danger-text: #fff;
+  --color-danger-line: #b83030;
 }
 ```
 
@@ -161,9 +161,9 @@ Generates:
 
 Update theme configuration and inject CSS.
 
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| `config` | `ThemeConfig` | Partial theme configuration |
+| Parameter | Type          | Description                 |
+| --------- | ------------- | --------------------------- |
+| `config`  | `ThemeConfig` | Partial theme configuration |
 
 ```javascript
 // Update colors
@@ -180,14 +180,14 @@ uizy.theme({ brands: [{ name: "custom", back: "#123", text: "#fff" }] });
 
 Access the underlying Theme class for advanced use cases.
 
-| Method | Description |
-|--------|-------------|
-| `system(colors)` | Set system color variables |
-| `scrollbar(options)` | Configure scrollbar appearance |
-| `brand(options)` | Add a brand color set |
-| `reset()` | Clear brand styles (keeps system and scrollbar) |
-| `clear()` | Clear all theme settings |
-| `toCSS()` | Get all theme CSS as a string |
+| Method               | Description                                     |
+| -------------------- | ----------------------------------------------- |
+| `system(colors)`     | Set system color variables                      |
+| `scrollbar(options)` | Configure scrollbar appearance                  |
+| `brand(options)`     | Add a brand color set                           |
+| `reset()`            | Clear brand styles (keeps system and scrollbar) |
+| `clear()`            | Clear all theme settings                        |
+| `toCSS()`            | Get all theme CSS as a string                   |
 
 :::note
 `uizy.themeClass` methods do not auto-inject CSS. Use `uizy.theme()` for automatic injection, or manually inject after using `themeClass` methods.
@@ -199,23 +199,23 @@ Access the underlying Theme class for advanced use cases.
 
 ```javascript
 const themes = {
-    light: {
-        background: "#ffffff",
-        surface: "#f5f5f5",
-        text: "#1a1a1a",
-        primary: "#6b08a5",
-    },
-    dark: {
-        background: "#1a1a1a",
-        surface: "#2d2d2d",
-        text: "#ffffff",
-        primary: "#a855f7",
-    },
+  light: {
+    background: "#ffffff",
+    surface: "#f5f5f5",
+    text: "#1a1a1a",
+    primary: "#6b08a5",
+  },
+  dark: {
+    background: "#1a1a1a",
+    surface: "#2d2d2d",
+    text: "#ffffff",
+    primary: "#a855f7",
+  },
 };
 
 function setTheme(name) {
-    uizy.theme({ colors: themes[name] });
-    document.documentElement.dataset.theme = name;
+  uizy.theme({ colors: themes[name] });
+  document.documentElement.dataset.theme = name;
 }
 
 // Switch to dark mode
@@ -226,17 +226,17 @@ setTheme("dark");
 
 ```javascript
 uizy.start({
-    stores: {
-        app: {
-            theme: uizy.store.atom("light"),
-        },
+  stores: {
+    app: {
+      theme: uizy.store.atom("light"),
     },
-    onReady: () => {
-        // React to theme changes
-        uizy.$sub("app.theme", (themeName) => {
-            uizy.theme({ colors: themes[themeName] });
-        });
-    },
+  },
+  onReady: () => {
+    // React to theme changes
+    uizy.$sub("app.theme", (themeName) => {
+      uizy.theme({ colors: themes[themeName] });
+    });
+  },
 });
 
 // Change theme via store
@@ -247,20 +247,20 @@ uizy.$set("app.theme", "dark");
 
 ```css
 .card {
-    background: var(--color-surface);
-    color: var(--color-text);
-    border: 1px solid var(--color-primary);
+  background: var(--color-surface);
+  color: var(--color-text);
+  border: 1px solid var(--color-primary);
 }
 
 .button-primary {
-    background: var(--color-primary-back);
-    color: var(--color-primary-text);
+  background: var(--color-primary-back);
+  color: var(--color-primary-text);
 }
 
 .alert-danger {
-    background: var(--color-danger-back);
-    color: var(--color-danger-text);
-    border-color: var(--color-danger-line);
+  background: var(--color-danger-back);
+  color: var(--color-danger-text);
+  border-color: var(--color-danger-line);
 }
 ```
 
@@ -268,46 +268,46 @@ uizy.$set("app.theme", "dark");
 
 ```javascript
 uizy.start({
-    theme: {
-        colors: {
-            // Backgrounds
-            background: "#ffffff",
-            surface: "#f8f9fa",
+  theme: {
+    colors: {
+      // Backgrounds
+      background: "#ffffff",
+      surface: "#f8f9fa",
 
-            // Text
-            text: "#212529",
-            textMuted: "#6c757d",
+      // Text
+      text: "#212529",
+      textMuted: "#6c757d",
 
-            // Brand
-            primary: "#0d6efd",
-            secondary: "#6c757d",
-            accent: "#0dcaf0",
+      // Brand
+      primary: "#0d6efd",
+      secondary: "#6c757d",
+      accent: "#0dcaf0",
 
-            // Status
-            success: "#198754",
-            warning: "#ffc107",
-            danger: "#dc3545",
-            info: "#0dcaf0",
+      // Status
+      success: "#198754",
+      warning: "#ffc107",
+      danger: "#dc3545",
+      info: "#0dcaf0",
 
-            // Borders
-            border: "#dee2e6",
-            borderLight: "#e9ecef",
-        },
-
-        scrollbar: {
-            size: 8,
-            color: "#dee2e6",
-            hover: "#adb5bd",
-        },
-
-        brands: [
-            { name: "primary", back: "#0d6efd", text: "#fff" },
-            { name: "secondary", back: "#6c757d", text: "#fff" },
-            { name: "success", back: "#198754", text: "#fff" },
-            { name: "danger", back: "#dc3545", text: "#fff" },
-            { name: "warning", back: "#ffc107", text: "#000" },
-            { name: "info", back: "#0dcaf0", text: "#000" },
-        ],
+      // Borders
+      border: "#dee2e6",
+      borderLight: "#e9ecef",
     },
+
+    scrollbar: {
+      size: 8,
+      color: "#dee2e6",
+      hover: "#adb5bd",
+    },
+
+    brands: [
+      { name: "primary", back: "#0d6efd", text: "#fff" },
+      { name: "secondary", back: "#6c757d", text: "#fff" },
+      { name: "success", back: "#198754", text: "#fff" },
+      { name: "danger", back: "#dc3545", text: "#fff" },
+      { name: "warning", back: "#ffc107", text: "#000" },
+      { name: "info", back: "#0dcaf0", text: "#000" },
+    ],
+  },
 });
 ```

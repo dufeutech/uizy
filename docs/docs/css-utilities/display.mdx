@@ -11,15 +11,15 @@ Control how elements appear on the screen - show them, hide them, or change thei
 
 These classes control the `display` property:
 
-| Class | Description |
-|-------|-------------|
-| `d-none` | Hides the element completely |
-| `d-block` | Shows as a block (takes full width) |
-| `d-inline` | Shows inline (like text) |
-| `d-inline-block` | Inline but can have width/height |
-| `d-flex` | Enables flexbox layout |
-| `d-inline-flex` | Inline flexbox |
-| `d-grid` | Enables CSS grid layout |
+| Class            | Description                         |
+| ---------------- | ----------------------------------- |
+| `d-none`         | Hides the element completely        |
+| `d-block`        | Shows as a block (takes full width) |
+| `d-inline`       | Shows inline (like text)            |
+| `d-inline-block` | Inline but can have width/height    |
+| `d-flex`         | Enables flexbox layout              |
+| `d-inline-flex`  | Inline flexbox                      |
+| `d-grid`         | Enables CSS grid layout             |
 
 ```html
 <!-- Hidden -->
@@ -50,20 +50,18 @@ Use `gx-*` (column-gap) and `gy-*` (row-gap) classes to add space between flex i
 
 This is where it gets cool! Add breakpoint prefixes to show/hide on different screens:
 
-| Class | Description |
-|-------|-------------|
-| `d-sm-*` | Small screens and up (576px+) |
+| Class    | Description                    |
+| -------- | ------------------------------ |
+| `d-sm-*` | Small screens and up (576px+)  |
 | `d-md-*` | Medium screens and up (768px+) |
-| `d-lg-*` | Large screens and up (992px+) |
-| `d-xl-*` | Extra large screens (1200px+) |
+| `d-lg-*` | Large screens and up (992px+)  |
+| `d-xl-*` | Extra large screens (1200px+)  |
 
 ### Mobile-Only Element
 
 ```html
 <!-- Shows on mobile, hidden on tablets and up -->
-<div class="d-block d-md-none">
-  I only show on mobile! (under 768px)
-</div>
+<div class="d-block d-md-none">I only show on mobile! (under 768px)</div>
 ```
 
 ### Desktop Navigation Example
@@ -106,32 +104,33 @@ Push items to opposite ends:
 ```
 
 :::info Flex alignment classes
+
 - `dx-ce` - Justify Content Center (X-axis)
 - `dx-sb` - Justify Content Space-Between
 - `dy-ce` - Align Items Center (Y-axis)
 - `dy-fs` - Align Items Flex-Start
-:::
+  :::
 
 ## Quick Reference
 
 ### All Display Values
 
-| Class | CSS |
-|-------|-----|
-| `d-none` | display: none |
-| `d-block` | display: block |
-| `d-inline` | display: inline |
+| Class            | CSS                   |
+| ---------------- | --------------------- |
+| `d-none`         | display: none         |
+| `d-block`        | display: block        |
+| `d-inline`       | display: inline       |
 | `d-inline-block` | display: inline-block |
-| `d-flex` | display: flex |
-| `d-inline-flex` | display: inline-flex |
-| `d-grid` | display: grid |
+| `d-flex`         | display: flex         |
+| `d-inline-flex`  | display: inline-flex  |
+| `d-grid`         | display: grid         |
 
 ### Breakpoint Prefixes
 
-| Prefix | Screen Size |
-|--------|-------------|
-| (no prefix) | All screen sizes |
-| `-sm-` | >=576px (small tablets) |
-| `-md-` | >=768px (tablets) |
-| `-lg-` | >=992px (laptops) |
-| `-xl-` | >=1200px (desktops) |
+| Prefix      | Screen Size             |
+| ----------- | ----------------------- |
+| (no prefix) | All screen sizes        |
+| `-sm-`      | >=576px (small tablets) |
+| `-md-`      | >=768px (tablets)       |
+| `-lg-`      | >=992px (laptops)       |
+| `-xl-`      | >=1200px (desktops)     |
