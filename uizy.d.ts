@@ -478,6 +478,14 @@ declare module "preact" {
       // Overlay
       "uizy-overlay": UizyBaseAttributes & ClipAttributes;
 
+      // Toggle Button for Drawers
+      "uizy-toggle": UizyBaseAttributes & {
+        left?: boolean;
+        right?: boolean;
+        "left-mini"?: boolean;
+        "right-mini"?: boolean;
+      };
+
       // Generic UI Box with reactive bindings
       "uizy-box": UizyBaseAttributes & UiBoxAttributes & ReactiveBindings;
     }
